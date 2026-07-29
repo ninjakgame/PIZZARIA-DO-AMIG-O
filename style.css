@@ -1,0 +1,231 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    overflow-y: auto;
+}
+
+/* LOGO */
+.direta{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+    gap: 20px;
+}
+
+.logo{
+    color: black;
+}
+
+.direta img{
+    width: 60px;
+}
+
+/* HEADER */
+header{
+    background-color: #e2d2b1;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+a{
+    text-decoration: none;
+    color: black;
+    margin: 50px;
+    cursor: pointer;
+}
+
+a:hover{
+    border-bottom: 3px solid black; 
+}
+
+/* BANNER */
+
+.banner{
+    position: relative;
+    width: 100%;
+    height: 500px;
+    background: url("img/pizza do banner.jpg") no-repeat center center;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.banner::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(0,0,0,0.45);
+}
+
+.banner h3{
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: 42px;
+}
+
+.banner h4{
+    position: relative;
+    z-index: 1;
+    color: white;
+    font-size: 24px;
+}
+
+span{
+    color: rgb(244,169,29);
+}
+
+.banner .pedidos{
+    position: relative;
+    z-index: 1;
+    background: rgb(2,146,2);
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer
+}
+
+.banner .pedidos:hover{
+    background: rgb(1,110,1);
+    transform: scale(1.05);
+}
+
+/* DESCRIÇÃO */
+
+.descricao{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    background: #e2d2b1;
+    padding: 30px;
+    gap: 20px;
+}
+
+.gridDescricao{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 10px;
+    font-size: 22px;
+}
+
+.gridImagem{
+    width: 100%;
+    max-width: 150px;
+}
+
+/* PRODUTO */
+
+.logo2{
+    margin: 40px 120px;
+    font-size: 60px;
+    border-left: 5px solid black;
+    padding-left: 20px;
+}
+
+.descricaoProduto{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+    padding: 0 120px 80px;
+}
+
+/*TAMANHO DO CARD DO CARDAPIO*/
+.gridProduto{
+    border-radius: 20px;
+    overflow: hidden; /* Impede a imagem de sair do card */
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+
+    display: flex;
+    flex-direction: column;
+
+    cursor: default;
+
+    width: 80%;
+}
+
+/* Área da imagem */
+
+.gridProduto .imagem{
+    overflow: hidden;
+}
+
+/* Imagem */
+
+.gridProduto img{
+    width: 100%;
+    height: 260px;
+
+    object-fit: cover;
+
+    transition: transform .5s ease;
+}
+
+/* Zoom da imagem */
+
+.gridProduto:hover img{
+    transform: scale(1.12);
+}
+
+/* Conteúdo */
+
+.conteudo{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+}
+
+.conteudo h3{
+    font-size: 28px;
+    color: #2A1F17;
+}
+
+
+
+
+
+
+
+
+.conteudoFooter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #e2d2b1;
+    padding: 20px;
+}
+
+.esquerdaF{
+    margin: 20px;
+    font-weight: 600;
+    font-size: 24px;
+}
+
+.diretaF{
+    margin: 20px;
+    font-size: 20px;
+}
+
+.animar{
+    opacity: 0;
+    transform: translateY(70px);
+    transition: .8s ease;
+}
+
+.animar.mostrar{
+    opacity: 1;
+    transform: translateY(0);
+}
