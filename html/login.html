@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZRIA DO AMIGAO</title>
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="informacoes">
+            <h2>LOGIN</h2>
+
+            <div class="campos">
+                <p>Nome</p>
+                <input type="text" name="nome" id="nome" placeholder="Digite seu nome aqui">
+
+                <p>Email</p>
+                <input type="email" name="email" id="email" placeholder="Digite seu E-mail">
+
+
+                <p>Senha</p>
+
+                <div class="campoSenha">
+
+                    <input type="password" id="senha" placeholder="Digite sua senha">
+
+                    <button type="button" onclick="mostrarSenha()">
+                        👁
+                    </button>
+
+                </div>
+                <p id="esqueceuSenha"><a href="/html/esqueceuSenha.html">Esqueceu a senha?</a></p>
+            </div>
+
+            <button class="botao" onclick="entrar()">Entrar</button>
+            <button class="botao">Cadastrar-se</button>
+        </div>
+        <div class="imagem">
+            <img src="/img/logoLogin.jpg" alt="">
+        </div>
+    </div>
+
+    <script src="/js/login.js"></script>
+</body>
+
+</html>

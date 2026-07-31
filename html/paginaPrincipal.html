@@ -1,1 +1,312 @@
-oi
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pizzaria do Amigão</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="direta">
+            <img src="img/logo.png" alt="Logo">
+
+            <h2 class="logo">
+                PIZZARIA DO AMIGÃO
+            </h2>
+        </div>
+
+        <nav>
+
+            <a href="index.html">Início</a>
+
+            <a href="/html/cardapio.html">Cardápio</a>
+
+            <a href="/html/sobreNois.html">Sobre Nois</a>
+
+        </nav>
+
+    </header>
+
+    <!-- ================= BANNER ================= -->
+
+    <section class="banner">
+
+        <h3>CARDÁPIO DO DIA</h3>
+
+        <h4>
+            Venha experimentar nossas pizzas com
+            <span>toda a família.</span>
+        </h4>
+
+        <button class="pedidos" onclick="pedirAgora()">
+            PEDIR AGORA
+        </button>
+
+    </section>
+
+    <!-- ================= DESCRIÇÃO ================= -->
+
+    <section class="descricao animar">
+
+        <div class="gridDescricao">
+
+            <img src="img/iconeFogo.png" class="gridImagem">
+
+            <p>
+                Pizzas preparadas na hora com ingredientes selecionados.
+            </p>
+
+        </div>
+
+        <div class="gridDescricao">
+
+            <img src="img/pedidos.png" class="gridImagem">
+
+            <p>
+                Faça seu pedido de forma rápida e segura.
+            </p>
+
+        </div>
+
+        <div class="gridDescricao">
+
+            <img src="img/entrega.png" class="gridImagem">
+
+            <p>
+                Entrega rápida em toda a cidade.
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- ================= CARDÁPIO ================= -->
+
+    <section class="produto" id="cardapio">
+
+        <h2 class="logo2 animar">
+            CARDÁPIO
+        </h2>
+
+        <div class="descricaoProduto">
+
+            <!-- CARD -->
+
+            <div class="gridProduto animar">
+
+                <div class="imagem">
+                    <img src="img/musarela.png" alt="">
+                </div>
+
+                <div class="conteudo">
+
+                    <h3>Pizza de Mussarela</h3>
+
+                    <p>
+                        Molho artesanal, mussarela premium,
+                        tomate fresco e orégano.
+                    </p>
+
+                    <span class="preco">
+                        R$ 49,90
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="gridProduto animar">
+
+                <div class="imagem">
+                    <img src="img/calabresa.jpg" alt="">
+                </div>
+
+                <div class="conteudo">
+
+                    <h3>Pizza de Calabresa</h3>
+
+                    <p>
+                        Calabresa especial,
+                        cebola e queijo.
+                    </p>
+
+                    <span class="preco">
+                        R$ 52,90
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="gridProduto animar">
+
+                <div class="imagem">
+                    <img src="img/bacon.png" alt="">
+                </div>
+
+                <div class="conteudo">
+
+                    <h3>Pizza de Bacon</h3>
+
+                    <p>
+                        Bacon crocante,
+                        queijo e molho especial.
+                    </p>
+
+                    <span class="preco">
+                        R$ 56,90
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="gridProduto animar">
+
+                <div class="imagem">
+                    <img src="img/toscana.png" alt="">
+                </div>
+
+                <div class="conteudo">
+
+                    <h3>Pizza Toscana</h3>
+
+                    <p>
+                        Linguiça toscana,
+                        queijo e cebola.
+                    </p>
+
+                    <span class="preco">
+                        R$ 59,90
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="gridProduto animar">
+
+                <div class="imagem">
+                    <img src="img/surpresa.png" alt="">
+                </div>
+
+                <div class="conteudo">
+
+                    <h3>Pizza Especial</h3>
+
+                    <p>
+                        Nossa receita exclusiva da casa.
+                    </p>
+
+                    <span class="preco">
+                        R$ 64,90
+                    </span>
+
+                </div>
+
+            </div>
+
+            <!-- CARD -->
+
+            <div class="gridProduto animar">
+
+                <div class="imagem">
+                    <img src="img/4362db86-e26b-4997-8746-e638170cde20.png" alt="">
+                </div>
+
+                <div class="conteudo">
+
+                    <h3>Pizza Portuguesa</h3>
+
+                    <p>
+                        Presunto, ovos, cebola,
+                        tomate e azeitonas.
+                    </p>
+
+                    <span class="preco">
+                        R$ 61,90
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer id="footer">
+
+        <div class="conteudoFooter">
+
+            <div class="esquerdaF">
+
+                <h2>PIZZARIA DO AMIGÃO</h2>
+
+                <div class="links">
+
+                    <a href="#">Cardápio</a>
+
+                    <a href="#">Sobre Nós</a>
+
+                    <a href="#">Pedidos</a>
+
+                    <a href="#">Suporte</a>
+
+                    <a href="#">Pagamentos</a>
+
+                    <a href="#">Localização</a>
+
+                </div>
+
+            </div>
+
+            <div class="diretaF">
+
+                <h3>REDES SOCIAIS</h3>
+
+                <div class="icones">
+
+                    <img src="img/instagram.png" class="icone">
+
+                    <p>Instagram</p>
+
+                </div>
+
+                <div class="icones">
+
+                    <img src="img/whatsapp.png" class="icone">
+
+                    <p>WhatsApp</p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
