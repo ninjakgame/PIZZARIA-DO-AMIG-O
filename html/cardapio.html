@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Pizzaria do Amigão</title>
+
+    <link rel="stylesheet" href="/css/cardapio.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="direta">
+
+            <img src="/img/logo.png" alt="Logo">
+
+            <h2 class="logo">
+                PIZZARIA DO AMIGÃO
+            </h2>
+
+        </div>
+
+
+        <nav>
+
+            <a href="/html/paginaPrincipal.html">
+                Início
+            </a>
+
+            <a href="/html/cardapio.html">
+                Cardápio
+            </a>
+
+            <a href="/html/sobreNois.html">
+                Sobre Nós
+            </a>
+
+            <a href="/html/pedidos.html" class="linkCarrinho">
+                Meus pedidos
+                <span id="contadorCarrinho">0</span>
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         CARDÁPIO
+    ================================================== -->
+
+    <section class="produto animar" id="cardapio">
+
+
+        <h2 class="logoCardapio">
+            CARDÁPIO
+        </h2>
+
+
+
+        <!-- ==================================================
+             PROMOÇÃO
+        ================================================== -->
+
+        <p class="titulo">
+            PROMOÇÃO
+        </p>
+
+
+        <div class="carousel">
+
+
+            <button class="seta esquerda btnAnterior">
+                &#10094;
+            </button>
+
+
+            <div class="descricaoProduto">
+
+
+                <!-- CARD MUSSARELA -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Mussarela"
+
+                    data-descricao="Molho artesanal, mussarela premium, tomate fresco e orégano."
+
+                    data-preco="R$ 49,90"
+
+                    data-imagem="/img/musarela.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/musarela.png"
+                            alt="Pizza de Mussarela"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Mussarela
+                        </h3>
+
+                        <p>
+                            Molho artesanal, mussarela premium,
+                            tomate fresco e orégano.
+                        </p>
+
+                        <span class="preco">
+                            R$ 49,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD CALABRESA -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Calabresa"
+
+                    data-descricao="Calabresa especial, cebola e queijo."
+
+                    data-preco="R$ 52,90"
+
+                    data-imagem="/img/calabresa.jpg">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/calabresa.jpg"
+                            alt="Pizza de Calabresa"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Calabresa
+                        </h3>
+
+                        <p>
+                            Calabresa especial,
+                            cebola e queijo.
+                        </p>
+
+                        <span class="preco">
+                            R$ 52,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD BACON -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Bacon"
+
+                    data-descricao="Bacon crocante, queijo e molho especial."
+
+                    data-preco="R$ 56,90"
+
+                    data-imagem="/img/bacon.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/bacon.png"
+                            alt="Pizza de Bacon"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Bacon
+                        </h3>
+
+                        <p>
+                            Bacon crocante,
+                            queijo e molho especial.
+                        </p>
+
+                        <span class="preco">
+                            R$ 56,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD TOSCANA -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Toscana"
+
+                    data-descricao="Linguiça toscana, queijo e cebola."
+
+                    data-preco="R$ 59,90"
+
+                    data-imagem="/img/toscana.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/toscana.png"
+                            alt="Pizza Toscana"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Toscana
+                        </h3>
+
+                        <p>
+                            Linguiça toscana,
+                            queijo e cebola.
+                        </p>
+
+                        <span class="preco">
+                            R$ 59,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD ESPECIAL -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Especial"
+
+                    data-descricao="Nossa receita exclusiva da casa."
+
+                    data-preco="R$ 64,90"
+
+                    data-imagem="/img/surpresa.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/surpresa.png"
+                            alt="Pizza Especial"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Especial
+                        </h3>
+
+                        <p>
+                            Nossa receita exclusiva
+                            da casa.
+                        </p>
+
+                        <span class="preco">
+                            R$ 64,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD PORTUGUESA -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Portuguesa"
+
+                    data-descricao="Presunto, ovos, cebola, tomate e azeitonas."
+
+                    data-preco="R$ 61,90"
+
+                    data-imagem="/img/4362db86-e26b-4997-8746-e638170cde20.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/4362db86-e26b-4997-8746-e638170cde20.png"
+                            alt="Pizza Portuguesa"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Portuguesa
+                        </h3>
+
+                        <p>
+                            Presunto, ovos, cebola,
+                            tomate e azeitonas.
+                        </p>
+
+                        <span class="preco">
+                            R$ 61,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <button class="seta direita btnProximo">
+                &#10095;
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             SALGADAS
+        ================================================== -->
+
+        <p class="titulo">
+            SALGADA
+        </p>
+
+
+        <div class="carousel">
+
+
+            <button class="seta esquerda btnAnterior">
+                &#10094;
+            </button>
+
+
+            <div class="descricaoProduto">
+
+
+                <!-- CARD 1 -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Mussarela"
+
+                    data-descricao="Molho artesanal, mussarela premium, tomate fresco e orégano."
+
+                    data-preco="R$ 49,90"
+
+                    data-imagem="/img/musarela.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/musarela.png"
+                            alt="Pizza de Mussarela"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Mussarela
+                        </h3>
+
+                        <p>
+                            Molho artesanal,
+                            mussarela premium,
+                            tomate fresco e orégano.
+                        </p>
+
+                        <span class="preco">
+                            R$ 49,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 2 -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Calabresa"
+
+                    data-descricao="Calabresa especial, cebola e queijo."
+
+                    data-preco="R$ 52,90"
+
+                    data-imagem="/img/calabresa.jpg">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/calabresa.jpg"
+                            alt="Pizza de Calabresa"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Calabresa
+                        </h3>
+
+                        <p>
+                            Calabresa especial,
+                            cebola e queijo.
+                        </p>
+
+                        <span class="preco">
+                            R$ 52,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 3 -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Bacon"
+
+                    data-descricao="Bacon crocante, queijo e molho especial."
+
+                    data-preco="R$ 56,90"
+
+                    data-imagem="/img/bacon.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/bacon.png"
+                            alt="Pizza de Bacon"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Bacon
+                        </h3>
+
+                        <p>
+                            Bacon crocante,
+                            queijo e molho especial.
+                        </p>
+
+                        <span class="preco">
+                            R$ 56,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 4 -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Toscana"
+
+                    data-descricao="Linguiça toscana, queijo e cebola."
+
+                    data-preco="R$ 59,90"
+
+                    data-imagem="/img/toscana.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/toscana.png"
+                            alt="Pizza Toscana"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Toscana
+                        </h3>
+
+                        <p>
+                            Linguiça toscana,
+                            queijo e cebola.
+                        </p>
+
+                        <span class="preco">
+                            R$ 59,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 5 -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Especial"
+
+                    data-descricao="Nossa receita exclusiva da casa."
+
+                    data-preco="R$ 64,90"
+
+                    data-imagem="/img/surpresa.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/surpresa.png"
+                            alt="Pizza Especial"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Especial
+                        </h3>
+
+                        <p>
+                            Nossa receita exclusiva
+                            da casa.
+                        </p>
+
+                        <span class="preco">
+                            R$ 64,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 6 -->
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Portuguesa"
+
+                    data-descricao="Presunto, ovos, cebola, tomate e azeitonas."
+
+                    data-preco="R$ 61,90"
+
+                    data-imagem="/img/4362db86-e26b-4997-8746-e638170cde20.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/4362db86-e26b-4997-8746-e638170cde20.png"
+                            alt="Pizza Portuguesa"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Portuguesa
+                        </h3>
+
+                        <p>
+                            Presunto, ovos, cebola,
+                            tomate e azeitonas.
+                        </p>
+
+                        <span class="preco">
+                            R$ 61,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <button class="seta direita btnProximo">
+                &#10095;
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             DOCES
+        ================================================== -->
+
+        <p class="titulo">
+            DOCES
+        </p>
+
+
+        <div class="carousel">
+
+
+            <button class="seta esquerda btnAnterior">
+                &#10094;
+            </button>
+
+
+            <div class="descricaoProduto">
+
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza Doce Especial"
+
+                    data-descricao="Chocolate, morango e ingredientes especiais da casa."
+
+                    data-preco="R$ 55,90"
+
+                    data-imagem="/img/surpresa.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/surpresa.png"
+                            alt="Pizza Doce Especial"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Doce Especial
+                        </h3>
+
+                        <p>
+                            Chocolate, morango e
+                            ingredientes especiais.
+                        </p>
+
+                        <span class="preco">
+                            R$ 55,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Chocolate"
+
+                    data-descricao="Chocolate cremoso e cobertura especial."
+
+                    data-preco="R$ 52,90"
+
+                    data-imagem="/img/surpresa.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/surpresa.png"
+                            alt="Pizza de Chocolate"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Chocolate
+                        </h3>
+
+                        <p>
+                            Chocolate cremoso
+                            e cobertura especial.
+                        </p>
+
+                        <span class="preco">
+                            R$ 52,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gridProduto"
+
+                    data-nome="Pizza de Morango"
+
+                    data-descricao="Morango, chocolate e creme especial."
+
+                    data-preco="R$ 57,90"
+
+                    data-imagem="/img/surpresa.png">
+
+
+                    <div class="imagem">
+
+                        <img
+                            src="/img/surpresa.png"
+                            alt="Pizza de Morango"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Morango
+                        </h3>
+
+                        <p>
+                            Morango, chocolate
+                            e creme especial.
+                        </p>
+
+                        <span class="preco">
+                            R$ 57,90
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <button class="seta direita btnProximo">
+                &#10095;
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             BEBIDAS
+        ================================================== -->
+
+        <p class="titulo">
+            BEBIDA
+        </p>
+
+
+        <div class="carousel">
+
+
+            <button class="seta esquerda btnAnterior">
+                &#10094;
+            </button>
+
+
+            <div class="descricaoProduto">
+
+
+                <div class="gridProduto"
+
+                    data-nome="Coca-Cola"
+
+                    data-descricao="Refrigerante Coca-Cola gelado."
+
+                    data-preco="R$ 8,00"
+
+                    data-imagem="/img/cocacola.jpg">
+
+
+                    <div class="imagem">
+                        <img src="/img/cocacola.jpg" alt="Coca-Cola">
+                    </div>
+
+
+                    <div class="conteudo">
+                        <h3>
+                            Coca-Cola
+                        </h3>
+
+                        <p>
+                            Refrigerante Coca-Cola
+                            gelado.
+                        </p>
+
+                        <span class="preco">
+                            R$ 8,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gridProduto"
+
+                    data-nome="Guaraná"
+
+                    data-descricao="Refrigerante Guaraná gelado."
+
+                    data-preco="R$ 7,00"
+
+                    data-imagem="/img/guarana.jpg">
+
+
+                    <div class="imagem">
+                        <img src="/img/guarana.jpg"alt="Guaraná">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Guaraná
+                        </h3>
+
+                        <p>
+                            Refrigerante Guaraná
+                            gelado.
+                        </p>
+
+                        <span class="preco">
+                            R$ 7,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gridProduto"
+
+                    data-nome="Suco Natural"
+
+                    data-descricao="Suco natural preparado na hora."
+
+                    data-preco="R$ 9,00"
+
+                    data-imagem="/img/suco.jpg">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/suco.jpg" alt="Suco Natural"
+                        >
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Suco Natural
+                        </h3>
+
+                        <p>
+                            Suco natural preparado
+                            na hora.
+                        </p>
+
+                        <span class="preco">
+                            R$ 9,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <button class="seta direita btnProximo">
+                &#10095;
+            </button>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         MODAL DO PRODUTO
+    ================================================== -->
+
+    <div class="modalProduto" id="modalProduto">
+
+
+        <div class="modalConteudo">
+
+
+            <button class="fecharModal" id="fecharModal">
+                &times;
+            </button>
+
+
+            <div class="modalImagem">
+
+                <img id="modalImagem" src="">
+
+            </div>
+
+
+            <div class="modalInformacoes">
+
+                <h2 id="modalNome">
+                    Pizza
+                </h2>
+
+
+                <p id="modalDescricao">
+                    Descrição do produto.
+                </p>
+
+
+                <span
+                    class="modalPreco"
+                    id="modalPreco"
+                >
+                    R$ 0,00
+                </span>
+
+
+                <button class="btnPedido" id="btnAdicionarPedido">
+                    Adicionar aos pedidos
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer id="footer">
+
+
+        <div class="conteudoFooter">
+
+
+            <div class="esquerdaF">
+
+                <h2>
+                    PIZZARIA DO AMIGÃO
+                </h2>
+
+
+                <div class="links">
+
+                    <a href="#">Cardápio</a>
+
+                    <a href="#">Sobre Nós</a>
+
+                    <a href="#">Pedidos</a>
+
+                    <a href="#">Suporte</a>
+
+                    <a href="#">Pagamentos</a>
+
+                    <a href="#">Localização</a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="diretaF">
+
+                <h3>
+                    REDES SOCIAIS
+                </h3>
+
+
+                <div class="icones">
+                    <img
+                        src="/img/instagram.png"
+                        class="icone"
+                        alt="Instagram"
+                    >
+
+                    <p>
+                        <a href="https://www.instagram.com/pizzaria.do.amigao/">Instagram</a>
+                    </p>
+
+                </div>
+
+                <div class="icones">
+
+                    <img
+                        src="/img/whatsapp.png"
+                        class="icone"
+                        alt="WhatsApp"
+                    >
+
+                    <p>
+                        <a href="">Whatsapp</a>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </footer>
+
+
+
+    <script src="/js/cardapio.js"></script>
+
+</body>
+
+</html>

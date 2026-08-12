@@ -3,7 +3,7 @@
 ==========================================*/
 
 function pedirAgora() {
-    window.location.href = "/html/paginaPrincipal.html";
+    window.location.href = "/html/cardapio.html";
 }
 
 /*==========================================
