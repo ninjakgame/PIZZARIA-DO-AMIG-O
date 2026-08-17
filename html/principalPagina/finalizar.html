@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PIZZARIA DO AMIGAO</title>
+
+    <link rel="stylesheet" href="/css/pedidos.css">
+
+</head>
+
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="direta">
+
+            <img src="/img/logo.png" alt="Logo">
+
+            <h2 class="logo">
+                PIZZARIA DO AMIGÃO
+            </h2>
+
+        </div>
+
+
+        <nav class="navegacao">
+
+            <a href="/html/paginaPrincipal.html">
+                Início
+            </a>
+
+            <a href="/html/principalPagina/cardapio.html">
+                Cardápio
+            </a>
+
+            <a href="/html/sobreNois.html">
+                Sobre Nós
+            </a>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= CONTEÚDO ================= -->
+
+    <main class="paginaPedidos">
+
+        <section class="cabecalhoPedidos">
+
+            <h1>
+                Meus pedidos
+            </h1>
+
+            <a href="/html/principalPagina/cardapio.html" class="btnCardapio">
+                Adicionar mais itens
+            </a>
+
+        </section>
+
+
+        <section class="containerPedidos">
+
+
+            <!-- ================= LISTA ================= -->
+
+            <div class="listaPedidos" id="listaPedidos"></div>
+
+
+            <!-- ================= RESUMO ================= -->
+
+            <aside class="resumoPedidos">
+
+                <h2>
+                    Resumo
+                </h2>
+
+
+                <div class="linhaResumo">
+
+                    <span>
+                        Itens
+                    </span>
+
+                    <strong id="totalItens">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="linhaResumo total">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="valorTotal">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+                <!-- ================= FORMULÁRIO ================= -->
+
+                <form class="formDadosPedido" id="formDadosPedido">
+
+
+                    <!-- NOME -->
+
+                    <label>
+
+                        Nome
+
+                        <input type="text" id="nomeCliente" autocomplete="name" required>
+
+                    </label>
+
+
+                    <!-- CEP -->
+
+                    <label>
+
+                        CEP
+
+                        <input type="text" id="cepCliente" placeholder="00000-000" maxlength="9" inputmode="numeric"
+                            autocomplete="postal-code" required>
+
+                        <small id="mensagemCep" class="mensagemCep"></small>
+
+                    </label>
+
+
+                    <!-- RUA -->
+
+                    <label>
+
+                        Rua
+
+                        <input type="text" id="ruaCliente" readonly placeholder="Digite o CEP"
+                            autocomplete="street-address">
+
+                    </label>
+
+
+                    <!-- NÚMERO -->
+
+                    <label>
+
+                        Número
+
+                        <input type="text" id="numeroCliente" inputmode="numeric" required>
+
+                    </label>
+
+
+                    <!-- BAIRRO -->
+
+                    <label>
+
+                        Bairro
+
+                        <input type="text" id="bairroCliente" readonly placeholder="Digite o CEP">
+
+                    </label>
+
+
+                    <!-- CIDADE -->
+
+                    <label>
+
+                        Cidade
+
+                        <input type="text" id="cidadeCliente" readonly placeholder="Digite o CEP">
+
+                    </label>
+
+
+                    <!-- ESTADO -->
+
+                    <label>
+
+                        Estado
+
+                        <input type="text" id="estadoCliente" readonly placeholder="Digite o CEP">
+
+                    </label>
+
+
+                    <!-- COMPLEMENTO -->
+
+                    <label>
+
+                        Complemento
+
+                        <input type="text" id="complementoCliente" placeholder="Apartamento, casa...">
+
+                    </label>
+
+
+                    <!-- PAGAMENTO -->
+
+                    <div class="opcoesPagamento">
+
+                        <p>
+                            Pagamento
+                        </p>
+
+
+                        <label>
+
+                            <input type="radio" name="pagamento" value="Pix" required>
+
+                            Pix
+
+                        </label>
+
+
+                        <label>
+
+                            <input type="radio" name="pagamento" value="Dinheiro">
+
+                            Dinheiro
+
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pagamento" value="Débito">
+                            Cartão de Débito
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pagamento" value="Crédito">
+                            Cartão de Crédito
+                        </label>
+
+                    </div>
+
+
+                    <!-- FINALIZAR -->
+
+                    <button type="submit" class="btnFinalizar" id="btnFinalizar">
+                        Enviar pelo WhatsApp
+                    </button>
+
+                </form>
+
+
+                <!-- LIMPAR -->
+
+                <button class="btnLimpar" id="btnLimpar">
+                    Limpar pedidos
+                </button>
+
+            </aside>
+
+        </section>
+
+
+        <!-- ================= CARRINHO VAZIO ================= -->
+
+        <div class="pedidoVazio" id="pedidoVazio">
+
+            <h2>
+                Seu carrinho está vazio
+            </h2>
+
+            <p>
+                Escolha uma pizza ou bebida no cardápio
+                para montar seu pedido.
+            </p>
+
+            <a href="/html/principalPagina/cardapio.html" class="btnCardapio">
+                Ver cardápio
+            </a>
+
+        </div>
+
+    </main>
+
+
+    <script src="/js/pedidos.js"></script>
+
+</body>
+
+</html>

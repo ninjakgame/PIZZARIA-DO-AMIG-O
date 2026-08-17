@@ -26,6 +26,12 @@ function entrar(){
 
         return;
 
+    } else if (nome === "adm" && email === "adm123@gmail.com" && senha === "adm123"){
+        alert("Seja bem vindo ADM");
+
+        window.location.href = "/html/admPrincipal.html";
+
+        return;
     }
 
     alert("Entrada com sucesso!");

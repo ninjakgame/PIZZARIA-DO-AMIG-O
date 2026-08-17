@@ -24,22 +24,18 @@
         </div>
 
 
-        <nav>
+        <nav class="navegacao">
 
             <a href="/html/paginaPrincipal.html">
                 Início
             </a>
 
-            <a href="/html/cardapio.html">
+            <a href="/html/principalPagina/cardapio.html">
                 Cardápio
             </a>
 
             <a href="/html/sobreNois.html">
                 Sobre Nós
-            </a>
-
-            <a href="/html/pedidos.html">
-                Meus pedidos
             </a>
 
         </nav>
@@ -68,58 +64,18 @@
                     <strong id="valorTotal">R$ 0,00</strong>
                 </div>
 
-                <button class="btnFinalizar" id="btnFinalizar">
-                    Finalizar pedido
-                </button>
+                <form class="formDadosPedido" id="formDadosPedido">
+                    <label>
+                        Nome
+                        <input type="text" id="nomeCliente" required>
+                    </label>
 
-                <button class="btnLimpar" id="btnLimpar">
-                    Limpar pedidos
-                </button>
-            </aside>
-        </section>
+                    <label>
+                        Rua
+                        <input type="text" id="ruaCliente" required>
+                    </label>
 
-        <section class="checkoutPedido" id="checkoutPedido">
-            <div class="barraProgresso">
-                <div class="passo ativo" data-passo="1">
-                    <span>1</span>
-                    <p>Informações</p>
-                </div>
-
-                <div class="linhaProgresso"></div>
-
-                <div class="passo" data-passo="2">
-                    <span>2</span>
-                    <p>Pagamento</p>
-                </div>
-
-                <div class="linhaProgresso"></div>
-
-                <div class="passo" data-passo="3">
-                    <span>3</span>
-                    <p>Confirmar</p>
-                </div>
-            </div>
-
-            <form class="formCheckout" id="formCheckout">
-                <div class="etapaCheckout ativa" data-etapa="1">
-                    <h2>Informações para entrega</h2>
-
-                    <div class="gridCampos">
-                        <label>
-                            Nome completo
-                            <input type="text" id="nomeCliente" required>
-                        </label>
-
-                        <label>
-                            Telefone
-                            <input type="tel" id="telefoneCliente" required>
-                        </label>
-
-                        <label>
-                            Endereço
-                            <input type="text" id="enderecoCliente" required>
-                        </label>
-
+                    <div class="linhaCampos">
                         <label>
                             Número
                             <input type="text" id="numeroCliente" required>
@@ -129,31 +85,19 @@
                             Bairro
                             <input type="text" id="bairroCliente" required>
                         </label>
-
-                        <label>
-                            Complemento
-                            <input type="text" id="complementoCliente">
-                        </label>
                     </div>
-                </div>
 
-                <div class="etapaCheckout" data-etapa="2">
-                    <h2>Tipo de pagamento</h2>
+                    <label>
+                        Complemento
+                        <input type="text" id="complementoCliente">
+                    </label>
 
                     <div class="opcoesPagamento">
+                        <p>Pagamento</p>
+
                         <label>
                             <input type="radio" name="pagamento" value="Pix" required>
                             Pix
-                        </label>
-
-                        <label>
-                            <input type="radio" name="pagamento" value="Cartão de crédito">
-                            Cartão de crédito
-                        </label>
-
-                        <label>
-                            <input type="radio" name="pagamento" value="Cartão de débito">
-                            Cartão de débito
                         </label>
 
                         <label>
@@ -161,33 +105,22 @@
                             Dinheiro
                         </label>
                     </div>
-                </div>
 
-                <div class="etapaCheckout" data-etapa="3">
-                    <h2>Confirmar compra</h2>
-                    <div class="confirmacaoPedido" id="confirmacaoPedido"></div>
-                </div>
-
-                <div class="acoesCheckout">
-                    <button type="button" class="btnVoltar" id="btnVoltarCheckout">
-                        Voltar
+                    <button type="submit" class="btnFinalizar" id="btnFinalizar">
+                        Enviar pelo WhatsApp
                     </button>
+                </form>
 
-                    <button type="button" class="btnProximoCheckout" id="btnProximoCheckout">
-                        Próximo
-                    </button>
-
-                    <button type="submit" class="btnConfirmarCompra" id="btnConfirmarCompra">
-                        Confirmar compra
-                    </button>
-                </div>
-            </form>
+                <button class="btnLimpar" id="btnLimpar">
+                    Limpar pedidos
+                </button>
+            </aside>
         </section>
 
         <div class="pedidoVazio" id="pedidoVazio">
             <h2>Seu carrinho está vazio</h2>
             <p>Escolha uma pizza ou bebida no cardápio para montar seu pedido.</p>
-            <a href="/html/cardapio.html" class="btnCardapio">Ver cardápio</a>
+            <a href="/html/principalPagina/cardapio.html" class="btnCardapio">Ver cardápio</a>
         </div>
     </main>
 

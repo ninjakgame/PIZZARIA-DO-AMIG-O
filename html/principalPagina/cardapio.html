@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIZZARIA DO AMIGAO</title>
+    <link rel="stylesheet" href="/css/principal/principal.css">
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="direta">
+
+            <img src="/img/logo.png" alt="Logo">
+
+            <h2 class="logo">
+                PIZZARIA DO AMIGÃO
+            </h2>
+
+        </div>
+
+
+        <nav class="navegacao">
+
+            <a href="/html/paginaPrincipal.html">
+                Início
+            </a>
+
+            <a href="/html/principalPagina/cardapio.html">
+                Cardápio
+            </a>
+
+            <a href="/html/sobreNois.html">
+                Sobre Nós
+            </a>
+
+            <!-- CARRINHO -->
+            <a href="/html/principalPagina/finalizar.html" class="linkCarrinho" aria-label="Abrir carrinho">
+
+                <span class="iconeCarrinho">
+                    🛒
+                </span>
+
+                <span id="quantidadeCarrinho" class="quantidadeCarrinho">
+                    0
+                </span>
+
+            </a>
+
+        </nav>
+
+    </header>
+
+
+
+    <!-- ==================================================
+         CARDÁPIO
+    ================================================== -->
+
+    <section class="produto animar" id="cardapio">
+
+
+        <h2 class="logoCardapio">
+            CARDÁPIO
+        </h2>
+
+
+
+        <!-- ==================================================
+             PROMOÇÃO
+        ================================================== -->
+
+        <p class="titulo">
+            PROMOÇÃO
+        </p>
+
+
+        <div class="carousel promocao">
+
+            <div class="descricaoProduto">
+
+                <!-- CARD PROMOÇÃO -->
+
+                <div class="gridProduto" data-nome="Combo Amigão"
+                    data-descricao="Pizza de Mussarela ou Calabresa, Brotinho de Chocolate, Guaraná 2L"
+                    data-preco="R$ 65,00" data-imagem="/img/promocao.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/promocao.png" alt="Combo Amigão">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Combo Amigão
+                        </h3>
+
+                        <p>
+                            Pizza de Mussarela ou Calabresa,
+                            Brotinho de Chocolate e Guaraná 2L.
+                        </p>
+
+                        <span class="preco">
+                            R$ 65,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ==================================================
+             SALGADAS
+        ================================================== -->
+
+        <p class="titulo">
+            SALGADA
+        </p>
+
+
+        <div class="carousel">
+
+
+            <button class="seta esquerda btnAnterior">
+                &#10094;
+            </button>
+
+
+            <div class="descricaoProduto">
+
+
+                <!-- CARD 1 -->
+
+                <div class="gridProduto" data-nome="Pizza de Mussarela" data-descricao="Mussarela, Tomate"
+                    data-preco="R$ 43,00" data-imagem="/img/musarela.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/musarela.png" alt="Pizza de Mussarela">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Mussarela
+                        </h3>
+
+                        <p>
+                            Mussarela, Tomate
+                        </p>
+
+                        <span class="preco">
+                            R$ 43,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 2 -->
+
+                <div class="gridProduto" data-nome="Pizza de Calabresa" data-descricao="Mussarela, Calabresa, Cebola"
+                    data-preco="R$ 43,00" data-imagem="/img/calabresa.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/calabresa.png" alt="Pizza de Calabresa">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Calabresa
+                        </h3>
+
+                        <p>
+                            Mussarela, Calabresa, Cebola
+                        </p>
+
+                        <span class="preco">
+                            R$ 43,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 3 -->
+
+                <div class="gridProduto" data-nome="Pizza de Bacon" data-descricao="Bacon, Mussarela"
+                    data-preco="R$ 43,00" data-imagem="/img/bacon.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/bacon.png" alt="Pizza de Bacon">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza de Bacon
+                        </h3>
+
+                        <p>
+                            Bacon, Mussarela
+                        </p>
+
+                        <span class="preco">
+                            R$ 43,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 4 -->
+
+                <div class="gridProduto" data-nome="Pizza Surpresa"
+                    data-descricao="Milho, Requeijão Cremoso, Bacon, Mussarela" data-preco="R$ 43,00"
+                    data-imagem="/img/surpresa.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/surpresa.png" alt="Pizza Surpresa">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Surpresa
+                        </h3>
+
+                        <p>
+                            Milho, Requeijão Cremoso, Bacon, Mussarela
+                        </p>
+
+                        <span class="preco">
+                            R$ 43,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- CARD 5 -->
+
+                <div class="gridProduto" data-nome="Pizza Toscana"
+                    data-descricao="Mussarela, Presunto, Calabresa e Cebola" data-preco="R$ 45,00"
+                    data-imagem="/img/toscana2.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/toscana2.png" alt="Pizza Toscana">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Toscana
+                        </h3>
+
+                        <p>
+                            Mussarela, Presunto, Calabresa e Cebola
+                        </p>
+
+                        <span class="preco">
+                            R$ 45,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 6 -->
+
+                <div class="gridProduto" data-nome="Pizza Portuguesa"
+                    data-descricao="Presunto, Ovo, Cebola, Mussarela e Tomate" data-preco="R$ 45,00"
+                    data-imagem="/img/4362db86-e26b-4997-8746-e638170cde20.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/4362db86-e26b-4997-8746-e638170cde20.png" alt="Pizza Portuguesa">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Portuguesa
+                        </h3>
+
+                        <p>
+                            Presunto, Ovo, Cebola, Mussarela e Tomate
+                        </p>
+
+                        <span class="preco">
+                            R$ 45,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 7 -->
+
+                <div class="gridProduto" data-nome="Pizza Frango Com Catupiry"
+                    data-descricao="Frango Desfiado, Requeijão Cremoso, Mussarela, Tomate" data-preco="R$ 50,00"
+                    data-imagem="/img/frangoCatupiri.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/frangoCatupiri.png" alt="Pizza Portuguesa">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Frango Com Catupiry
+                        </h3>
+
+                        <p>
+                            Frango Desfiado, Requeijão Cremoso, Mussarela, Tomate
+                        </p>
+
+                        <span class="preco">
+                            R$ 50,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 8 -->
+
+                <div class="gridProduto" data-nome="Pizza Caipira"
+                    data-descricao="Frango Desfiado, Milho, Bacon, Mussarela, Tomate" data-preco="R$ 50,00"
+                    data-imagem="/img/caipira.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/caipira.png" alt="Pizza Caipira">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Caipira
+                        </h3>
+
+                        <p>
+                            Frango Desfiado, Milho, Bacon, Mussarela, Tomate
+                        </p>
+
+                        <span class="preco">
+                            R$ 50,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 9 -->
+
+                <div class="gridProduto" data-nome="Pizza Franbacon"
+                    data-descricao="Frango Desfiado, Mussarela, Bacon, Catupiry" data-preco="R$ 55,00"
+                    data-imagem="/img/franbacon.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/franbacon.png" alt="Pizza Franbacon">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Franbacon
+                        </h3>
+
+                        <p>
+                            Frango Desfiado, Mussarela, Bacon, Catupiry
+                        </p>
+
+                        <span class="preco">
+                            R$ 55,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- CARD 10 -->
+
+                <div class="gridProduto" data-nome="Pizza Moda Casa" data-descricao="Frango, Mussarela, Calabresa"
+                    data-preco="R$ 60,00" data-imagem="/img/modaCasa.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/modaCasa.png" alt="Pizza modaCasa">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Pizza Moda da Casa
+                        </h3>
+
+                        <p>
+                            Frango, Mussarela, Calabresa
+                        </p>
+
+                        <span class="preco">
+                            R$ 60,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <button class="seta direita btnProximo">
+                &#10095;
+            </button>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             DOCES
+        ================================================== -->
+
+        <p class="titulo">
+            DOCES
+        </p>
+
+        <div class="carousel promocao">
+
+            <div class="descricaoProduto">
+
+                <!-- CARD DOCES -->
+
+                <div class="gridProduto" data-nome="Brotinho" data-descricao="Chocolate" data-preco="R$ 23,00"
+                    data-imagem="/img/brotinho.png">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/brotinho.png" alt="Combo Amigão">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Brotinho de Chocolate
+                        </h3>
+
+                        <p>
+                            Chocolate
+                        </p>
+
+                        <span class="preco">
+                            R$ 23,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+             BEBIDAS
+        ================================================== -->
+
+        <p class="titulo">
+            BEBIDA
+        </p>
+
+
+        <div class="carousel">
+
+
+            <div class="descricaoProduto">
+
+
+                <div class="gridProduto" data-nome="Coca-Cola" data-descricao="Refrigerante Coca-Cola Gelado de 2,5L ."
+                    data-preco="R$ 16,00" data-imagem="/img/cocacola.jpg">
+
+
+                    <div class="imagem">
+                        <img src="/img/cocacola.jpg" alt="Coca-Cola">
+                    </div>
+
+
+                    <div class="conteudo">
+                        <h3>
+                            Coca-Cola
+                        </h3>
+
+                        <p>
+                            Refrigerante Coca-Cola Gelado de 2,5L
+                        </p>
+
+                        <span class="preco">
+                            R$ 16,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gridProduto" data-nome="Guaranita" data-descricao="Refrigerante Guaranita Gelado de 2L."
+                    data-preco="R$ 9,00" data-imagem="/img/guaranita.png">
+
+
+                    <div class="imagem">
+                        <img src="/img/guaranita.png" alt="Guaranita">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Guaranita
+                        </h3>
+
+                        <p>
+                            Refrigerante Guaranita
+                            gelado 2L.
+                        </p>
+
+                        <span class="preco">
+                            R$ 9,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="gridProduto" data-nome="Fanta Laranja"
+                    data-descricao="Refrigerante Fanta Laranja Gelado de 2L." data-preco="R$ 13,00"
+                    data-imagem="/img/fantaLaranja.jpg">
+
+
+                    <div class="imagem">
+
+                        <img src="/img/fantaLaranja.jpg" alt="Suco Natural">
+
+                    </div>
+
+
+                    <div class="conteudo">
+
+                        <h3>
+                            Fanta Laranha
+                        </h3>
+
+                        <p>
+                            Refrigerante Fanta Laranja Gelado de 2L.
+                        </p>
+
+                        <span class="preco">
+                            R$ 13,00
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         MODAL DO PRODUTO
+    ================================================== -->
+
+    <div class="modalProduto" id="modalProduto">
+
+
+        <div class="modalConteudo">
+
+
+            <button class="fecharModal" id="fecharModal">
+                &times;
+            </button>
+
+
+            <div class="modalImagem">
+
+                <img id="modalImagem" src="" alt="">
+
+            </div>
+
+
+            <div class="modalInformacoes">
+
+                <h2 id="modalNome">
+                    Pizza
+                </h2>
+
+
+                <p id="modalDescricao">
+                    Descrição do produto.
+                </p>
+
+
+                <span class="modalPreco" id="modalPreco">
+                    R$ 0,00
+                </span>
+
+
+                <button class="btnPedido" id="btnAdicionarPedido">
+                    Adicionar aos pedidos
+                </button>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ==================================================
+         FOOTER
+    ================================================== -->
+
+    <footer id="footer">
+
+
+        <div class="conteudoFooter">
+
+
+            <div class="esquerdaF">
+
+                <h2>
+                    PIZZARIA DO AMIGÃO
+                </h2>
+
+
+                <div class="links">
+
+                    <a href="/html/principalPagina/cardapio.html">Cardápio</a>
+
+                    <a href="/html/sobreNois.html">Sobre Nós</a>
+
+                    <a href="/html/principalPagina/finalizar.html">Pedidos</a>
+
+                    <a href="#">Suporte</a>
+
+                    <a href="#">Pagamentos</a>
+
+                    <a href="#">Localização</a>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="diretaF">
+
+                <h3>
+                    REDES SOCIAIS
+                </h3>
+
+
+                <div class="icones">
+                    <img src="/img/instagram.png" class="icone" alt="Instagram">
+
+                    <p>
+                        <a href="https://www.instagram.com/pizzaria.do.amigao/">Instagram</a>
+                    </p>
+
+                </div>
+
+                <div class="icones">
+
+                    <img src="/img/whatsapp.png" class="icone" alt="WhatsApp">
+
+                    <p>
+                        <a href="https://wa.me/5585999851307">Whatsapp</a>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </footer>
+
+    <script src="/js/principal/principal.js"></script>
+</body>
+
+</html>
