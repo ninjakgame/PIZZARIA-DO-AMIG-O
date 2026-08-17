@@ -95,7 +95,7 @@ nav a:hover::after{
     position:relative;
     width:100%;
     height:520px;
-    background:url("/img/pizza do banner.jpg")
+    background:url("img/pizza do banner.jpg")
     center center/cover no-repeat;
     display:flex;
     flex-direction:column;
