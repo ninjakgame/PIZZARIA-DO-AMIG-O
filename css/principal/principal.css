@@ -1,6 +1,6 @@
-/* ===========================================
+/* =========================================================
    RESET
-=========================================== */
+========================================================= */
 
 * {
     margin: 0;
@@ -8,659 +8,406 @@
     box-sizing: border-box;
 }
 
+
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background: #ffffff;
-    color: #2A1F17;
+    background: #f5f5f5;
+    color: #2d241f;
     overflow-x: hidden;
 }
 
-p {
-    cursor: default;
+
+button,
+input,
+textarea {
+    font-family: inherit;
 }
+
+
+button {
+    cursor: pointer;
+}
+
 
 a {
     text-decoration: none;
-    font-weight: 600;
-    color: #2A1F17;
+    color: inherit;
 }
 
-
-/* ===========================================
-   HEADER
-=========================================== */
-
-header {
-    position: sticky;
-    top: 0;
-    z-index: 999;
-
-    width: 100%;
-
-    background: #e2d2b1;
-
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    padding: 18px 4%;
-
-    box-shadow:
-        0 3px 12px rgba(0, 0, 0, .15);
-}
-
-
-/* ===========================================
-   LOGO
-=========================================== */
-
-.direta {
+.navegacao {
     display: flex;
     align-items: center;
+
     gap: 20px;
 }
 
-.direta img {
-    width: 65px;
-    height: auto;
-    display: block;
-}
 
-.logo {
-    color: #2A1F17;
-    font-size: 30px;
-}
+.navegacao > a {
+    font-size: 15px;
+    font-weight: 700;
 
-
-/* ===========================================
-   NAVEGAÇÃO
-=========================================== */
-
-nav {
-    display: flex;
-    align-items: center;
-    gap: 35px;
-}
-
-nav a {
-    position: relative;
-
-    text-decoration: none;
-
-    color: #2A1F17;
-
-    font-size: 18px;
-    font-weight: 600;
+    color: #30251f;
 
     transition:
-        color .3s ease;
-}
-
-nav a:hover {
-    color: #008000;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
-/* Linha dos links normais */
+.navegacao > a:hover {
+    color: #8b1e1e;
 
-nav a:not(.linkCarrinho)::after {
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    bottom: -8px;
-
-    width: 0;
-    height: 3px;
-
-    background: #008000;
-
-    transition:
-        width .3s ease;
-}
-
-nav a:not(.linkCarrinho):hover::after {
-    width: 100%;
+    transform: translateY(-2px);
 }
 
 
-/* ===========================================
-   BOTÃO CARRINHO
-=========================================== */
+
+/* =========================================================
+   CARRINHO
+========================================================= */
 
 .linkCarrinho {
     position: relative;
 
-    display: inline-flex;
+    display: flex !important;
 
     align-items: center;
     justify-content: center;
 
-    width: 45px;
-    height: 45px;
-
-    color: #2A1F17 !important;
-
-    text-decoration: none;
+    width: 42px;
+    height: 42px;
 
     border-radius: 50%;
 
+    background: #f2e4c9;
+
     transition:
-        background .3s ease,
-        color .3s ease;
+        transform 0.2s ease,
+        background 0.2s ease;
 }
 
 
-/* Ícone */
+.linkCarrinho:hover {
+    transform: scale(1.08);
+
+    background: #e8d5b1;
+}
+
 
 .iconeCarrinho {
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 25px;
-
-    line-height: 1;
-
-    transition:
-        transform .3s ease;
+    font-size: 21px;
 }
 
-
-/* Número */
 
 .quantidadeCarrinho {
     position: absolute;
 
-    top: -4px;
-    right: -5px;
+    top: -7px;
+    right: -7px;
 
     min-width: 21px;
     height: 21px;
 
     padding: 0 5px;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 50%;
 
-    background: #008000;
-
+    background: #8b1e1e;
     color: #ffffff;
 
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    font-size: 12px;
-
+    font-size: 11px;
     font-weight: 800;
 
-    line-height: 1;
-
-    border: 2px solid #e2d2b1;
-
-    transition:
-        transform .2s ease;
+    border: 2px solid #ffffff;
 }
 
-
-/* Hover */
-
-.linkCarrinho:hover {
-    color: #008000 !important;
-
-    background:
-        rgba(0, 128, 0, .08);
-}
-
-.linkCarrinho:hover .iconeCarrinho {
-    transform: scale(1.12);
-}
-
-.linkCarrinho:hover .quantidadeCarrinho {
-    transform: scale(1.12);
-}
-
-
-/* Carrinho vazio */
 
 .quantidadeCarrinho.vazio {
-    display: none;
+    background: #777;
 }
 
 
-/* ===========================================
+
+/* =========================================================
    CARDÁPIO
-=========================================== */
+========================================================= */
 
 .produto {
-    display: flex;
+    width: 100%;
 
-    flex-direction: column;
+    max-width: 1450px;
 
-    gap: 10px;
+    margin: 0 auto;
 
-    padding-bottom: 30px;
+    padding: 45px 30px 70px;
 }
 
-
-/* ===========================================
-   TÍTULO PRINCIPAL
-=========================================== */
 
 .logoCardapio {
-    width: 84%;
-
-    margin: 55px auto 15px;
-
-    padding-left: 20px;
-
-    border-left: 7px solid #008000;
-
-    color: #2A1F17;
-
-    font-size: 52px;
-
-    line-height: 1.1;
-
-    font-weight: 800;
-
     text-align: left;
+
+    margin-bottom: 25px;
+
+    font-size: 34px;
+
+    font-weight: 900;
+
+    color: #2e251f;
 }
 
-
-/* ===========================================
-   TÍTULOS DAS CATEGORIAS
-=========================================== */
 
 .titulo {
-    width: 84%;
+    margin: 32px 0 15px;
 
-    margin: 45px auto 20px;
+    font-size: 22px;
 
-    padding:
-        0 0 10px 16px;
+    font-weight: 900;
 
-    border-left: 5px solid #008000;
+    color: #8b1e1e;
 
-    color: #2A1F17;
+    text-transform: uppercase;
 
-    font-size: 32px;
+    border-left: 5px solid #d5a33d;
 
-    line-height: 1.2;
-
-    font-weight: 800;
-
-    text-align: left;
+    padding-left: 12px;
 }
 
 
-/* ===========================================
-   PROMOÇÃO
-   APENAS 1 CARD
-=========================================== */
 
-.promocaoUnica {
-    width: 100%;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    padding:
-        5px 20px 50px;
-}
-
-
-/* Card da promoção */
-
-.promocaoUnica .gridProduto {
-    width: 420px;
-
-    flex:
-        0 0 420px;
-
-    min-width: 0;
-
-    background: #ffffff;
-
-    border-radius: 25px;
-
-    overflow: hidden;
-
-    border:
-        1px solid rgba(42, 31, 23, .07);
-
-    box-shadow:
-        0 10px 30px rgba(42, 31, 23, .16);
-
-    cursor: pointer;
-
-    transition:
-        transform .35s ease,
-        box-shadow .35s ease;
-}
-
-
-/* Hover */
-
-.promocaoUnica .gridProduto:hover {
-    transform:
-        translateY(-10px);
-
-    box-shadow:
-        0 20px 45px rgba(42, 31, 23, .23);
-}
-
-
-/* ===========================================
-   IMAGEM DA PROMOÇÃO
-=========================================== */
-
-.promocaoUnica .imagem {
-    width: 100%;
-
-    overflow: hidden;
-}
-
-.promocaoUnica .imagem img {
-    width: 100%;
-
-    height: 320px;
-
-    display: block;
-
-    object-fit: cover;
-
-    transition:
-        transform .5s ease;
-}
-
-.promocaoUnica .gridProduto:hover img {
-    transform:
-        scale(1.06);
-}
-
-
-/* ===========================================
-   CONTEÚDO DA PROMOÇÃO
-=========================================== */
-
-.promocaoUnica .conteudo {
-    min-height: 190px;
-
-    padding:
-        25px 28px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 11px;
-
-    text-align: left;
-}
-
-
-/* ===========================================
+/* =========================================================
    CARROSSEL
-=========================================== */
+========================================================= */
 
 .carousel {
     position: relative;
 
     width: 100%;
 
-    padding:
-        5px 7.5% 55px;
-
     display: flex;
-
     align-items: center;
-
-    flex-direction: column;
+    gap: 50px;
 }
 
+
 .descricaoProduto {
-    display: flex;
-
-    gap: 28px;
-
     width: 100%;
 
-    overflow: hidden;
+    display: flex;
+
+    gap: 22px;
+
+    overflow-x: auto;
 
     scroll-behavior: smooth;
 
-    padding:
-        15px 12px 30px;
+    scrollbar-width: none;
+
+    padding: 8px 5px 15px;
 }
 
 
-/* ===========================================
-   CARDS NORMAIS
-=========================================== */
+.descricaoProduto::-webkit-scrollbar {
+    display: none;
+}
+
+
+
+/* =========================================================
+   CARDS
+========================================================= */
 
 .gridProduto {
-    flex:
-        0 0 calc(33.333% - 20px);
+    flex: 0 0 280px;
 
-    min-width: 320px;
+    min-height: 380px;
 
     background: #ffffff;
 
-    border-radius: 24px;
+    border-radius: 18px;
 
     overflow: hidden;
-
-    border:
-        1px solid rgba(42, 31, 23, .06);
-
-    box-shadow:
-        0 8px 25px rgba(42, 31, 23, .14);
 
     cursor: pointer;
 
+    box-shadow:
+        0 5px 20px rgba(0, 0, 0, 0.10);
+
     transition:
-        transform .35s ease,
-        box-shadow .35s ease;
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+
+    user-select: none;
 }
+
 
 .gridProduto:hover {
-    transform:
-        translateY(-10px)
-        scale(1.02);
+    transform: translateY(-6px);
 
     box-shadow:
-        0 22px 45px rgba(0, 0, 0, .22);
+        0 12px 28px rgba(0, 0, 0, 0.16);
 }
 
 
-/* ===========================================
-   IMAGENS DOS CARDS
-=========================================== */
-
-.imagem {
-    overflow: hidden;
-}
-
-.imagem img {
+.gridProduto .imagem {
     width: 100%;
+    height: 245px;
 
-    height: 310px;
+    overflow: hidden;
 
-    display: block;
+    background: #eee;
+}
+
+
+.gridProduto .imagem img {
+    width: 100%;
+    height: 100%;
 
     object-fit: cover;
 
+    display: block;
+
     transition:
-        transform .5s ease;
-}
-
-.gridProduto:hover img {
-    transform:
-        scale(1.08);
+        transform 0.4s ease;
 }
 
 
-/* ===========================================
-   CONTEÚDO DOS CARDS
-=========================================== */
-
-.conteudo {
-    min-height: 190px;
-
-    padding:
-        24px 26px 26px;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: flex-start;
-
-    gap: 11px;
-
-    text-align: left;
+.gridProduto:hover .imagem img {
+    transform: scale(1.05);
 }
 
-.conteudo h3 {
-    color: #2A1F17;
 
-    font-size: 25px;
-
-    line-height: 1.2;
+.gridProduto .conteudo {
+    padding: 18px;
 }
 
-.conteudo p {
-    color: #666666;
 
-    font-size: 16px;
+.gridProduto h3 {
+    margin-bottom: 8px;
+
+    font-size: 20px;
+
+    color: #30251f;
+}
+
+
+.gridProduto p {
+    color: #6c625c;
+
+    font-size: 14px;
 
     line-height: 1.5;
 }
 
-.preco {
-    margin-top: auto;
-
-    color: #008000;
-
-    font-size: 27px;
-
-    font-weight: 800;
-}
 
 
-/* ===========================================
-   DETALHE VERDE DOS CARDS
-=========================================== */
+/* =========================================================
+   PREÇOS DOS PRODUTOS NORMAIS
+========================================================= */
 
-.gridProduto::after {
-    content: "";
-
+.gridProduto .preco {
     display: block;
 
-    width: 100%;
-    height: 4px;
+    margin-top: 13px;
 
-    background: #008000;
+    font-size: 21px;
 
-    transform:
-        scaleX(0);
+    font-weight: 900;
 
-    transform-origin: left;
-
-    transition:
-        transform .35s ease;
-}
-
-.gridProduto:hover::after {
-    transform:
-        scaleX(1);
+    color: #008000;
 }
 
 
-/* ===========================================
+
+/* =========================================================
+   PIZZAS NÃO MOSTRAM PREÇO NO CARD
+========================================================= */
+
+.gridProduto[data-tipo="pizza"] .preco {
+    display: none;
+}
+
+
+
+/* =========================================================
    SETAS
-=========================================== */
+========================================================= */
 
 .seta {
-    position: absolute;
+    flex-shrink: 0;
 
-    top: 48%;
-
-    transform:
-        translateY(-50%);
-
-    width: 52px;
-    height: 52px;
+    width: 45px;
+    height: 45px;
 
     border: none;
 
     border-radius: 50%;
 
-    background: #008000;
+    background: #8b1e1e;
 
     color: #ffffff;
 
-    font-size: 27px;
+    font-size: 22px;
 
     display: flex;
 
     align-items: center;
     justify-content: center;
 
-    cursor: pointer;
-
-    z-index: 10;
+    z-index: 5;
 
     box-shadow:
-        0 6px 18px rgba(0, 0, 0, .22);
+        0 4px 12px rgba(0, 0, 0, 0.20);
 
     transition:
-        transform .3s ease,
-        background .3s ease;
+        transform 0.2s ease,
+        background 0.2s ease;
 }
+
 
 .seta:hover {
-    background: #006400;
+    transform: scale(1.08);
 
-    transform:
-        translateY(-50%)
-        scale(1.1);
-}
-
-.seta.esquerda {
-    left: 3.5%;
-}
-
-.seta.direita {
-    right: 3.5%;
+    background: #6f1515;
 }
 
 
-/* ===========================================
+
+/* =========================================================
+   BEBIDAS
+   DESKTOP: NÃO MOSTRAR BOTÕES
+========================================================= */
+
+.bebidas .seta {
+    display: none;
+}
+
+
+
+/* =========================================================
    MODAL
-=========================================== */
+========================================================= */
 
 .modalProduto {
     position: fixed;
 
     inset: 0;
 
-    background:
-        rgba(0, 0, 0, .75);
+    width: 100%;
+    height: 100%;
 
-    display: flex;
+    background:
+        rgba(0, 0, 0, 0.70);
+
+    display: none;
 
     align-items: center;
     justify-content: center;
@@ -668,72 +415,94 @@ nav a:not(.linkCarrinho):hover::after {
     padding: 20px;
 
     z-index: 9999;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    transition:
-        opacity .3s ease,
-        visibility .3s ease;
 }
+
 
 .modalProduto.ativo {
-    opacity: 1;
-
-    visibility: visible;
+    display: flex;
 }
 
-
-/* ===========================================
-   CONTEÚDO DO MODAL
-=========================================== */
 
 .modalConteudo {
     position: relative;
 
-    width: 850px;
+    width: min(900px, 100%);
 
-    max-width: 100%;
+    max-height: 92vh;
+
+    overflow-y: auto;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 0.9fr)
+        minmax(350px, 1.1fr);
 
     background: #ffffff;
 
-    border-radius: 25px;
+    border-radius: 22px;
 
-    overflow: hidden;
-
-    display: flex;
+    overflow-x: hidden;
 
     box-shadow:
-        0 25px 80px rgba(0, 0, 0, .4);
-
-    transform:
-        scale(.8);
-
-    transition:
-        transform .3s ease;
-}
-
-.modalProduto.ativo .modalConteudo {
-    transform:
-        scale(1);
+        0 20px 70px rgba(0, 0, 0, 0.35);
 }
 
 
-/* ===========================================
+
+/* =========================================================
+   FECHAR MODAL
+========================================================= */
+
+.fecharModal {
+    position: absolute;
+
+    top: 13px;
+    right: 13px;
+
+    width: 38px;
+    height: 38px;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: #8b1e1e;
+
+    color: #ffffff;
+
+    font-size: 27px;
+
+    line-height: 1;
+
+    z-index: 20;
+}
+
+
+.fecharModal:hover {
+    background: #6f1515;
+}
+
+
+
+/* =========================================================
    IMAGEM DO MODAL
-=========================================== */
+========================================================= */
 
 .modalImagem {
-    width: 50%;
+    min-height: 500px;
 
-    min-height: 450px;
+    background: #eee;
+
+    overflow: hidden;
 }
+
 
 .modalImagem img {
     width: 100%;
-
     height: 100%;
+
+    min-height: 500px;
 
     object-fit: cover;
 
@@ -741,485 +510,775 @@ nav a:not(.linkCarrinho):hover::after {
 }
 
 
-/* ===========================================
+
+/* =========================================================
    INFORMAÇÕES DO MODAL
-=========================================== */
+========================================================= */
 
 .modalInformacoes {
-    width: 50%;
-
-    padding: 50px;
+    padding: 35px;
 
     display: flex;
 
     flex-direction: column;
 
-    justify-content: center;
-
-    gap: 25px;
+    gap: 15px;
 }
+
 
 .modalInformacoes h2 {
-    font-size: 38px;
+    font-size: 30px;
 
-    color: #2A1F17;
+    color: #30251f;
 }
 
-.modalInformacoes p {
-    color: #666666;
 
+.modalInformacoes > p {
+    color: #6c625c;
+
+    line-height: 1.5;
+}
+
+
+
+/* =========================================================
+   OPÇÕES PIZZA
+========================================================= */
+
+.opcoesPizza {
+    display: none;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   OPÇÕES DA PROMOÇÃO
+========================================================= */
+
+.opcoesPromocao {
+    display: none;
+
+    flex-direction: column;
+
+    gap: 18px;
+}
+
+.opcoesPromocao .grupoOpcao h3 {
+    margin-bottom: 2px;
+}
+
+.opcoesPromocao .opcaoPreco {
+    color: #8b1e1e;
+    font-size: 13px;
+}
+
+
+.opcoesProduto {
+    display: none;
+
+    flex-direction: column;
+}
+
+
+.grupoOpcao {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+
+.grupoOpcao h3 {
     font-size: 18px;
 
-    line-height: 1.7;
+    color: #30251f;
 }
 
-.modalPreco {
-    font-size: 32px;
 
-    font-weight: bold;
+
+/* =========================================================
+   OPÇÕES
+========================================================= */
+
+.opcao {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 12px;
+
+    background: #fafafa;
+
+    cursor: pointer;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+
+.opcao:hover {
+    border-color: #b98927;
+
+    background: #fff9ed;
+
+    transform: translateY(-1px);
+}
+
+
+.opcao input {
+    width: 18px;
+    height: 18px;
+
+    accent-color: #8b1e1e;
+
+    flex-shrink: 0;
+}
+
+
+.opcaoTexto {
+    flex: 1;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 3px;
+}
+
+
+.opcaoTexto strong {
+    color: #30251f;
+
+    font-size: 15px;
+}
+
+
+.opcaoTexto small {
+    color: #777;
+
+    font-size: 13px;
+}
+
+
+.opcaoPreco {
+    font-weight: 800;
+
+    color: #008000;
+
+    white-space: nowrap;
+
+    font-size: 14px;
+}
+
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+textarea {
+    width: 100%;
+
+    min-height: 90px;
+
+    resize: vertical;
+
+    border: 1px solid #d5d5d5;
+
+    border-radius: 12px;
+
+    padding: 13px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    color: #30251f;
+
+    background: #fafafa;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+textarea:focus {
+    border-color: #8b1e1e;
+
+    box-shadow:
+        0 0 0 3px rgba(139, 30, 30, 0.10);
+}
+
+
+.contadorObservacao {
+    text-align: right;
+
+    color: #777;
+
+    font-size: 12px;
+}
+
+
+
+/* =========================================================
+   RESUMO
+========================================================= */
+
+.resumoPedido {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding: 15px 0;
+
+    margin-top: 5px;
+
+    border-top: 1px solid #ddd;
+}
+
+
+.resumoPedido span {
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.resumoPedido strong {
+    font-size: 25px;
 
     color: #008000;
 }
 
 
-/* ===========================================
+
+/* =========================================================
    BOTÃO PEDIDO
-=========================================== */
+========================================================= */
 
 .btnPedido {
+    width: 100%;
+
     border: none;
-
-    background: #008000;
-
-    color: #ffffff;
-
-    padding:
-        16px 25px;
 
     border-radius: 12px;
 
-    font-size: 18px;
+    padding: 15px 20px;
 
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        background .3s ease,
-        transform .3s ease;
-}
-
-.btnPedido:hover {
-    background: #006400;
-
-    transform:
-        translateY(-3px);
-}
-
-
-/* ===========================================
-   FECHAR MODAL
-=========================================== */
-
-.fecharModal {
-    position: absolute;
-
-    top: 15px;
-    right: 18px;
-
-    width: 45px;
-    height: 45px;
-
-    border: none;
-
-    border-radius: 50%;
-
-    background:
-        rgba(0, 0, 0, .6);
+    background: #008000;
 
     color: #ffffff;
 
-    font-size: 32px;
+    font-size: 16px;
 
-    line-height: 1;
-
-    cursor: pointer;
-
-    z-index: 10;
+    font-weight: 800;
 
     transition:
-        background .3s ease,
-        transform .3s ease;
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
-.fecharModal:hover {
+
+.btnPedido:hover {
+    background: #006600;
+
+    transform: translateY(-2px);
+}
+
+
+
+/* =========================================================
+   MENSAGEM
+========================================================= */
+
+.mensagemCarrinho {
+    position: fixed;
+
+    right: 20px;
+    bottom: 20px;
+
+    z-index: 10000;
+
     background: #008000;
 
-    transform:
-        rotate(90deg);
+    color: #ffffff;
+
+    padding: 15px 20px;
+
+    border-radius: 12px;
+
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.25);
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
 }
 
 
-/* ===========================================
+
+/* =========================================================
+   ANIMAÇÃO
+========================================================= */
+
+.animar {
+    opacity: 0;
+
+    transform: translateY(30px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+
+.animar.mostrar {
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+
+
+/* =========================================================
    FOOTER
-=========================================== */
+========================================================= */
 
 footer {
-    margin-top: 80px;
+    width: 100%;
+
+    background: #241b17;
+
+    color: #ffffff;
+
+    padding: 45px 30px;
 }
 
+
 .conteudoFooter {
-    background: #e2d2b1;
+    max-width: 1200px;
+
+    margin: 0 auto;
 
     display: flex;
 
     justify-content: space-between;
 
-    align-items: flex-start;
-
-    gap: 80px;
-
-    padding:
-        60px 8%;
+    gap: 50px;
 }
 
-.esquerdaF {
+
+.esquerdaF,
+.diretaF {
     display: flex;
 
     flex-direction: column;
 
-    gap: 30px;
+    gap: 18px;
 }
+
 
 .esquerdaF h2 {
-    color: #2A1F17;
-
-    font-size: 32px;
+    font-size: 22px;
 }
+
+
+.diretaF h3 {
+    font-size: 18px;
+}
+
 
 .links {
     display: flex;
 
     flex-direction: column;
 
-    gap: 15px;
+    gap: 10px;
 }
 
-.links a {
-    text-decoration: none;
 
-    color: #2A1F17;
-
-    font-size: 18px;
+.links a,
+.icones a {
+    color: #ddd;
 
     transition:
-        color .3s ease,
-        transform .3s ease;
+        color 0.2s ease;
 }
 
-.links a:hover {
-    color: #008000;
 
-    transform:
-        translateX(8px);
+.links a:hover,
+.icones a:hover {
+    color: #ffffff;
 }
 
-.diretaF {
-    display: flex;
-
-    flex-direction: column;
-
-    gap: 25px;
-}
-
-.diretaF h3 {
-    color: #2A1F17;
-
-    font-size: 30px;
-}
 
 .icones {
     display: flex;
 
     align-items: center;
 
-    gap: 15px;
-
-    cursor: pointer;
-
-    transition:
-        transform .3s ease;
+    gap: 10px;
 }
 
-.icones:hover {
-    transform:
-        translateX(10px);
-}
 
 .icone {
-    width: 42px;
-    height: 42px;
+    width: 27px;
+    height: 27px;
 
     object-fit: contain;
 }
 
-.icones p {
-    font-size: 18px;
+
+
+/* =========================================================
+   DESKTOP GRANDE
+========================================================= */
+
+@media (min-width: 1100px) {
+
+    .gridProduto {
+        flex-basis: 290px;
+    }
+
 }
 
 
-/* ===========================================
-   ANIMAÇÃO
-=========================================== */
 
-.animar {
-    opacity: 0;
-
-    transform:
-        translateY(70px);
-
-    transition:
-        opacity .8s ease,
-        transform .8s ease;
-}
-
-.animar.mostrar {
-    opacity: 1;
-
-    transform:
-        translateY(0);
-}
-
-
-/* ===========================================
-   RESPONSIVO - TABLET
-=========================================== */
+/* =========================================================
+   TABLET
+========================================================= */
 
 @media (max-width: 900px) {
 
-    .gridProduto {
-        flex:
-            0 0 calc(50% - 18px);
+    header {
+        padding: 12px 20px;
     }
 
-    .promocaoUnica .gridProduto {
-        width: 400px;
 
-        flex-basis: 400px;
+    .logo {
+        font-size: 17px;
+    }
+
+
+    .navegacao {
+        gap: 14px;
+    }
+
+
+    .navegacao > a {
+        font-size: 13px;
+    }
+
+
+    .produto {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+
+    .modalConteudo {
+        grid-template-columns: 1fr;
+    }
+
+
+    .modalImagem {
+        min-height: 280px;
+
+        max-height: 300px;
+    }
+
+
+    .modalImagem img {
+        min-height: 280px;
     }
 
 }
 
 
-/* ===========================================
-   RESPONSIVO - CELULAR
-=========================================== */
 
-@media (max-width: 700px) {
+/* =========================================================
+   MOBILE
+========================================================= */
 
-    /* HEADER */
+@media (max-width: 600px) {
 
     header {
-        flex-direction: column;
+        min-height: 70px;
 
-        gap: 15px;
+        padding: 10px 12px;
 
-        padding:
-            15px 5%;
-    }
-
-    .direta {
         gap: 10px;
     }
 
-    .direta img {
-        width: 50px;
+
+    .direta {
+        gap: 7px;
     }
+
+
+    .direta img {
+        width: 43px;
+        height: 43px;
+    }
+
 
     .logo {
-        font-size: 20px;
-    }
-
-
-    /* NAVEGAÇÃO */
-
-    nav {
-        width: 100%;
-
-        gap: 15px;
-
-        flex-wrap: wrap;
-
-        justify-content: center;
-    }
-
-    nav a {
         font-size: 14px;
     }
 
 
-    /* CARRINHO */
+    .navegacao {
+        gap: 8px;
+    }
+
+
+    .navegacao > a:not(.linkCarrinho) {
+        display: none;
+    }
+
 
     .linkCarrinho {
         width: 40px;
         height: 40px;
     }
 
-    .iconeCarrinho {
-        font-size: 23px;
+
+    .produto {
+        padding:
+            30px 12px 50px;
     }
 
-    .quantidadeCarrinho {
-        min-width: 19px;
-        height: 19px;
-
-        font-size: 11px;
-    }
-
-
-    /* TÍTULOS */
 
     .logoCardapio {
-        width: 90%;
+        font-size: 28px;
 
-        margin-top: 40px;
-
-        font-size: 38px;
-
-        text-align: left;
+        margin-bottom: 20px;
     }
+
 
     .titulo {
-        width: 90%;
+        font-size: 19px;
 
-        margin-top: 32px;
-
-        font-size: 27px;
-
-        text-align: left;
+        margin-top: 28px;
     }
 
-
-    /* PROMOÇÃO */
-
-    .promocaoUnica {
-        padding:
-            5px 5% 40px;
-    }
-
-    .promocaoUnica .gridProduto {
-        width: 100%;
-
-        flex:
-            0 0 100%;
-
-        max-width: 420px;
-    }
-
-    .promocaoUnica .imagem img {
-        height: 270px;
-    }
-
-
-    /* CARROSSEL */
-
-    .carousel {
-        padding:
-            0 4% 45px;
-    }
-
-    .descricaoProduto {
-        gap: 18px;
-
-        padding:
-            12px 6px 25px;
-    }
 
     .gridProduto {
-        flex:
-            0 0 100%;
+        flex: 0 0 260px;
 
-        min-width: 100%;
-
-        border-radius: 20px;
-    }
-
-    .imagem img {
-        height: 270px;
-    }
-
-    .conteudo {
-        min-height: 175px;
-
-        padding: 22px;
-    }
-
-    .conteudo h3 {
-        font-size: 23px;
-    }
-
-    .preco {
-        font-size: 25px;
+        min-height: 350px;
     }
 
 
-    /* SETAS */
+    .gridProduto .imagem {
+        height: 220px;
+    }
 
-    .seta {
-        width: 45px;
-        height: 45px;
 
+
+    /* =====================================================
+       BEBIDAS NO MOBILE
+       AS SETAS APARECEM
+    ===================================================== */
+
+    .bebidas .seta {
+        display: flex;
+    }
+
+
+    .bebidas {
+        gap: 7px;
+    }
+
+
+    .bebidas .seta {
+        width: 38px;
+        height: 38px;
+
+        font-size: 18px;
+    }
+
+
+
+    /* =====================================================
+       MODAL MOBILE
+    ===================================================== */
+
+    .modalProduto {
+        padding: 10px;
+    }
+
+
+    .modalConteudo {
+        width: 100%;
+
+        max-height: 95vh;
+
+        border-radius: 17px;
+    }
+
+
+    .modalImagem {
+        min-height: 220px;
+
+        max-height: 220px;
+    }
+
+
+    .modalImagem img {
+        min-height: 220px;
+    }
+
+
+    .modalInformacoes {
+        padding: 22px 18px 25px;
+    }
+
+
+    .modalInformacoes h2 {
         font-size: 24px;
     }
 
-    .seta.esquerda {
-        left: 1%;
-    }
 
-    .seta.direita {
-        right: 1%;
+    .opcao {
+        padding: 11px;
     }
 
 
-    /* MODAL */
-
-    .modalConteudo {
-        flex-direction: column;
-
-        max-height: 90vh;
-
-        overflow-y: auto;
-    }
-
-    .modalImagem {
-        width: 100%;
-
-        height: 250px;
-
-        min-height: auto;
-    }
-
-    .modalInformacoes {
-        width: 100%;
-
-        padding: 30px;
-    }
-
-    .modalInformacoes h2 {
-        font-size: 28px;
-    }
-
-    .modalPreco {
-        font-size: 27px;
+    .opcaoTexto strong {
+        font-size: 14px;
     }
 
 
-    /* FOOTER */
+    .opcaoPreco {
+        font-size: 13px;
+    }
+
+
+    .resumoPedido strong {
+        font-size: 22px;
+    }
+
 
     .conteudoFooter {
         flex-direction: column;
-
-        gap: 50px;
     }
 
+
+    footer {
+        padding: 35px 20px;
+    }
+
+}
+
+
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 400px) {
+
+    .logo {
+        font-size: 12px;
+    }
+
+
+    .gridProduto {
+        flex-basis: 235px;
+    }
+
+
+    .gridProduto .imagem {
+        height: 200px;
+    }
+
+
+    .modalInformacoes {
+        padding: 18px 14px;
+    }
+
+
+    .opcao {
+        gap: 8px;
+    }
+
+
+    .opcaoPreco {
+        font-size: 12px;
+    }
+
+}
+
+/* ===========================================
+   HEADER
+=========================================== */
+
+header{
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    background: #e2d2b1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 18px 0;
+    box-shadow: 0 3px 12px rgba(0,0,0,.15);
+}
+
+.direta{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.direta img{
+    width: 65px;
+}
+
+.logo{
+    color:#2A1F17;
+    font-size:30px;
+}
+
+nav{
+    display:flex;
+    gap:35px;
+}
+
+nav a{
+    position:relative;
+    text-decoration:none;
+    color:#2A1F17;
+    font-size:18px;
+    font-weight:600;
+    transition:.3s;
+}
+
+nav a:hover{
+    color:#008000;
+}
+
+
+nav a:hover::after{
+    width:100%;
 }

@@ -2,26 +2,33 @@
 <html lang="pt-br">
 
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PIZZARIA DO AMIGAO</title>
+
+    <title>PIZZARIA DO AMIGÃO</title>
+
     <link rel="stylesheet" href="/css/principal/principal.css">
+
 </head>
+
 
 <body>
 
-    <!-- ================= HEADER ================= -->
+
+    <!-- ==================================================
+         HEADER
+    ================================================== -->
 
     <header>
 
         <div class="direta">
-
             <img src="/img/logo.png" alt="Logo">
 
             <h2 class="logo">
                 PIZZARIA DO AMIGÃO
             </h2>
-
         </div>
 
 
@@ -39,14 +46,16 @@
                 Sobre Nós
             </a>
 
+
             <!-- CARRINHO -->
+
             <a href="/html/principalPagina/finalizar.html" class="linkCarrinho" aria-label="Abrir carrinho">
 
                 <span class="iconeCarrinho">
                     🛒
                 </span>
 
-                <span id="quantidadeCarrinho" class="quantidadeCarrinho">
+                <span id="quantidadeCarrinho" class="quantidadeCarrinho vazio">
                     0
                 </span>
 
@@ -62,56 +71,57 @@
          CARDÁPIO
     ================================================== -->
 
-    <section class="produto animar" id="cardapio">
+    <main>
+
+        <section class="produto animar" id="cardapio">
+
+            <h2 class="logoCardapio">
+                CARDÁPIO
+            </h2>
 
 
-        <h2 class="logoCardapio">
-            CARDÁPIO
-        </h2>
+
+            <!-- ==================================================
+                 PROMOÇÃO
+            ================================================== -->
+
+            <p class="titulo">
+                PROMOÇÃO
+            </p>
 
 
+            <div class="carousel promocaoUnica">
 
-        <!-- ==================================================
-             PROMOÇÃO
-        ================================================== -->
-
-        <p class="titulo">
-            PROMOÇÃO
-        </p>
+                <div class="descricaoProduto">
 
 
-        <div class="carousel promocao">
+                    <div class="gridProduto" data-tipo="promocao" data-nome="Combo Amigão"
+                        data-descricao="Pizza de Mussarela ou Calabresa, Brotinho de Chocolate e Guaraná 2L."
+                        data-preco="65.00" data-imagem="/img/promocao.png">
 
-            <div class="descricaoProduto">
+                        <div class="imagem">
 
-                <!-- CARD PROMOÇÃO -->
+                            <img src="/img/promocao.png" alt="Combo Amigão">
 
-                <div class="gridProduto" data-nome="Combo Amigão"
-                    data-descricao="Pizza de Mussarela ou Calabresa, Brotinho de Chocolate, Guaraná 2L"
-                    data-preco="R$ 65,00" data-imagem="/img/promocao.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/promocao.png" alt="Combo Amigão">
-
-                    </div>
+                        </div>
 
 
-                    <div class="conteudo">
+                        <div class="conteudo">
 
-                        <h3>
-                            Combo Amigão
-                        </h3>
+                            <h3>
+                                Combo Amigão
+                            </h3>
 
-                        <p>
-                            Pizza de Mussarela ou Calabresa,
-                            Brotinho de Chocolate e Guaraná 2L.
-                        </p>
+                            <p>
+                                Pizza de Mussarela ou Calabresa,
+                                Brotinho de Chocolate e Guaraná 2L.
+                            </p>
 
-                        <span class="preco">
-                            R$ 65,00
-                        </span>
+                            <span class="preco">
+                                R$ 65,00
+                            </span>
+
+                        </div>
 
                     </div>
 
@@ -119,402 +129,380 @@
 
             </div>
 
-        </div>
 
 
-        <!-- ==================================================
-             SALGADAS
-        ================================================== -->
+            <!-- ==================================================
+                 PIZZAS
+            ================================================== -->
 
-        <p class="titulo">
-            SALGADA
-        </p>
-
-
-        <div class="carousel">
+            <p class="titulo">
+                SALGADAS
+            </p>
 
 
-            <button class="seta esquerda btnAnterior">
-                &#10094;
-            </button>
+            <div class="carousel carouselProdutos">
 
 
-            <div class="descricaoProduto">
+                <!-- BOTÃO ESQUERDO -->
+
+                <button class="seta esquerda btnAnterior" type="button" aria-label="Pizza anterior">
+                    &#10094;
+                </button>
 
 
-                <!-- CARD 1 -->
 
-                <div class="gridProduto" data-nome="Pizza de Mussarela" data-descricao="Mussarela, Tomate"
-                    data-preco="R$ 43,00" data-imagem="/img/musarela.png">
+                <div class="descricaoProduto">
 
 
-                    <div class="imagem">
+                    <!-- PIZZA 1 -->
 
-                        <img src="/img/musarela.png" alt="Pizza de Mussarela">
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza de Mussarela"
+                        data-descricao="Mussarela, Tomate" data-preco-grande="43.00" data-preco-broto="24.00"
+                        data-imagem="/img/musarela.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/musarela.png" alt="Pizza de Mussarela">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza de Mussarela
+                            </h3>
+
+                            <p>
+                                Mussarela, Tomate
+                            </p>
+
+                        </div>
 
                     </div>
 
 
-                    <div class="conteudo">
 
-                        <h3>
-                            Pizza de Mussarela
-                        </h3>
+                    <!-- PIZZA 2 -->
 
-                        <p>
-                            Mussarela, Tomate
-                        </p>
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza de Calabresa"
+                        data-descricao="Mussarela, Calabresa, Cebola" data-preco-grande="43.00" data-preco-broto="24.00"
+                        data-imagem="/img/calabresa.png">
 
-                        <span class="preco">
-                            R$ 43,00
-                        </span>
+                        <div class="imagem">
+
+                            <img src="/img/calabresa.png" alt="Pizza de Calabresa">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza de Calabresa
+                            </h3>
+
+                            <p>
+                                Mussarela, Calabresa, Cebola
+                            </p>
+
+                        </div>
 
                     </div>
+
+
+
+                    <!-- PIZZA 3 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza de Bacon"
+                        data-descricao="Bacon, Mussarela" data-preco-grande="43.00" data-preco-broto="24.00"
+                        data-imagem="/img/bacon.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/bacon.png" alt="Pizza de Bacon">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza de Bacon
+                            </h3>
+
+                            <p>
+                                Bacon, Mussarela
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 4 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Surpresa"
+                        data-descricao="Milho, Requeijão Cremoso, Bacon, Mussarela" data-preco-grande="43.00"
+                        data-preco-broto="24.00" data-imagem="/img/surpresa.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/surpresa.png" alt="Pizza Surpresa">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Surpresa
+                            </h3>
+
+                            <p>
+                                Milho, Requeijão Cremoso,
+                                Bacon, Mussarela
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 5 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Toscana"
+                        data-descricao="Mussarela, Presunto, Calabresa e Cebola" data-preco-grande="45.00"
+                        data-preco-broto="25.00" data-imagem="/img/toscana2.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/toscana2.png" alt="Pizza Toscana">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Toscana
+                            </h3>
+
+                            <p>
+                                Mussarela, Presunto,
+                                Calabresa e Cebola
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 6 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Portuguesa"
+                        data-descricao="Presunto, Ovo, Cebola, Mussarela e Tomate" data-preco-grande="45.00"
+                        data-preco-broto="25.00" data-imagem="/img/4362db86-e26b-4997-8746-e638170cde20.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/4362db86-e26b-4997-8746-e638170cde20.png" alt="Pizza Portuguesa">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Portuguesa
+                            </h3>
+
+                            <p>
+                                Presunto, Ovo, Cebola,
+                                Mussarela e Tomate
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 7 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Frango Com Catupiry"
+                        data-descricao="Frango Desfiado, Requeijão Cremoso, Mussarela, Tomate" data-preco-grande="50.00"
+                        data-preco-broto="28.00" data-imagem="/img/frangoCatupiri.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/frangoCatupiri.png" alt="Pizza Frango Com Catupiry">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Frango Com Catupiry
+                            </h3>
+
+                            <p>
+                                Frango Desfiado,
+                                Requeijão Cremoso,
+                                Mussarela, Tomate
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 8 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Caipira"
+                        data-descricao="Frango Desfiado, Milho, Bacon, Mussarela, Tomate" data-preco-grande="50.00"
+                        data-preco-broto="28.00" data-imagem="/img/caipira.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/caipira.png" alt="Pizza Caipira">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Caipira
+                            </h3>
+
+                            <p>
+                                Frango Desfiado, Milho,
+                                Bacon, Mussarela, Tomate
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 9 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Franbacon"
+                        data-descricao="Frango Desfiado, Mussarela, Bacon, Catupiry" data-preco-grande="55.00"
+                        data-preco-broto="30.00" data-imagem="/img/franbacon.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/franbacon.png" alt="Pizza Franbacon">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Franbacon
+                            </h3>
+
+                            <p>
+                                Frango Desfiado,
+                                Mussarela, Bacon, Catupiry
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- PIZZA 10 -->
+
+                    <div class="gridProduto" data-tipo="pizza" data-nome="Pizza Moda da Casa"
+                        data-descricao="Frango, Mussarela, Calabresa" data-preco-grande="60.00" data-preco-broto="32.00"
+                        data-imagem="/img/modaCasa.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/modaCasa.png" alt="Pizza Moda da Casa">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Pizza Moda da Casa
+                            </h3>
+
+                            <p>
+                                Frango, Mussarela, Calabresa
+                            </p>
+
+                        </div>
+
+                    </div>
+
 
                 </div>
 
 
 
-                <!-- CARD 2 -->
-
-                <div class="gridProduto" data-nome="Pizza de Calabresa" data-descricao="Mussarela, Calabresa, Cebola"
-                    data-preco="R$ 43,00" data-imagem="/img/calabresa.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/calabresa.png" alt="Pizza de Calabresa">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza de Calabresa
-                        </h3>
-
-                        <p>
-                            Mussarela, Calabresa, Cebola
-                        </p>
-
-                        <span class="preco">
-                            R$ 43,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- CARD 3 -->
-
-                <div class="gridProduto" data-nome="Pizza de Bacon" data-descricao="Bacon, Mussarela"
-                    data-preco="R$ 43,00" data-imagem="/img/bacon.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/bacon.png" alt="Pizza de Bacon">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza de Bacon
-                        </h3>
-
-                        <p>
-                            Bacon, Mussarela
-                        </p>
-
-                        <span class="preco">
-                            R$ 43,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 4 -->
-
-                <div class="gridProduto" data-nome="Pizza Surpresa"
-                    data-descricao="Milho, Requeijão Cremoso, Bacon, Mussarela" data-preco="R$ 43,00"
-                    data-imagem="/img/surpresa.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/surpresa.png" alt="Pizza Surpresa">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Surpresa
-                        </h3>
-
-                        <p>
-                            Milho, Requeijão Cremoso, Bacon, Mussarela
-                        </p>
-
-                        <span class="preco">
-                            R$ 43,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-
-                <!-- CARD 5 -->
-
-                <div class="gridProduto" data-nome="Pizza Toscana"
-                    data-descricao="Mussarela, Presunto, Calabresa e Cebola" data-preco="R$ 45,00"
-                    data-imagem="/img/toscana2.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/toscana2.png" alt="Pizza Toscana">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Toscana
-                        </h3>
-
-                        <p>
-                            Mussarela, Presunto, Calabresa e Cebola
-                        </p>
-
-                        <span class="preco">
-                            R$ 45,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 6 -->
-
-                <div class="gridProduto" data-nome="Pizza Portuguesa"
-                    data-descricao="Presunto, Ovo, Cebola, Mussarela e Tomate" data-preco="R$ 45,00"
-                    data-imagem="/img/4362db86-e26b-4997-8746-e638170cde20.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/4362db86-e26b-4997-8746-e638170cde20.png" alt="Pizza Portuguesa">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Portuguesa
-                        </h3>
-
-                        <p>
-                            Presunto, Ovo, Cebola, Mussarela e Tomate
-                        </p>
-
-                        <span class="preco">
-                            R$ 45,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 7 -->
-
-                <div class="gridProduto" data-nome="Pizza Frango Com Catupiry"
-                    data-descricao="Frango Desfiado, Requeijão Cremoso, Mussarela, Tomate" data-preco="R$ 50,00"
-                    data-imagem="/img/frangoCatupiri.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/frangoCatupiri.png" alt="Pizza Portuguesa">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Frango Com Catupiry
-                        </h3>
-
-                        <p>
-                            Frango Desfiado, Requeijão Cremoso, Mussarela, Tomate
-                        </p>
-
-                        <span class="preco">
-                            R$ 50,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 8 -->
-
-                <div class="gridProduto" data-nome="Pizza Caipira"
-                    data-descricao="Frango Desfiado, Milho, Bacon, Mussarela, Tomate" data-preco="R$ 50,00"
-                    data-imagem="/img/caipira.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/caipira.png" alt="Pizza Caipira">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Caipira
-                        </h3>
-
-                        <p>
-                            Frango Desfiado, Milho, Bacon, Mussarela, Tomate
-                        </p>
-
-                        <span class="preco">
-                            R$ 50,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 9 -->
-
-                <div class="gridProduto" data-nome="Pizza Franbacon"
-                    data-descricao="Frango Desfiado, Mussarela, Bacon, Catupiry" data-preco="R$ 55,00"
-                    data-imagem="/img/franbacon.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/franbacon.png" alt="Pizza Franbacon">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Franbacon
-                        </h3>
-
-                        <p>
-                            Frango Desfiado, Mussarela, Bacon, Catupiry
-                        </p>
-
-                        <span class="preco">
-                            R$ 55,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-                <!-- CARD 10 -->
-
-                <div class="gridProduto" data-nome="Pizza Moda Casa" data-descricao="Frango, Mussarela, Calabresa"
-                    data-preco="R$ 60,00" data-imagem="/img/modaCasa.png">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/modaCasa.png" alt="Pizza modaCasa">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Pizza Moda da Casa
-                        </h3>
-
-                        <p>
-                            Frango, Mussarela, Calabresa
-                        </p>
-
-                        <span class="preco">
-                            R$ 60,00
-                        </span>
-
-                    </div>
-
-                </div>
-
+                <!-- BOTÃO DIREITO -->
+
+                <button class="seta direita btnProximo" type="button" aria-label="Próxima pizza">
+                    &#10095;
+                </button>
 
             </div>
 
 
-            <button class="seta direita btnProximo">
-                &#10095;
-            </button>
+
+            <!-- ==================================================
+                 DOCES
+            ================================================== -->
+
+            <p class="titulo">
+                DOCES
+            </p>
 
 
-        </div>
+            <div class="carousel promocaoUnica">
+
+                <div class="descricaoProduto">
 
 
+                    <div class="gridProduto" data-tipo="produto" data-nome="Brotinho de Chocolate"
+                        data-descricao="Chocolate" data-preco="23.00" data-imagem="/img/brotinho.png">
 
-        <!-- ==================================================
-             DOCES
-        ================================================== -->
+                        <div class="imagem">
 
-        <p class="titulo">
-            DOCES
-        </p>
+                            <img src="/img/brotinho.png" alt="Brotinho de Chocolate">
 
-        <div class="carousel promocao">
-
-            <div class="descricaoProduto">
-
-                <!-- CARD DOCES -->
-
-                <div class="gridProduto" data-nome="Brotinho" data-descricao="Chocolate" data-preco="R$ 23,00"
-                    data-imagem="/img/brotinho.png">
+                        </div>
 
 
-                    <div class="imagem">
+                        <div class="conteudo">
 
-                        <img src="/img/brotinho.png" alt="Combo Amigão">
+                            <h3>
+                                Brotinho de Chocolate
+                            </h3>
 
-                    </div>
+                            <p>
+                                Chocolate
+                            </p>
 
+                            <span class="preco">
+                                R$ 23,00
+                            </span>
 
-                    <div class="conteudo">
-
-                        <h3>
-                            Brotinho de Chocolate
-                        </h3>
-
-                        <p>
-                            Chocolate
-                        </p>
-
-                        <span class="preco">
-                            R$ 23,00
-                        </span>
+                        </div>
 
                     </div>
 
@@ -522,137 +510,151 @@
 
             </div>
 
-        </div>
+
+
+            <!-- ==================================================
+                 BEBIDAS
+            ================================================== -->
+
+            <p class="titulo">
+                BEBIDAS
+            </p>
+
+
+            <div class="carousel bebidas">
+
+
+                <!-- DESKTOP: ESCONDIDO PELO CSS -->
+                <!-- MOBILE: APARECE -->
+
+                <button class="seta esquerda btnAnterior" type="button" aria-label="Bebida anterior">
+                    &#10094;
+                </button>
 
 
 
-        <!-- ==================================================
-             BEBIDAS
-        ================================================== -->
-
-        <p class="titulo">
-            BEBIDA
-        </p>
+                <div class="descricaoProduto">
 
 
-        <div class="carousel">
+                    <!-- COCA-COLA -->
+
+                    <div class="gridProduto" data-tipo="produto" data-nome="Coca-Cola 2,5L"
+                        data-descricao="Refrigerante Coca-Cola Gelado de 2,5L." data-preco="16.00"
+                        data-imagem="/img/cocacola.jpg">
+
+                        <div class="imagem">
+
+                            <img src="/img/cocacola.jpg" alt="Coca-Cola">
+
+                        </div>
 
 
-            <div class="descricaoProduto">
+                        <div class="conteudo">
 
+                            <h3>
+                                Coca-Cola 2,5L
+                            </h3>
 
-                <div class="gridProduto" data-nome="Coca-Cola" data-descricao="Refrigerante Coca-Cola Gelado de 2,5L ."
-                    data-preco="R$ 16,00" data-imagem="/img/cocacola.jpg">
+                            <span class="preco">
+                                R$ 16,00
+                            </span>
 
+                        </div>
 
-                    <div class="imagem">
-                        <img src="/img/cocacola.jpg" alt="Coca-Cola">
                     </div>
 
 
-                    <div class="conteudo">
-                        <h3>
-                            Coca-Cola
-                        </h3>
 
-                        <p>
-                            Refrigerante Coca-Cola Gelado de 2,5L
-                        </p>
+                    <!-- GUARANITA -->
 
-                        <span class="preco">
-                            R$ 16,00
-                        </span>
+                    <div class="gridProduto" data-tipo="produto" data-nome="Guaranita 2L"
+                        data-descricao="Refrigerante Guaranita Gelado de 2L." data-preco="9.00"
+                        data-imagem="/img/guaranita.png">
+
+                        <div class="imagem">
+
+                            <img src="/img/guaranita.png" alt="Guaranita">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Guaranita 2L
+                            </h3>
+
+                            <span class="preco">
+                                R$ 9,00
+                            </span>
+
+                        </div>
 
                     </div>
+
+
+
+                    <!-- FANTA -->
+
+                    <div class="gridProduto" data-tipo="produto" data-nome="Fanta Laranja 2L"
+                        data-descricao="Refrigerante Fanta Laranja Gelado de 2L." data-preco="13.00"
+                        data-imagem="/img/fantaLaranja.jpg">
+
+                        <div class="imagem">
+
+                            <img src="/img/fantaLaranja.jpg" alt="Fanta Laranja">
+
+                        </div>
+
+
+                        <div class="conteudo">
+
+                            <h3>
+                                Fanta Laranja 2L
+                            </h3>
+
+                            <span class="preco">
+                                R$ 13,00
+                            </span>
+
+                        </div>
+
+                    </div>
+
 
                 </div>
 
 
-                <div class="gridProduto" data-nome="Guaranita" data-descricao="Refrigerante Guaranita Gelado de 2L."
-                    data-preco="R$ 9,00" data-imagem="/img/guaranita.png">
 
-
-                    <div class="imagem">
-                        <img src="/img/guaranita.png" alt="Guaranita">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Guaranita
-                        </h3>
-
-                        <p>
-                            Refrigerante Guaranita
-                            gelado 2L.
-                        </p>
-
-                        <span class="preco">
-                            R$ 9,00
-                        </span>
-
-                    </div>
-
-                </div>
-
-
-                <div class="gridProduto" data-nome="Fanta Laranja"
-                    data-descricao="Refrigerante Fanta Laranja Gelado de 2L." data-preco="R$ 13,00"
-                    data-imagem="/img/fantaLaranja.jpg">
-
-
-                    <div class="imagem">
-
-                        <img src="/img/fantaLaranja.jpg" alt="Suco Natural">
-
-                    </div>
-
-
-                    <div class="conteudo">
-
-                        <h3>
-                            Fanta Laranha
-                        </h3>
-
-                        <p>
-                            Refrigerante Fanta Laranja Gelado de 2L.
-                        </p>
-
-                        <span class="preco">
-                            R$ 13,00
-                        </span>
-
-                    </div>
-
-                </div>
-
+                <button class="seta direita btnProximo" type="button" aria-label="Próxima bebida">
+                    &#10095;
+                </button>
 
             </div>
 
 
-        </div>
+        </section>
 
-
-    </section>
+    </main>
 
 
 
     <!-- ==================================================
-         MODAL DO PRODUTO
+         MODAL
     ================================================== -->
 
-    <div class="modalProduto" id="modalProduto">
-
+    <div class="modalProduto" id="modalProduto" aria-hidden="true">
 
         <div class="modalConteudo">
 
 
-            <button class="fecharModal" id="fecharModal">
+            <button class="fecharModal" id="fecharModal" type="button" aria-label="Fechar">
                 &times;
             </button>
 
+
+
+            <!-- IMAGEM -->
 
             <div class="modalImagem">
 
@@ -661,29 +663,325 @@
             </div>
 
 
+
+            <!-- INFORMAÇÕES -->
+
             <div class="modalInformacoes">
 
                 <h2 id="modalNome">
                     Pizza
                 </h2>
 
-
                 <p id="modalDescricao">
                     Descrição do produto.
                 </p>
 
 
-                <span class="modalPreco" id="modalPreco">
-                    R$ 0,00
-                </span>
+
+                <!-- ==================================================
+                     OPÇÕES DA PROMOÇÃO
+                ================================================== -->
+
+                <div id="opcoesPromocao" class="opcoesPromocao">
+
+                    <div class="grupoOpcao">
+
+                        <h3>
+                            1. Escolha sua pizza
+                        </h3>
+
+                        <label class="opcao">
+                            <input type="radio" name="pizzaPromocao" value="Pizza de Mussarela" checked>
+
+                            <span class="opcaoTexto">
+                                <strong>
+                                    Pizza de Mussarela
+                                </strong>
+                                <small>
+                                    Mussarela e tomate
+                                </small>
+                            </span>
+
+                            <span class="opcaoPreco">
+                                Incluso
+                            </span>
+                        </label>
+
+                        <label class="opcao">
+                            <input type="radio" name="pizzaPromocao" value="Pizza de Calabresa">
+
+                            <span class="opcaoTexto">
+                                <strong>
+                                    Pizza de Calabresa
+                                </strong>
+                                <small>
+                                    Mussarela, calabresa e cebola
+                                </small>
+                            </span>
+
+                            <span class="opcaoPreco">
+                                Incluso
+                            </span>
+                        </label>
+
+                    </div>
+
+                </div>
 
 
-                <button class="btnPedido" id="btnAdicionarPedido">
-                    Adicionar aos pedidos
+                <!-- ==================================================
+                     OPÇÕES DA PIZZA
+                ================================================== -->
+
+                <div id="opcoesPizza" class="opcoesPizza">
+
+                    
+
+
+                    <!-- TAMANHO -->
+
+                    <div class="grupoOpcao">
+
+                        <h3>
+                            1. Escolha o tamanho
+                        </h3>
+
+
+
+                        <!-- GRANDE -->
+
+                        <label class="opcao">
+
+                            <input type="radio" name="tamanhoPizza" value="grande" checked>
+
+
+                            <span class="opcaoTexto">
+
+                                <strong>
+                                    Pizza Grande
+                                </strong>
+
+                                <small>
+                                    35 cm
+                                </small>
+
+                            </span>
+
+
+                            <span class="opcaoPreco" id="precoGrande">
+                                R$ 0,00
+                            </span>
+
+                        </label>
+
+
+
+                        <!-- BROTO -->
+
+                        <label class="opcao">
+
+                            <input type="radio" name="tamanhoPizza" value="broto">
+
+
+                            <span class="opcaoTexto">
+
+                                <strong>
+                                    Pizza Broto
+                                </strong>
+
+                                <small>
+                                    25 cm
+                                </small>
+
+                            </span>
+
+
+                            <span class="opcaoPreco" id="precoBroto">
+                                R$ 0,00
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- BORDA -->
+
+                    <div class="grupoOpcao">
+
+                        <h3>
+                            2. Escolha a borda
+                        </h3>
+
+
+
+                        <!-- SEM BORDA -->
+
+                        <label class="opcao">
+
+                            <input type="radio" name="bordaPizza" value="Sem borda" data-preco="0" checked>
+
+
+                            <span class="opcaoTexto">
+
+                                <strong>
+                                    Sem borda
+                                </strong>
+
+                                <small>
+                                    Nada
+                                </small>
+
+                            </span>
+
+
+                            <span class="opcaoPreco">
+                                R$ 0,00
+                            </span>
+
+                        </label>
+
+
+
+                        <!-- REQUEIJÃO -->
+
+                        <label class="opcao">
+
+                            <input type="radio" name="bordaPizza" value="Requeijão cremoso" data-preco="8">
+
+
+                            <span class="opcaoTexto">
+
+                                <strong>
+                                    Borda de Requeijão Cremoso
+                                </strong>
+
+                            </span>
+
+
+                            <span class="opcaoPreco">
+                                + R$ 8,00
+                            </span>
+
+                        </label>
+
+
+
+                        <!-- CHOCOLATE -->
+
+                        <label class="opcao">
+
+                            <input type="radio" name="bordaPizza" value="Chocolate" data-preco="10">
+
+
+                            <span class="opcaoTexto">
+
+                                <strong>
+                                    Borda de Chocolate
+                                </strong>
+
+                            </span>
+
+
+                            <span class="opcaoPreco">
+                                + R$ 10,00
+                            </span>
+
+                        </label>
+
+                    </div>
+
+
+
+                    <!-- OBSERVAÇÃO -->
+
+                    <div class="grupoOpcao">
+
+                        <h3>
+                            3. Observação
+                        </h3>
+
+
+                        <textarea id="observacao" maxlength="300"
+                            placeholder="Ex.: retirar cebola, pouco tomate, cortar em 8 pedaços..."></textarea>
+
+
+                        <small class="contadorObservacao">
+
+                            <span id="contadorObservacao">
+                                0
+                            </span>
+
+                            /300
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     OPÇÕES DOS OUTROS PRODUTOS
+                ================================================== -->
+
+                <div id="opcoesProduto" class="opcoesProduto">
+
+                    <div class="grupoOpcao">
+
+                        <h3>
+                            Observação
+                        </h3>
+
+
+                        <textarea id="observacaoProduto" maxlength="300"
+                            placeholder="Alguma observação para este produto?"></textarea>
+
+
+                        <small class="contadorObservacao">
+
+                            <span id="contadorObservacaoProduto">
+                                0
+                            </span>
+
+                            /300
+
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- ==================================================
+                     TOTAL
+                ================================================== -->
+
+                <div class="resumoPedido">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="modalPreco">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+
+
+                <!-- BOTÃO -->
+
+                <button class="btnPedido" id="btnAdicionarPedido" type="button">
+                    Adicionar ao carrinho
                 </button>
 
-            </div>
 
+            </div>
 
         </div>
 
@@ -697,7 +995,6 @@
 
     <footer id="footer">
 
-
         <div class="conteudoFooter">
 
 
@@ -710,17 +1007,29 @@
 
                 <div class="links">
 
-                    <a href="/html/principalPagina/cardapio.html">Cardápio</a>
+                    <a href="/html/principalPagina/cardapio.html">
+                        Cardápio
+                    </a>
 
-                    <a href="/html/sobreNois.html">Sobre Nós</a>
+                    <a href="/html/sobreNois.html">
+                        Sobre Nós
+                    </a>
 
-                    <a href="/html/principalPagina/finalizar.html">Pedidos</a>
+                    <a href="/html/principalPagina/finalizar.html">
+                        Pedidos
+                    </a>
 
-                    <a href="#">Suporte</a>
+                    <a href="#">
+                        Suporte
+                    </a>
 
-                    <a href="#">Pagamentos</a>
+                    <a href="#">
+                        Pagamentos
+                    </a>
 
-                    <a href="#">Localização</a>
+                    <a href="#">
+                        Localização
+                    </a>
 
                 </div>
 
@@ -736,20 +1045,31 @@
 
 
                 <div class="icones">
+
                     <img src="/img/instagram.png" class="icone" alt="Instagram">
 
                     <p>
-                        <a href="https://www.instagram.com/pizzaria.do.amigao/">Instagram</a>
+
+                        <a href="https://www.instagram.com/pizzaria.do.amigao/" target="_blank" rel="noopener">
+                            Instagram
+                        </a>
+
                     </p>
 
                 </div>
+
+
 
                 <div class="icones">
 
                     <img src="/img/whatsapp.png" class="icone" alt="WhatsApp">
 
                     <p>
-                        <a href="https://wa.me/5585999851307">Whatsapp</a>
+
+                        <a href="https://wa.me/5585999851307" target="_blank" rel="noopener">
+                            WhatsApp
+                        </a>
+
                     </p>
 
                 </div>
@@ -759,10 +1079,12 @@
 
         </div>
 
-
     </footer>
 
+
+
     <script src="/js/principal/principal.js"></script>
+
 </body>
 
 </html>

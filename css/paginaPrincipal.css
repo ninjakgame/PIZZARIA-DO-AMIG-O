@@ -2,24 +2,24 @@
    RESET
 =========================================== */
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-html{
+html {
     scroll-behavior: smooth;
 }
 
-body{
+body {
     font-family: Arial, Helvetica, sans-serif;
     background: #ffffff;
     color: #2A1F17;
     overflow-x: hidden;
 }
 
-p{
+p {
     cursor: default;
 }
 
@@ -27,7 +27,7 @@ p{
    HEADER
 =========================================== */
 
-header{
+header {
     position: sticky;
     top: 0;
     z-index: 999;
@@ -36,256 +36,267 @@ header{
     justify-content: space-around;
     align-items: center;
     padding: 18px 0;
-    box-shadow: 0 3px 12px rgba(0,0,0,.15);
+    box-shadow: 0 3px 12px rgba(0, 0, 0, .15);
 }
 
-.direta{
+.direta {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.direta img{
+.direta img {
     width: 65px;
 }
 
-.logo{
-    color:#2A1F17;
-    font-size:30px;
+.logo {
+    color: #2A1F17;
+    font-size: 30px;
 }
 
-nav{
-    display:flex;
-    gap:35px;
+nav {
+    display: flex;
+    gap: 35px;
 }
 
-nav a{
-    position:relative;
-    text-decoration:none;
-    color:#2A1F17;
-    font-size:18px;
-    font-weight:600;
-    transition:.3s;
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: #2A1F17;
+    font-size: 18px;
+    font-weight: 600;
+    transition: .3s;
 }
 
-nav a:hover{
-    color:#008000;
+.navegacao>a {
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #30251f;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-nav a::after{
-    content:"";
-    position:absolute;
-    left:0;
-    bottom:-8px;
-    width:0;
-    height:3px;
-    background:#008000;
-    transition:.3s;
+
+.navegacao>a {
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #30251f;
+
+    transition:
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-nav a:hover::after{
-    width:100%;
+
+.navegacao>a:hover {
+    color: #8b1e1e;
+
+    transform: translateY(-2px);
 }
 
 /* ===========================================
    BANNER
 =========================================== */
 
-.banner{
-    position:relative;
-    width:100%;
-    height:520px;
-    background:url("img/pizza do banner.jpg")
-    center center/cover no-repeat;
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-    gap:25px;
-    overflow:hidden;
+.banner {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: url("/img/pizza do banner.jpg") center center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    overflow: hidden;
 }
 
-.banner::before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:rgba(0,0,0,.45);
+.banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, .45);
 }
 
-.banner h3, .banner h4, .banner button{
-    position:relative;
-    z-index:2;
+.banner h3,
+.banner h4,
+.banner button {
+    position: relative;
+    z-index: 2;
 }
 
-.banner h3{
-    color:white;
-    font-size:52px;
+.banner h3 {
+    color: white;
+    font-size: 52px;
 }
 
-.banner h4{
-    color:white;
-    font-size:26px;
+.banner h4 {
+    color: white;
+    font-size: 26px;
 }
 
-.banner span{
-    color:#f4a91d;
+.banner span {
+    color: #f4a91d;
 }
 
-.pedidos{
-    background:#008000;
-    color:white;
-    border:none;
-    padding:18px 45px;
-    border-radius:10px;
-    cursor:pointer;
-    font-size:18px;
-    transition:.3s;
+.pedidos {
+    background: #008000;
+    color: white;
+    border: none;
+    padding: 18px 45px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: .3s;
 }
 
-.pedidos:hover{
-    transform:scale(1.08);
-    background:#026602;
+.pedidos:hover {
+    transform: scale(1.08);
+    background: #026602;
 }
 
 /* ===========================================
    DESCRIÇÃO
 =========================================== */
 
-.descricao{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:35px;
-    padding:45px 8%;
-    background:#e2d2b1;
+.descricao {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 35px;
+    padding: 45px 8%;
+    background: #e2d2b1;
 }
 
-.gridDescricao{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    text-align:center;
-    gap:18px;
+.gridDescricao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 18px;
 }
 
-.gridDescricao p{
-    font-size:22px;
-    line-height:1.5;
+.gridDescricao p {
+    font-size: 22px;
+    line-height: 1.5;
 }
 
-.gridImagem{
-    width:120px;
-    transition:.3s;
+.gridImagem {
+    width: 120px;
+    transition: .3s;
 }
 
-.gridDescricao:hover .gridImagem{
-    transform:rotate(-8deg) scale(1.08);
+.gridDescricao:hover .gridImagem {
+    transform: rotate(-8deg) scale(1.08);
 }
 
 /* ===========================================
    TÍTULO
 =========================================== */
 
-.logo2{
-    margin:60px 8%;
-    font-size:58px;
-    border-left:6px solid #2A1F17;
-    padding-left:20px;
+.logo2 {
+    margin: 60px 8%;
+    font-size: 58px;
+    border-left: 6px solid #2A1F17;
+    padding-left: 20px;
 }
 
 /* ===========================================
    GRID DOS PRODUTOS
 =========================================== */
 
-.descricaoProduto{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:35px;
-    padding:0 8% 80px;
+.descricaoProduto {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 35px;
+    padding: 0 8% 80px;
 }
 
 /* ===========================================
    CARD
 =========================================== */
 
-.gridProduto{
-    background:white;
-    border-radius:22px;
-    overflow:hidden;
-    box-shadow:0 10px 25px rgba(0,0,0,.15);
+.gridProduto {
+    background: white;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, .15);
     transition:
         transform .35s,
         box-shadow .35s;
 }
 
-.gridProduto:hover{
+.gridProduto:hover {
     transform:
-        translateY(-10px)
-        scale(1.02);
+        translateY(-10px) scale(1.02);
     box-shadow:
-        0 22px 45px rgba(0,0,0,.25);
+        0 22px 45px rgba(0, 0, 0, .25);
 }
 
 /* ===========================================
    IMAGEM
 =========================================== */
 
-.imagem{
+.imagem {
 
-    overflow:hidden;
+    overflow: hidden;
 
 }
 
-.imagem img{
+.imagem img {
 
-    width:100%;
-    height:290px;
-    display:block;
-    object-fit:cover;
-    transition:transform .5s;
+    width: 100%;
+    height: 290px;
+    display: block;
+    object-fit: cover;
+    transition: transform .5s;
 }
 
-.gridProduto:hover img{
-    transform:scale(1.08);
+.gridProduto:hover img {
+    transform: scale(1.08);
 }
 
 /* ===========================================
    CONTEÚDO
 =========================================== */
 
-.conteudo{
-    padding:28px;
-    display:flex;
-    flex-direction:column;
-    gap:15px;
-    text-align:center;
+.conteudo {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
 }
 
-.conteudo h3{
-    font-size:28px;
-    color:#2A1F17;
+.conteudo h3 {
+    font-size: 28px;
+    color: #2A1F17;
 }
 
-.conteudo p{
-    color:#666;
-    line-height:1.6;
-    font-size:17px;
+.conteudo p {
+    color: #666;
+    line-height: 1.6;
+    font-size: 17px;
 }
 
-.preco{
-    font-size:30px;
-    color:#008000;
-    font-weight:bold;
+.preco {
+    font-size: 30px;
+    color: #008000;
+    font-weight: bold;
 }
 
 /* ===========================================
    FOOTER
 =========================================== */
 
-footer{
+footer {
     margin-top: 80px;
 }
 
-.conteudoFooter{
+.conteudoFooter {
     background: #e2d2b1;
     display: flex;
     justify-content: space-between;
@@ -294,24 +305,24 @@ footer{
     padding: 60px 8%;
 }
 
-.esquerdaF{
+.esquerdaF {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.esquerdaF h2{
+.esquerdaF h2 {
     color: #2A1F17;
     font-size: 32px;
 }
 
-.links{
+.links {
     display: flex;
     flex-direction: column;
     gap: 15px;
 }
 
-.links a{
+.links a {
     text-decoration: none;
     color: #2A1F17;
     font-size: 18px;
@@ -319,23 +330,23 @@ footer{
     margin: 0;
 }
 
-.links a:hover{
+.links a:hover {
     color: #008000;
     transform: translateX(8px);
 }
 
-.diretaF{
+.diretaF {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
-.diretaF h3{
+.diretaF h3 {
     color: #2A1F17;
     font-size: 30px;
 }
 
-.icones{
+.icones {
     display: flex;
     align-items: center;
     gap: 15px;
@@ -343,17 +354,17 @@ footer{
     cursor: pointer;
 }
 
-.icones:hover{
+.icones:hover {
     transform: translateX(10px);
 }
 
-.icone{
+.icone {
     width: 42px;
     height: 42px;
     object-fit: contain;
 }
 
-.icones p{
+.icones p {
     font-size: 18px;
 }
 
@@ -361,7 +372,7 @@ footer{
    ANIMAÇÃO AO ROLAR
 =========================================== */
 
-.animar{
+.animar {
     opacity: 0;
     transform: translateY(70px);
     transition:
@@ -369,7 +380,7 @@ footer{
         transform .8s ease;
 }
 
-.animar.mostrar{
+.animar.mostrar {
     opacity: 1;
     transform: translateY(0);
 }
@@ -378,14 +389,14 @@ footer{
    KEYFRAMES
 =========================================== */
 
-@keyframes subir{
+@keyframes subir {
 
-    from{
+    from {
         opacity: 0;
         transform: translateY(80px);
     }
 
-    to{
+    to {
         opacity: 1;
         transform: translateY(0);
     }
@@ -396,77 +407,77 @@ footer{
    RESPONSIVIDADE
 =========================================== */
 
-@media(max-width:1100px){
+@media(max-width:1100px) {
 
-    .descricaoProduto{
-        grid-template-columns: repeat(2,1fr);
+    .descricaoProduto {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
 
-@media(max-width:900px){
+@media(max-width:900px) {
 
-    header{
+    header {
         flex-direction: column;
         gap: 20px;
         padding: 20px;
     }
 
-    nav{
+    nav {
         flex-wrap: wrap;
         justify-content: center;
     }
 
-    .descricao{
+    .descricao {
         grid-template-columns: 1fr;
     }
 
-    .descricaoProduto{
+    .descricaoProduto {
         grid-template-columns: 1fr;
         padding: 40px;
     }
 
-    .logo2{
+    .logo2 {
         margin: 50px 40px;
         font-size: 42px;
     }
 
-    .conteudoFooter{
+    .conteudoFooter {
         flex-direction: column;
         gap: 40px;
     }
 
 }
 
-@media(max-width:600px){
+@media(max-width:600px) {
 
-    .banner{
+    .banner {
         height: 420px;
         text-align: center;
         padding: 20px;
     }
 
-    .banner h3{
+    .banner h3 {
         font-size: 34px;
     }
 
-    .banner h4{
+    .banner h4 {
         font-size: 20px;
     }
 
-    .pedidos{
+    .pedidos {
         width: 100%;
         max-width: 280px;
     }
 
-    .cookies{
+    .cookies {
         width: calc(100% - 30px);
         right: 15px;
         left: 15px;
         bottom: 15px;
     }
 
-    .logo{
+    .logo {
         font-size: 24px;
     }
 

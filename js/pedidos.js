@@ -1,6 +1,18 @@
+/* ==================================================
+   CONFIGURAÇÕES
+================================================== */
+
 const chavePedidos = "meusPedidos";
 
+/*
+   Número do WhatsApp da pizzaria
+*/
 const numeroWhatsApp = "558587144716";
+
+
+/* ==================================================
+   ELEMENTOS DO HTML
+================================================== */
 
 const listaPedidos =
     document.getElementById("listaPedidos");
@@ -25,6 +37,201 @@ const formDadosPedido =
 
 
 /* ==================================================
+   CONVERTER PREÇO PARA NÚMERO
+================================================== */
+
+function converterPreco(valor) {
+
+    /*
+       Se já for número
+    */
+
+    if (typeof valor === "number") {
+
+        return Number.isFinite(valor)
+            ? valor
+            : 0;
+
+    }
+
+
+    /*
+       Se não existir
+    */
+
+    if (
+        valor === null ||
+        valor === undefined ||
+        valor === ""
+    ) {
+
+        return 0;
+
+    }
+
+
+    /*
+       Converter texto
+       Exemplos:
+
+       "43"
+       "43.00"
+       "43,00"
+       "R$ 43,00"
+       "R$ 1.043,00"
+    */
+
+    let texto =
+        String(valor)
+            .trim();
+
+
+    texto =
+        texto
+            .replace(/R\$/gi, "")
+            .trim();
+
+
+    /*
+       Se tiver ponto e vírgula:
+
+       1.043,00
+
+       vira:
+
+       1043.00
+    */
+
+    if (
+        texto.includes(".") &&
+        texto.includes(",")
+    ) {
+
+        texto =
+            texto
+                .replace(/\./g, "")
+                .replace(",", ".");
+
+    }
+
+    /*
+       Se tiver somente vírgula:
+
+       43,00
+
+       vira:
+
+       43.00
+    */
+
+    else if (
+        texto.includes(",")
+    ) {
+
+        texto =
+            texto.replace(",", ".");
+
+    }
+
+
+    /*
+       Remover qualquer caractere
+       que não seja número, ponto ou sinal
+    */
+
+    texto =
+        texto.replace(
+            /[^0-9.-]/g,
+            ""
+        );
+
+
+    const numero =
+        Number(texto);
+
+
+    return Number.isFinite(numero)
+        ? numero
+        : 0;
+
+}
+
+
+/* ==================================================
+   PEGAR PREÇO DO ITEM
+================================================== */
+
+function obterPrecoItem(item) {
+
+    /*
+       NOVO FORMATO
+       usado pelo principal.js
+    */
+
+    if (
+        item.preco !== undefined &&
+        item.preco !== null
+    ) {
+
+        const preco =
+            converterPreco(
+                item.preco
+            );
+
+        if (preco >= 0) {
+
+            return preco;
+
+        }
+
+    }
+
+
+    /*
+       FORMATO ANTIGO
+    */
+
+    if (
+        item.precoNumero !== undefined &&
+        item.precoNumero !== null
+    ) {
+
+        const preco =
+            converterPreco(
+                item.precoNumero
+            );
+
+        if (preco >= 0) {
+
+            return preco;
+
+        }
+
+    }
+
+
+    /*
+       PREÇO BASE
+    */
+
+    if (
+        item.precoBase !== undefined &&
+        item.precoBase !== null
+    ) {
+
+        return converterPreco(
+            item.precoBase
+        );
+
+    }
+
+
+    return 0;
+
+}
+
+
+/* ==================================================
    BUSCAR PEDIDOS
 ================================================== */
 
@@ -32,9 +239,66 @@ function buscarPedidos() {
 
     try {
 
-        return JSON.parse(
-            localStorage.getItem(chavePedidos)
-        ) || [];
+        const dados =
+            localStorage.getItem(
+                chavePedidos
+            );
+
+
+        if (!dados) {
+
+            return [];
+
+        }
+
+
+        const pedidos =
+            JSON.parse(dados);
+
+
+        if (!Array.isArray(pedidos)) {
+
+            return [];
+
+        }
+
+
+        /*
+           Normalizar os pedidos
+           para evitar valores inválidos
+        */
+
+        return pedidos.map(
+            (item) => {
+
+                const preco =
+                    obterPrecoItem(
+                        item
+                    );
+
+
+                return {
+
+                    ...item,
+
+                    quantidade:
+                        Math.max(
+                            1,
+                            Number(
+                                item.quantidade
+                            ) || 1
+                        ),
+
+                    preco:
+                        preco,
+
+                    precoNumero:
+                        preco
+
+                };
+
+            }
+        );
 
     } catch (erro) {
 
@@ -56,9 +320,50 @@ function buscarPedidos() {
 
 function salvarPedidos(pedidos) {
 
+    /*
+       Antes de salvar,
+       garantir que todos tenham preço válido
+    */
+
+    const pedidosCorrigidos =
+        pedidos.map(
+            (item) => {
+
+                const preco =
+                    obterPrecoItem(
+                        item
+                    );
+
+
+                return {
+
+                    ...item,
+
+                    preco:
+                        preco,
+
+                    precoNumero:
+                        preco,
+
+                    quantidade:
+                        Math.max(
+                            1,
+                            Number(
+                                item.quantidade
+                            ) || 1
+                        )
+
+                };
+
+            }
+        );
+
+
     localStorage.setItem(
         chavePedidos,
-        JSON.stringify(pedidos)
+        JSON.stringify(
+            pedidosCorrigidos
+        )
     );
 
 }
@@ -70,7 +375,13 @@ function salvarPedidos(pedidos) {
 
 function formatarMoeda(valor) {
 
-    return Number(valor).toLocaleString(
+    const numero =
+        converterPreco(
+            valor
+        );
+
+
+    return numero.toLocaleString(
         "pt-BR",
         {
             style: "currency",
@@ -88,30 +399,81 @@ function formatarMoeda(valor) {
 function calcularTotais(pedidos) {
 
     return pedidos.reduce(
-
         (totais, item) => {
 
             const quantidade =
-                Number(item.quantidade) || 0;
+                Math.max(
+                    1,
+                    Number(
+                        item.quantidade
+                    ) || 1
+                );
+
 
             const preco =
-                Number(item.precoNumero) || 0;
+                obterPrecoItem(
+                    item
+                );
 
-            totais.itens += quantidade;
+
+            totais.itens +=
+                quantidade;
+
 
             totais.valor +=
-                preco * quantidade;
+                preco *
+                quantidade;
+
 
             return totais;
 
         },
-
         {
             itens: 0,
             valor: 0
         }
-
     );
+
+}
+
+
+/* ==================================================
+   ESCAPAR TEXTO
+================================================== */
+
+function escaparHTML(texto) {
+
+    if (
+        texto === null ||
+        texto === undefined
+    ) {
+
+        return "";
+
+    }
+
+
+    return String(texto)
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -132,49 +494,65 @@ function buscarDadosCliente() {
 
         nome:
             document
-                .getElementById("nomeCliente")
+                .getElementById(
+                    "nomeCliente"
+                )
                 .value
                 .trim(),
 
         cep:
             document
-                .getElementById("cepCliente")
+                .getElementById(
+                    "cepCliente"
+                )
                 .value
                 .trim(),
 
         rua:
             document
-                .getElementById("ruaCliente")
+                .getElementById(
+                    "ruaCliente"
+                )
                 .value
                 .trim(),
 
         numero:
             document
-                .getElementById("numeroCliente")
+                .getElementById(
+                    "numeroCliente"
+                )
                 .value
                 .trim(),
 
         bairro:
             document
-                .getElementById("bairroCliente")
+                .getElementById(
+                    "bairroCliente"
+                )
                 .value
                 .trim(),
 
         cidade:
             document
-                .getElementById("cidadeCliente")
+                .getElementById(
+                    "cidadeCliente"
+                )
                 .value
                 .trim(),
 
         estado:
             document
-                .getElementById("estadoCliente")
+                .getElementById(
+                    "estadoCliente"
+                )
                 .value
                 .trim(),
 
         complemento:
             document
-                .getElementById("complementoCliente")
+                .getElementById(
+                    "complementoCliente"
+                )
                 .value
                 .trim(),
 
@@ -189,6 +567,108 @@ function buscarDadosCliente() {
 
 
 /* ==================================================
+   MONTAR TEXTO DOS PRODUTOS
+================================================== */
+
+function montarItensWhatsApp(pedidos) {
+
+    return pedidos
+        .map(
+            (item) => {
+
+                const quantidade =
+                    Math.max(
+                        1,
+                        Number(
+                            item.quantidade
+                        ) || 1
+                    );
+
+
+                const preco =
+                    obterPrecoItem(
+                        item
+                    );
+
+
+                const subtotal =
+                    preco *
+                    quantidade;
+
+
+                let texto =
+                    `- ${quantidade}x ${item.nome}`;
+
+
+                /*
+                   TAMANHO DA PIZZA
+                */
+
+                if (
+                    item.tamanho
+                ) {
+
+                    texto +=
+                        `\n  Tamanho: ${item.tamanho}`;
+
+                }
+
+                /*
+   SABOR DA PIZZA DO COMBO
+*/
+
+                if (
+                    item.saborPizza
+                ) {
+
+                    texto +=
+                        `\n  Pizza escolhida: ${item.saborPizza}`;
+
+                }
+
+
+                /*
+                   BORDA
+                */
+
+                if (
+                    item.borda
+                ) {
+
+                    texto +=
+                        `\n  Borda: ${item.borda}`;
+
+                }
+
+
+                /*
+                   OBSERVAÇÃO
+                */
+
+                if (
+                    item.observacao
+                ) {
+
+                    texto +=
+                        `\n  Observação: ${item.observacao}`;
+
+                }
+
+
+                texto +=
+                    `\n  Valor: ${formatarMoeda(subtotal)}`;
+
+
+                return texto;
+
+            }
+        )
+        .join("\n\n");
+
+}
+
+
+/* ==================================================
    MONTAR MENSAGEM DO WHATSAPP
 ================================================== */
 
@@ -198,28 +678,20 @@ function montarMensagemWhatsApp(
 ) {
 
     const totais =
-        calcularTotais(pedidos);
+        calcularTotais(
+            pedidos
+        );
 
 
     const itens =
-        pedidos
-            .map((item) => {
-
-                const quantidade =
-                    Number(item.quantidade) || 0;
-
-                const preco =
-                    Number(item.precoNumero) || 0;
-
-                const subtotal =
-                    preco * quantidade;
+        montarItensWhatsApp(
+            pedidos
+        );
 
 
-                return `- ${quantidade}x ${item.nome} - ${formatarMoeda(subtotal)}`;
-
-            })
-            .join("\n");
-
+    /*
+       COMPLEMENTO
+    */
 
     const complemento =
         dadosCliente.complemento
@@ -227,14 +699,18 @@ function montarMensagemWhatsApp(
             : "";
 
 
-    /* ==================================================
+    /*
        PAGAMENTO
-    ================================================== */
+    */
 
-    let pagamento;
+    let pagamento =
+        "Não informado";
 
 
-    if (dadosCliente.pagamento === "Pix") {
+    if (
+        dadosCliente.pagamento ===
+        "Pix"
+    ) {
 
         pagamento =
             "Pix - confirmar pagamento";
@@ -242,7 +718,8 @@ function montarMensagemWhatsApp(
     }
 
     else if (
-        dadosCliente.pagamento === "Dinheiro"
+        dadosCliente.pagamento ===
+        "Dinheiro"
     ) {
 
         pagamento =
@@ -251,8 +728,10 @@ function montarMensagemWhatsApp(
     }
 
     else if (
-        dadosCliente.pagamento === "Debito" ||
-        dadosCliente.pagamento === "Débito"
+        dadosCliente.pagamento ===
+        "Débito" ||
+        dadosCliente.pagamento ===
+        "Debito"
     ) {
 
         pagamento =
@@ -261,8 +740,10 @@ function montarMensagemWhatsApp(
     }
 
     else if (
-        dadosCliente.pagamento === "Credito" ||
-        dadosCliente.pagamento === "Crédito"
+        dadosCliente.pagamento ===
+        "Crédito" ||
+        dadosCliente.pagamento ===
+        "Credito"
     ) {
 
         pagamento =
@@ -270,23 +751,17 @@ function montarMensagemWhatsApp(
 
     }
 
-    else {
 
-        pagamento =
-            "Não informado";
-
-    }
-
-
-    /* ==================================================
+    /*
        MENSAGEM
-    ================================================== */
+    */
 
-    return `Queria fazer o seguinte pedido:
+    return `🍕 *NOVO PEDIDO - PIZZARIA DO AMIGÃO*
 
+*CLIENTE*
 Nome: ${dadosCliente.nome}
 
-Endereço:
+*ENDEREÇO*
 CEP: ${dadosCliente.cep}
 Rua: ${dadosCliente.rua}
 Número: ${dadosCliente.numero}
@@ -294,15 +769,17 @@ Bairro: ${dadosCliente.bairro}
 Cidade: ${dadosCliente.cidade}
 Estado: ${dadosCliente.estado}${complemento}
 
-Forma de pagamento:
+*PAGAMENTO*
 ${pagamento}
 
-Pedido:
+*PEDIDO*
 
 ${itens}
 
-Total:
-${formatarMoeda(totais.valor)}`;
+*TOTAL*
+${formatarMoeda(totais.valor)}
+
+Obrigado!`;
 
 }
 
@@ -320,7 +797,9 @@ function enviarPedidoWhatsApp(event) {
         buscarPedidos();
 
 
-    if (pedidos.length === 0) {
+    if (
+        pedidos.length === 0
+    ) {
 
         alert(
             "Você ainda não adicionou nenhum produto ao pedido."
@@ -335,12 +814,14 @@ function enviarPedidoWhatsApp(event) {
         buscarDadosCliente();
 
 
-    /* ==================================================
+    /*
        VALIDAR CEP
-    ================================================== */
+    */
 
     const campoCep =
-        document.getElementById("cepCliente");
+        document.getElementById(
+            "cepCliente"
+        );
 
 
     const cepNumeros =
@@ -350,22 +831,30 @@ function enviarPedidoWhatsApp(event) {
         );
 
 
-    if (cepNumeros.length !== 8) {
+    if (
+        cepNumeros.length !== 8
+    ) {
 
         alert(
             "Digite um CEP válido antes de finalizar o pedido."
         );
 
-        campoCep.focus();
+
+        if (campoCep) {
+
+            campoCep.focus();
+
+        }
+
 
         return;
 
     }
 
 
-    /* ==================================================
-       VERIFICAR SE O ENDEREÇO FOI ENCONTRADO
-    ================================================== */
+    /*
+       VALIDAR ENDEREÇO
+    */
 
     if (
         !dadosCliente.rua ||
@@ -378,25 +867,29 @@ function enviarPedidoWhatsApp(event) {
             "Consulte um CEP válido antes de finalizar o pedido."
         );
 
-        campoCep.focus();
+
+        if (campoCep) {
+
+            campoCep.focus();
+
+        }
+
 
         return;
 
     }
 
 
-    /* ==================================================
-       MENSAGEM
-    ================================================== */
+    /*
+       MONTAR MENSAGEM
+    */
 
     const mensagem =
         encodeURIComponent(
-
             montarMensagemWhatsApp(
                 pedidos,
                 dadosCliente
             )
-
         );
 
 
@@ -406,9 +899,7 @@ function enviarPedidoWhatsApp(event) {
 
     const url =
         numero
-
             ? `https://wa.me/${numero}?text=${mensagem}`
-
             : `https://wa.me/?text=${mensagem}`;
 
 
@@ -425,33 +916,59 @@ function enviarPedidoWhatsApp(event) {
 ================================================== */
 
 function alterarQuantidade(
-    nome,
+    id,
     mudanca
 ) {
 
     const pedidos =
-        buscarPedidos()
-            .map((item) => {
+        buscarPedidos();
 
-                if (item.nome === nome) {
 
-                    item.quantidade =
-                        (Number(item.quantidade) || 0)
-                        + mudanca;
+    const novosPedidos =
+        pedidos
+            .map(
+                (item) => {
+
+                    /*
+                       Usar ID quando existir
+                    */
+
+                    if (
+                        String(item.id) ===
+                        String(id)
+                    ) {
+
+                        item.quantidade =
+                            (
+                                Number(
+                                    item.quantidade
+                                ) || 1
+                            ) + mudanca;
+
+                    }
+
+
+                    return item;
 
                 }
+            )
+            .filter(
+                (item) => {
 
-                return item;
+                    return (
+                        Number(
+                            item.quantidade
+                        ) || 0
+                    ) > 0;
 
-            })
-            .filter((item) => {
-
-                return Number(item.quantidade) > 0;
-
-            });
+                }
+            );
 
 
-    salvarPedidos(pedidos);
+    salvarPedidos(
+        novosPedidos
+    );
+
 
     renderizarPedidos();
 
@@ -464,18 +981,27 @@ function alterarQuantidade(
    REMOVER PEDIDO
 ================================================== */
 
-function removerPedido(nome) {
+function removerPedido(id) {
 
     const pedidos =
-        buscarPedidos()
-            .filter((item) => {
-
-                return item.nome !== nome;
-
-            });
+        buscarPedidos();
 
 
-    salvarPedidos(pedidos);
+    const novosPedidos =
+        pedidos.filter(
+            (item) => {
+
+                return String(item.id) !==
+                    String(id);
+
+            }
+        );
+
+
+    salvarPedidos(
+        novosPedidos
+    );
+
 
     renderizarPedidos();
 
@@ -491,39 +1017,154 @@ function removerPedido(nome) {
 function criarCardPedido(item) {
 
     const card =
-        document.createElement("article");
+        document.createElement(
+            "article"
+        );
 
 
     card.className =
         "cardPedido";
 
 
+    const preco =
+        obterPrecoItem(
+            item
+        );
+
+
+    const quantidade =
+        Math.max(
+            1,
+            Number(
+                item.quantidade
+            ) || 1
+        );
+
+
+    const imagem =
+        escaparHTML(
+            item.imagem ||
+            "/img/logo.png"
+        );
+
+
+    const nome =
+        escaparHTML(
+            item.nome
+        );
+
+
+    const descricao =
+        escaparHTML(
+            item.descricao ||
+            ""
+        );
+
+
+    /*
+       INFORMAÇÕES DA PIZZA
+    */
+
+    let detalhesPizza =
+        "";
+
+    /*
+SABOR DA PIZZA DO COMBO
+*/
+
+    if (
+        item.saborPizza
+    ) {
+
+        detalhesPizza += `
+        <p class="detalhePedido">
+            <strong>Pizza escolhida:</strong>
+            ${escaparHTML(item.saborPizza)}
+        </p>
+    `;
+
+    }
+
+
+    if (
+        item.tamanho
+    ) {
+
+        detalhesPizza += `
+            <p class="detalhePedido">
+                <strong>Tamanho:</strong>
+                ${escaparHTML(item.tamanho)}
+            </p>
+        `;
+
+    }
+
+
+    if (
+        item.borda
+    ) {
+
+        detalhesPizza += `
+            <p class="detalhePedido">
+                <strong>Borda:</strong>
+                ${escaparHTML(item.borda)}
+            </p>
+        `;
+
+    }
+
+
+    if (
+        item.observacao
+    ) {
+
+        detalhesPizza += `
+            <p class="detalhePedido">
+                <strong>Observação:</strong>
+                ${escaparHTML(item.observacao)}
+            </p>
+        `;
+
+    }
+
+
+    /*
+       CARD
+    */
+
     card.innerHTML = `
 
         <img
-            src="${item.imagem}"
-            alt="${item.nome}"
+            src="${imagem}"
+            alt="${nome}"
+            onerror="this.src='/img/logo.png'"
         >
 
 
         <div class="infoPedido">
 
             <h2>
-                ${item.nome}
+                ${nome}
             </h2>
 
+
             <p>
-                ${item.descricao || ""}
+                ${descricao}
             </p>
 
+
+            ${detalhesPizza}
+
+
             <strong>
-                ${formatarMoeda(item.precoNumero)}
+                ${formatarMoeda(preco)}
             </strong>
 
         </div>
 
 
         <div class="acoesPedido">
+
 
             <div class="controleQuantidade">
 
@@ -537,7 +1178,7 @@ function criarCardPedido(item) {
 
 
                 <span>
-                    ${item.quantidade}
+                    ${quantidade}
                 </span>
 
 
@@ -565,66 +1206,84 @@ function criarCardPedido(item) {
     `;
 
 
-    /* ==================================================
+    /*
        DIMINUIR
-    ================================================== */
+    */
 
-    card
-        .querySelector(
+    const btnDiminuir =
+        card.querySelector(
             '[data-acao="diminuir"]'
-        )
-        .addEventListener(
+        );
+
+
+    if (btnDiminuir) {
+
+        btnDiminuir.addEventListener(
             "click",
             () => {
 
                 alterarQuantidade(
-                    item.nome,
+                    item.id,
                     -1
                 );
 
             }
         );
 
+    }
 
-    /* ==================================================
+
+    /*
        AUMENTAR
-    ================================================== */
+    */
 
-    card
-        .querySelector(
+    const btnAumentar =
+        card.querySelector(
             '[data-acao="aumentar"]'
-        )
-        .addEventListener(
+        );
+
+
+    if (btnAumentar) {
+
+        btnAumentar.addEventListener(
             "click",
             () => {
 
                 alterarQuantidade(
-                    item.nome,
+                    item.id,
                     1
                 );
 
             }
         );
 
+    }
 
-    /* ==================================================
+
+    /*
        REMOVER
-    ================================================== */
+    */
 
-    card
-        .querySelector(
+    const btnRemover =
+        card.querySelector(
             '[data-acao="remover"]'
-        )
-        .addEventListener(
+        );
+
+
+    if (btnRemover) {
+
+        btnRemover.addEventListener(
             "click",
             () => {
 
                 removerPedido(
-                    item.nome
+                    item.id
                 );
 
             }
         );
+
+    }
 
 
     return card;
@@ -639,7 +1298,9 @@ function criarCardPedido(item) {
 function renderizarPedidos() {
 
     if (!listaPedidos) {
+
         return;
+
     }
 
 
@@ -655,6 +1316,10 @@ function renderizarPedidos() {
         pedidos.length > 0;
 
 
+    /*
+       CARRINHO VAZIO
+    */
+
     if (pedidoVazio) {
 
         pedidoVazio.style.display =
@@ -664,6 +1329,10 @@ function renderizarPedidos() {
 
     }
 
+
+    /*
+       CONTAINER
+    */
 
     const container =
         document.querySelector(
@@ -681,17 +1350,31 @@ function renderizarPedidos() {
     }
 
 
-    pedidos.forEach((item) => {
+    /*
+       CRIAR CARDS
+    */
 
-        listaPedidos.appendChild(
-            criarCardPedido(item)
-        );
+    pedidos.forEach(
+        (item) => {
 
-    });
+            listaPedidos.appendChild(
+                criarCardPedido(
+                    item
+                )
+            );
 
+        }
+    );
+
+
+    /*
+       CALCULAR TOTAL
+    */
 
     const totais =
-        calcularTotais(pedidos);
+        calcularTotais(
+            pedidos
+        );
 
 
     if (totalItens) {
@@ -731,13 +1414,19 @@ if (btnLimpar) {
 
 
             if (!confirmar) {
+
                 return;
+
             }
 
 
-            salvarPedidos([]);
+            salvarPedidos(
+                []
+            );
+
 
             renderizarPedidos();
+
 
             atualizarQuantidadeCarrinho();
 
@@ -774,7 +1463,9 @@ function atualizarQuantidadeCarrinho() {
 
 
     if (!contador) {
+
         return;
+
     }
 
 
@@ -787,7 +1478,11 @@ function atualizarQuantidadeCarrinho() {
             (total, item) => {
 
                 return total +
-                    (Number(item.quantidade) || 0);
+                    (
+                        Number(
+                            item.quantidade
+                        ) || 0
+                    );
 
             },
             0
@@ -798,15 +1493,15 @@ function atualizarQuantidadeCarrinho() {
         quantidade;
 
 
-    if (quantidade === 0) {
+    if (
+        quantidade === 0
+    ) {
 
         contador.classList.add(
             "vazio"
         );
 
-    }
-
-    else {
+    } else {
 
         contador.classList.remove(
             "vazio"
@@ -874,9 +1569,9 @@ async function buscarCep() {
         );
 
 
-    /* ==================================================
+    /*
        LIMPAR ENDEREÇO
-    ================================================== */
+    */
 
     rua.value = "";
     bairro.value = "";
@@ -887,11 +1582,13 @@ async function buscarCep() {
     campoCep.setCustomValidity("");
 
 
-    /* ==================================================
+    /*
        CEP INCOMPLETO
-    ================================================== */
+    */
 
-    if (cep.length !== 8) {
+    if (
+        cep.length !== 8
+    ) {
 
         if (mensagem) {
 
@@ -908,10 +1605,15 @@ async function buscarCep() {
             "Digite um CEP válido."
         );
 
+
         return;
 
     }
 
+
+    /*
+       CONSULTANDO
+    */
 
     if (mensagem) {
 
@@ -945,11 +1647,13 @@ async function buscarCep() {
             await resposta.json();
 
 
-        /* ==================================================
+        /*
            CEP NÃO ENCONTRADO
-        ================================================== */
+        */
 
-        if (dados.erro) {
+        if (
+            dados.erro
+        ) {
 
             if (mensagem) {
 
@@ -966,31 +1670,36 @@ async function buscarCep() {
                 "CEP não encontrado."
             );
 
+
             return;
 
         }
 
 
-        /* ==================================================
+        /*
            PREENCHER ENDEREÇO
-        ================================================== */
+        */
 
         rua.value =
-            dados.logradouro || "";
+            dados.logradouro ||
+            "";
 
         bairro.value =
-            dados.bairro || "";
+            dados.bairro ||
+            "";
 
         cidade.value =
-            dados.localidade || "";
+            dados.localidade ||
+            "";
 
         estado.value =
-            dados.uf || "";
+            dados.uf ||
+            "";
 
 
-        /* ==================================================
+        /*
            CEP VÁLIDO
-        ================================================== */
+        */
 
         if (mensagem) {
 
@@ -1059,9 +1768,13 @@ if (campoCep) {
                 );
 
 
-            /* Máximo 8 números */
+            /*
+               MÁXIMO 8 NÚMEROS
+            */
 
-            if (valor.length > 8) {
+            if (
+                valor.length > 8
+            ) {
 
                 valor =
                     valor.substring(
@@ -1072,9 +1785,13 @@ if (campoCep) {
             }
 
 
-            /* Adicionar hífen */
+            /*
+               COLOCAR HÍFEN
+            */
 
-            if (valor.length > 5) {
+            if (
+                valor.length > 5
+            ) {
 
                 valor =
                     valor.substring(
@@ -1093,9 +1810,9 @@ if (campoCep) {
                 valor;
 
 
-            /* ==================================================
-               LIMPAR ERRO ENQUANTO DIGITA
-            ================================================== */
+            /*
+               LIMPAR VALIDAÇÃO
+            */
 
             this.setCustomValidity("");
 
@@ -1114,15 +1831,19 @@ if (campoCep) {
             }
 
 
-            /* ==================================================
-               CONSULTAR QUANDO COMPLETAR
-            ================================================== */
+            /*
+               CONSULTAR AUTOMATICAMENTE
+            */
 
-            if (
+            const cepNumeros =
                 valor.replace(
                     /\D/g,
                     ""
-                ).length === 8
+                );
+
+
+            if (
+                cepNumeros.length === 8
             ) {
 
                 buscarCep();
@@ -1136,14 +1857,14 @@ if (campoCep) {
 
 
 /* ==================================================
-   ATUALIZA CARRINHO AO ABRIR
+   ATUALIZAR AO ABRIR
 ================================================== */
 
 atualizarQuantidadeCarrinho();
 
 
 /* ==================================================
-   ATUALIZA CARRINHO EM OUTRAS ABAS
+   ATUALIZAR EM OUTRAS ABAS
 ================================================== */
 
 window.addEventListener(
