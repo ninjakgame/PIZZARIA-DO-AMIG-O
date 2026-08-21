@@ -13,7 +13,7 @@ const chavePedidos = "meusPedidos";
 /*
    Número do WhatsApp da pizzaria
 */
-const numeroWhatsApp = "8587144716";
+const numeroWhatsApp = "558587144716";
 
 
 /* ==================================================
@@ -40,6 +40,35 @@ const btnFinalizar =
 
 const formDadosPedido =
     document.getElementById("formDadosPedido");
+
+
+/* ==================================================
+   ELEMENTOS DO MODAL DE CONFIRMAÇÃO
+================================================== */
+
+const modalConfirmacao =
+    document.getElementById("modalConfirmacao");
+
+const fecharConfirmacao =
+    document.getElementById("fecharConfirmacao");
+
+const btnVoltarConfirmacao =
+    document.getElementById("btnVoltarConfirmacao");
+
+const btnConfirmarPedido =
+    document.getElementById("btnConfirmarPedido");
+
+const confirmacaoNome =
+    document.getElementById("confirmacaoNome");
+
+const confirmacaoEndereco =
+    document.getElementById("confirmacaoEndereco");
+
+const confirmacaoPagamento =
+    document.getElementById("confirmacaoPagamento");
+
+const confirmacaoTotal =
+    document.getElementById("confirmacaoTotal");
 
 
 /* ==================================================
@@ -81,7 +110,9 @@ function converterPreco(valor) {
     /*
        Exemplo:
        1.043,00
+
        vira:
+
        1043.00
     */
 
@@ -101,7 +132,9 @@ function converterPreco(valor) {
     /*
        Exemplo:
        43,00
+
        vira:
+
        43.00
     */
 
@@ -628,33 +661,41 @@ function montarMensagemWhatsApp(
             : "";
 
 
-    /* ==================================================
-   PAGAMENTO
-================================================== */
+    /*
+       PAGAMENTO
+    */
 
     let pagamento = "Não informado";
 
+
     if (dadosCliente.pagamento === "Pix") {
 
-        pagamento = "Pix - confirmar pagamento";
+        pagamento =
+            "Pix - confirmar pagamento";
 
     }
+
 
     else if (dadosCliente.pagamento === "Dinheiro") {
 
-        pagamento = "Dinheiro";
+        pagamento =
+            "Dinheiro";
 
     }
+
 
     else if (dadosCliente.pagamento === "Débito") {
 
-        pagamento = "Cartão de Débito";
+        pagamento =
+            "Cartão de Débito";
 
     }
 
+
     else if (dadosCliente.pagamento === "Crédito") {
 
-        pagamento = "Cartão de Crédito";
+        pagamento =
+            "Cartão de Crédito";
 
     }
 
@@ -692,17 +733,174 @@ Obrigado!`;
 
 
 /* ==================================================
+   ABRIR MODAL DE CONFIRMAÇÃO
+================================================== */
+
+function abrirModalConfirmacao(
+    dadosCliente,
+    total
+) {
+
+    if (!modalConfirmacao) {
+
+        return;
+
+    }
+
+
+    /*
+       Nome
+    */
+
+    if (confirmacaoNome) {
+
+        confirmacaoNome.textContent =
+            dadosCliente.nome || "-";
+
+    }
+
+
+    /*
+       Endereço
+    */
+
+    if (confirmacaoEndereco) {
+
+        let endereco =
+            `${dadosCliente.rua}, ${dadosCliente.numero}
+            - ${dadosCliente.bairro}
+            - ${dadosCliente.cidade}/${dadosCliente.estado}
+            - CEP: ${dadosCliente.cep}`;
+
+        if (dadosCliente.complemento) {
+
+            endereco +=
+                ` - ${dadosCliente.complemento}`;
+
+        }
+
+
+        confirmacaoEndereco.textContent =
+            endereco;
+
+    }
+
+
+    /*
+       Pagamento
+    */
+
+    if (confirmacaoPagamento) {
+
+        let pagamento =
+            dadosCliente.pagamento;
+
+
+        if (pagamento === "Débito") {
+
+            pagamento =
+                "Cartão de Débito";
+
+        }
+
+        else if (pagamento === "Crédito") {
+
+            pagamento =
+                "Cartão de Crédito";
+
+        }
+
+
+        confirmacaoPagamento.textContent =
+            pagamento || "-";
+
+    }
+
+
+    /*
+       Total
+    */
+
+    if (confirmacaoTotal) {
+
+        confirmacaoTotal.textContent =
+            formatarMoeda(total);
+
+    }
+
+
+    /*
+       Mostrar modal
+    */
+
+    modalConfirmacao.classList.add(
+        "ativo"
+    );
+
+
+    /*
+       Impedir rolagem da página
+    */
+
+    document.body.style.overflow =
+        "hidden";
+
+}
+
+
+/* ==================================================
+   FECHAR MODAL DE CONFIRMAÇÃO
+================================================== */
+
+function fecharModalConfirmacao() {
+
+    if (!modalConfirmacao) {
+
+        return;
+
+    }
+
+
+    modalConfirmacao.classList.remove(
+        "ativo"
+    );
+
+
+    /*
+       Liberar rolagem
+    */
+
+    document.body.style.overflow =
+        "";
+
+}
+
+
+/* ==================================================
    ENVIAR PEDIDO PELO WHATSAPP
 ================================================== */
 
 function enviarPedidoWhatsApp(event) {
 
-    event.preventDefault();
+    /*
+       Impedir o formulário de recarregar
+       a página
+    */
+
+    if (event) {
+
+        event.preventDefault();
+
+    }
 
 
     const pedidos =
         buscarPedidos();
 
+
+    /*
+       VERIFICAR SE EXISTEM PEDIDOS
+    */
 
     if (
         pedidos.length === 0
@@ -719,6 +917,32 @@ function enviarPedidoWhatsApp(event) {
 
     const dadosCliente =
         buscarDadosCliente();
+
+
+    /*
+       VALIDAR NOME
+    */
+
+    if (!dadosCliente.nome) {
+
+        alert(
+            "Digite seu nome antes de finalizar o pedido."
+        );
+
+        const campo =
+            document.getElementById(
+                "nomeCliente"
+            );
+
+        if (campo) {
+
+            campo.focus();
+
+        }
+
+        return;
+
+    }
 
 
     /*
@@ -788,6 +1012,32 @@ function enviarPedidoWhatsApp(event) {
 
 
     /*
+       VALIDAR NÚMERO
+    */
+
+    if (!dadosCliente.numero) {
+
+        alert(
+            "Digite o número da residência."
+        );
+
+        const campoNumero =
+            document.getElementById(
+                "numeroCliente"
+            );
+
+        if (campoNumero) {
+
+            campoNumero.focus();
+
+        }
+
+        return;
+
+    }
+
+
+    /*
        VALIDAR PAGAMENTO
     */
 
@@ -805,7 +1055,62 @@ function enviarPedidoWhatsApp(event) {
 
 
     /*
-       MONTAR MENSAGEM
+       CALCULAR TOTAL
+    */
+
+    const totais =
+        calcularTotais(
+            pedidos
+        );
+
+
+    /*
+       ABRIR O CARD DE CONFIRMAÇÃO
+    */
+
+    abrirModalConfirmacao(
+        dadosCliente,
+        totais.valor
+    );
+
+}
+
+
+/* ==================================================
+   CONFIRMAR PEDIDO E IR PARA WHATSAPP
+================================================== */
+
+function confirmarPedidoWhatsApp() {
+
+    const pedidos =
+        buscarPedidos();
+
+
+    /*
+       Verificar novamente
+    */
+
+    if (
+        pedidos.length === 0
+    ) {
+
+        fecharModalConfirmacao();
+
+        alert(
+            "Seu pedido está vazio."
+        );
+
+        return;
+
+    }
+
+
+    const dadosCliente =
+        buscarDadosCliente();
+
+
+    /*
+       Montar mensagem
     */
 
     const mensagem =
@@ -827,9 +1132,91 @@ function enviarPedidoWhatsApp(event) {
             : `https://wa.me/?text=${mensagem}`;
 
 
+    /*
+       Fechar modal
+    */
+
+    fecharModalConfirmacao();
+
+
+    /*
+       Abrir WhatsApp
+    */
+
     window.open(
         url,
         "_blank"
+    );
+
+}
+
+
+/* ==================================================
+   BOTÕES DO MODAL
+================================================== */
+
+if (fecharConfirmacao) {
+
+    fecharConfirmacao.addEventListener(
+        "click",
+        () => {
+
+            fecharModalConfirmacao();
+
+        }
+    );
+
+}
+
+
+if (btnVoltarConfirmacao) {
+
+    btnVoltarConfirmacao.addEventListener(
+        "click",
+        () => {
+
+            fecharModalConfirmacao();
+
+        }
+    );
+
+}
+
+
+if (btnConfirmarPedido) {
+
+    btnConfirmarPedido.addEventListener(
+        "click",
+        () => {
+
+            confirmarPedidoWhatsApp();
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   CLICAR FORA DO CARD
+================================================== */
+
+if (modalConfirmacao) {
+
+    modalConfirmacao.addEventListener(
+        "click",
+        (event) => {
+
+            if (
+                event.target ===
+                modalConfirmacao
+            ) {
+
+                fecharModalConfirmacao();
+
+            }
+
+        }
     );
 
 }
@@ -1003,8 +1390,8 @@ function criarCardPedido(item) {
                 </strong>
 
                 ${escaparHTML(
-            item.saborPizza
-        )}
+                    item.saborPizza
+                )}
 
             </p>
 
@@ -1028,8 +1415,8 @@ function criarCardPedido(item) {
                 </strong>
 
                 ${escaparHTML(
-            item.tamanho
-        )}
+                    item.tamanho
+                )}
 
             </p>
 
@@ -1053,8 +1440,8 @@ function criarCardPedido(item) {
                 </strong>
 
                 ${escaparHTML(
-            item.borda
-        )}
+                    item.borda
+                )}
 
             </p>
 
@@ -1078,8 +1465,8 @@ function criarCardPedido(item) {
                 </strong>
 
                 ${escaparHTML(
-            item.observacao
-        )}
+                    item.observacao
+                )}
 
             </p>
 
@@ -1482,25 +1869,30 @@ async function buscarCep() {
             "cepCliente"
         );
 
+
     const mensagem =
         document.getElementById(
             "mensagemCep"
         );
+
 
     const rua =
         document.getElementById(
             "ruaCliente"
         );
 
+
     const bairro =
         document.getElementById(
             "bairroCliente"
         );
 
+
     const cidade =
         document.getElementById(
             "cidadeCliente"
         );
+
 
     const estado =
         document.getElementById(
@@ -1848,19 +2240,30 @@ if (campoCep) {
 
 
                 if (rua) {
+
                     rua.value = "";
+
                 }
+
 
                 if (bairro) {
+
                     bairro.value = "";
+
                 }
+
 
                 if (cidade) {
+
                     cidade.value = "";
+
                 }
 
+
                 if (estado) {
+
                     estado.value = "";
+
                 }
 
             }

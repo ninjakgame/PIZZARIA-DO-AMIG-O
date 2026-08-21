@@ -2,17 +2,13 @@
 <html lang="pt-br">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>PIZZARIA DO AMIGAO</title>
 
     <link rel="stylesheet" href="/css/pedidos.css">
-
 </head>
-
 
 <body>
 
@@ -33,7 +29,7 @@
 
         <nav class="navegacao">
 
-            <a href="/index.html">
+            <a href="/html/paginaPrincipal.html">
                 Início
             </a>
 
@@ -60,7 +56,10 @@
                 Meus pedidos
             </h1>
 
-            <a href="/html/principalPagina/cardapio.html" class="btnCardapio">
+            <a
+                href="/html/principalPagina/cardapio.html"
+                class="btnCardapio"
+            >
                 Adicionar mais itens
             </a>
 
@@ -69,10 +68,12 @@
 
         <section class="containerPedidos">
 
+            <!-- ================= LISTA DE PEDIDOS ================= -->
 
-            <!-- ================= LISTA ================= -->
-
-            <div class="listaPedidos" id="listaPedidos"></div>
+            <div
+                class="listaPedidos"
+                id="listaPedidos"
+            ></div>
 
 
             <!-- ================= RESUMO ================= -->
@@ -110,10 +111,12 @@
                 </div>
 
 
-                <!-- ================= FORMULÁRIO ================= -->
+                <!-- ================= DADOS DO PEDIDO ================= -->
 
-                <form class="formDadosPedido" id="formDadosPedido">
-
+                <form
+                    class="formDadosPedido"
+                    id="formDadosPedido"
+                >
 
                     <!-- NOME -->
 
@@ -121,7 +124,11 @@
 
                         Nome
 
-                        <input type="text" id="nomeCliente" autocomplete="name" required>
+                        <input
+                            type="text"
+                            id="nomeCliente"
+                            required
+                        >
 
                     </label>
 
@@ -132,10 +139,16 @@
 
                         CEP
 
-                        <input type="text" id="cepCliente" placeholder="00000-000" maxlength="9" inputmode="numeric"
-                            autocomplete="postal-code" required>
+                        <input
+                            type="text"
+                            id="cepCliente"
+                            placeholder="00000-000"
+                            maxlength="9"
+                            autocomplete="postal-code"
+                            required
+                        >
 
-                        <small id="mensagemCep" class="mensagemCep"></small>
+                        <small id="mensagemCep"></small>
 
                     </label>
 
@@ -146,54 +159,87 @@
 
                         Rua
 
-                        <input type="text" id="ruaCliente" readonly placeholder="Digite o CEP"
-                            autocomplete="street-address">
+                        <input
+                            type="text"
+                            id="ruaCliente"
+                            autocomplete="street-address"
+                            required
+                            disabled
+                        >
 
                     </label>
 
 
-                    <!-- NÚMERO -->
+                    <!-- NÚMERO / BAIRRO -->
 
-                    <label>
+                    <div class="linhaCampos">
 
-                        Número
+                        <label>
 
-                        <input type="text" id="numeroCliente" inputmode="numeric" required>
+                            Número
 
-                    </label>
+                            <input
+                                type="text"
+                                id="numeroCliente"
+                                autocomplete="address-line2"
+                                required
+                            >
 
-
-                    <!-- BAIRRO -->
-
-                    <label>
-
-                        Bairro
-
-                        <input type="text" id="bairroCliente" readonly placeholder="Digite o CEP">
-
-                    </label>
+                        </label>
 
 
-                    <!-- CIDADE -->
+                        <label>
 
-                    <label>
+                            Bairro
 
-                        Cidade
+                            <input
+                                type="text"
+                                id="bairroCliente"
+                                autocomplete="address-level3"
+                                required
+                                disabled
+                            >
 
-                        <input type="text" id="cidadeCliente" readonly placeholder="Digite o CEP">
+                        </label>
 
-                    </label>
+                    </div>
 
 
-                    <!-- ESTADO -->
+                    <!-- CIDADE / ESTADO -->
 
-                    <label>
+                    <div class="linhaCampos">
 
-                        Estado
+                        <label>
 
-                        <input type="text" id="estadoCliente" readonly placeholder="Digite o CEP">
+                            Cidade
 
-                    </label>
+                            <input
+                                type="text"
+                                id="cidadeCliente"
+                                autocomplete="address-level2"
+                                required
+                                disabled
+                            >
+
+                        </label>
+
+
+                        <label>
+
+                            Estado
+
+                            <input
+                                type="text"
+                                id="estadoCliente"
+                                maxlength="2"
+                                autocomplete="address-level1"
+                                required
+                                disabled
+                            >
+
+                        </label>
+
+                    </div>
 
 
                     <!-- COMPLEMENTO -->
@@ -202,12 +248,16 @@
 
                         Complemento
 
-                        <input type="text" id="complementoCliente" placeholder="Apartamento, casa...">
+                        <input
+                            type="text"
+                            id="complementoCliente"
+                            autocomplete="address-line2"
+                        >
 
                     </label>
 
 
-                    <!-- PAGAMENTO -->
+                    <!-- ================= PAGAMENTO ================= -->
 
                     <div class="opcoesPagamento">
 
@@ -218,7 +268,12 @@
 
                         <label>
 
-                            <input type="radio" name="pagamento" value="Pix" required>
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Pix"
+                                required
+                            >
 
                             Pix
 
@@ -227,37 +282,64 @@
 
                         <label>
 
-                            <input type="radio" name="pagamento" value="Dinheiro">
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Dinheiro"
+                            >
 
                             Dinheiro
 
                         </label>
 
-                        <label>
-                            <input type="radio" name="pagamento" value="Débito">
-                            Cartão de Débito
-                        </label>
 
                         <label>
-                            <input type="radio" name="pagamento" value="Crédito">
+
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Débito"
+                            >
+
+                            Cartão de Débito
+
+                        </label>
+
+
+                        <label>
+
+                            <input
+                                type="radio"
+                                name="pagamento"
+                                value="Crédito"
+                            >
+
                             Cartão de Crédito
+
                         </label>
 
                     </div>
 
 
-                    <!-- FINALIZAR -->
+                    <!-- ================= FINALIZAR ================= -->
 
-                    <button type="submit" class="btnFinalizar" id="btnFinalizar">
-                        Enviar pelo WhatsApp
+                    <button
+                        type="submit"
+                        class="btnFinalizar"
+                        id="btnFinalizar"
+                    >
+                        Finalizar pedido
                     </button>
 
                 </form>
 
 
-                <!-- LIMPAR -->
+                <!-- ================= LIMPAR ================= -->
 
-                <button class="btnLimpar" id="btnLimpar">
+                <button
+                    class="btnLimpar"
+                    id="btnLimpar"
+                >
                     Limpar pedidos
                 </button>
 
@@ -266,20 +348,25 @@
         </section>
 
 
-        <!-- ================= CARRINHO VAZIO ================= -->
+        <!-- ================= PEDIDO VAZIO ================= -->
 
-        <div class="pedidoVazio" id="pedidoVazio">
+        <div
+            class="pedidoVazio"
+            id="pedidoVazio"
+        >
 
             <h2>
                 Seu carrinho está vazio
             </h2>
 
             <p>
-                Escolha uma pizza ou bebida no cardápio
-                para montar seu pedido.
+                Escolha uma pizza ou bebida no cardápio para montar seu pedido.
             </p>
 
-            <a href="/html/principalPagina/cardapio.html" class="btnCardapio">
+            <a
+                href="/html/principalPagina/cardapio.html"
+                class="btnCardapio"
+            >
                 Ver cardápio
             </a>
 
@@ -287,6 +374,156 @@
 
     </main>
 
+
+    <!-- ==================================================
+         MODAL DE CONFIRMAÇÃO DO PEDIDO
+    ================================================== -->
+
+    <div
+        class="modalConfirmacao"
+        id="modalConfirmacao"
+    >
+
+        <div class="cardConfirmacao">
+
+
+            <!-- BOTÃO FECHAR -->
+
+            <button
+                type="button"
+                class="fecharConfirmacao"
+                id="fecharConfirmacao"
+                aria-label="Fechar"
+            >
+                &times;
+            </button>
+
+
+            <!-- ÍCONE -->
+
+            <div class="iconeConfirmacao">
+
+                ✓
+
+            </div>
+
+
+            <!-- TÍTULO -->
+
+            <h2>
+                Confira seu pedido
+            </h2>
+
+
+            <p class="textoConfirmacao">
+
+                Verifique se todos os seus dados estão corretos
+                antes de enviar o pedido pelo WhatsApp.
+
+            </p>
+
+
+            <!-- ================= RESUMO ================= -->
+
+            <div class="resumoConfirmacao">
+
+
+                <!-- CLIENTE -->
+
+                <div class="itemConfirmacao">
+
+                    <span>
+                        Cliente
+                    </span>
+
+                    <strong id="confirmacaoNome">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <!-- ENDEREÇO -->
+
+                <div class="itemConfirmacao">
+
+                    <span>
+                        Endereço
+                    </span>
+
+                    <strong id="confirmacaoEndereco">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <!-- PAGAMENTO -->
+
+                <div class="itemConfirmacao">
+
+                    <span>
+                        Pagamento
+                    </span>
+
+                    <strong id="confirmacaoPagamento">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <!-- TOTAL -->
+
+                <div class="itemConfirmacao">
+
+                    <span>
+                        Total
+                    </span>
+
+                    <strong id="confirmacaoTotal">
+                        R$ 0,00
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= BOTÕES ================= -->
+
+            <div class="botoesConfirmacao">
+
+
+                <!-- VOLTAR -->
+
+                <button
+                    type="button"
+                    class="btnVoltar"
+                    id="btnVoltarConfirmacao"
+                >
+                    Voltar
+                </button>
+
+
+                <!-- CONFIRMAR -->
+
+                <button
+                    type="button"
+                    class="btnConfirmar"
+                    id="btnConfirmarPedido"
+                >
+                    Confirmar pedido
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
 
     <script src="/js/pedidos.js"></script>
 
