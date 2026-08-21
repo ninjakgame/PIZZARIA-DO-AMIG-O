@@ -1,4 +1,10 @@
 /* ==================================================
+   PEDIDOS.JS
+   PIZZARIA DO AMIGÃO
+================================================== */
+
+
+/* ==================================================
    CONFIGURAÇÕES
 ================================================== */
 
@@ -7,7 +13,7 @@ const chavePedidos = "meusPedidos";
 /*
    Número do WhatsApp da pizzaria
 */
-const numeroWhatsApp = "558587144716";
+const numeroWhatsApp = "8587144716";
 
 
 /* ==================================================
@@ -42,10 +48,6 @@ const formDadosPedido =
 
 function converterPreco(valor) {
 
-    /*
-       Se já for número
-    */
-
     if (typeof valor === "number") {
 
         return Number.isFinite(valor)
@@ -54,10 +56,6 @@ function converterPreco(valor) {
 
     }
 
-
-    /*
-       Se não existir
-    */
 
     if (
         valor === null ||
@@ -70,20 +68,8 @@ function converterPreco(valor) {
     }
 
 
-    /*
-       Converter texto
-       Exemplos:
-
-       "43"
-       "43.00"
-       "43,00"
-       "R$ 43,00"
-       "R$ 1.043,00"
-    */
-
     let texto =
-        String(valor)
-            .trim();
+        String(valor).trim();
 
 
     texto =
@@ -93,12 +79,9 @@ function converterPreco(valor) {
 
 
     /*
-       Se tiver ponto e vírgula:
-
+       Exemplo:
        1.043,00
-
        vira:
-
        1043.00
     */
 
@@ -114,13 +97,11 @@ function converterPreco(valor) {
 
     }
 
+
     /*
-       Se tiver somente vírgula:
-
+       Exemplo:
        43,00
-
        vira:
-
        43.00
     */
 
@@ -135,8 +116,7 @@ function converterPreco(valor) {
 
 
     /*
-       Remover qualquer caractere
-       que não seja número, ponto ou sinal
+       Remover caracteres inválidos
     */
 
     texto =
@@ -164,8 +144,7 @@ function converterPreco(valor) {
 function obterPrecoItem(item) {
 
     /*
-       NOVO FORMATO
-       usado pelo principal.js
+       Preço atual
     */
 
     if (
@@ -173,22 +152,15 @@ function obterPrecoItem(item) {
         item.preco !== null
     ) {
 
-        const preco =
-            converterPreco(
-                item.preco
-            );
-
-        if (preco >= 0) {
-
-            return preco;
-
-        }
+        return converterPreco(
+            item.preco
+        );
 
     }
 
 
     /*
-       FORMATO ANTIGO
+       Formato antigo
     */
 
     if (
@@ -196,22 +168,15 @@ function obterPrecoItem(item) {
         item.precoNumero !== null
     ) {
 
-        const preco =
-            converterPreco(
-                item.precoNumero
-            );
-
-        if (preco >= 0) {
-
-            return preco;
-
-        }
+        return converterPreco(
+            item.precoNumero
+        );
 
     }
 
 
     /*
-       PREÇO BASE
+       Preço base
     */
 
     if (
@@ -264,22 +229,31 @@ function buscarPedidos() {
 
 
         /*
-           Normalizar os pedidos
-           para evitar valores inválidos
+           Normalizar pedidos
         */
 
         return pedidos.map(
-            (item) => {
+            (item, index) => {
 
                 const preco =
-                    obterPrecoItem(
-                        item
-                    );
+                    obterPrecoItem(item);
 
 
                 return {
 
                     ...item,
+
+                    /*
+                       Garantir ID
+                    */
+
+                    id:
+                        item.id ||
+                        `${Date.now()}-${index}`,
+
+                    /*
+                       Garantir quantidade
+                    */
 
                     quantidade:
                         Math.max(
@@ -288,6 +262,10 @@ function buscarPedidos() {
                                 item.quantidade
                             ) || 1
                         ),
+
+                    /*
+                       Garantir preço
+                    */
 
                     preco:
                         preco,
@@ -300,7 +278,9 @@ function buscarPedidos() {
             }
         );
 
-    } catch (erro) {
+    }
+
+    catch (erro) {
 
         console.error(
             "Erro ao buscar pedidos:",
@@ -320,19 +300,12 @@ function buscarPedidos() {
 
 function salvarPedidos(pedidos) {
 
-    /*
-       Antes de salvar,
-       garantir que todos tenham preço válido
-    */
-
     const pedidosCorrigidos =
         pedidos.map(
             (item) => {
 
                 const preco =
-                    obterPrecoItem(
-                        item
-                    );
+                    obterPrecoItem(item);
 
 
                 return {
@@ -376,9 +349,7 @@ function salvarPedidos(pedidos) {
 function formatarMoeda(valor) {
 
     const numero =
-        converterPreco(
-            valor
-        );
+        converterPreco(valor);
 
 
     return numero.toLocaleString(
@@ -393,7 +364,7 @@ function formatarMoeda(valor) {
 
 
 /* ==================================================
-   CALCULAR TOTAIS
+   CALCULAR TOTAL
 ================================================== */
 
 function calcularTotais(pedidos) {
@@ -411,18 +382,23 @@ function calcularTotais(pedidos) {
 
 
             const preco =
-                obterPrecoItem(
-                    item
-                );
+                obterPrecoItem(item);
 
+
+            /*
+               SOMAR QUANTIDADE
+            */
 
             totais.itens +=
                 quantidade;
 
 
+            /*
+               SOMAR VALOR
+            */
+
             totais.valor +=
-                preco *
-                quantidade;
+                preco * quantidade;
 
 
             return totais;
@@ -438,7 +414,7 @@ function calcularTotais(pedidos) {
 
 
 /* ==================================================
-   ESCAPAR TEXTO
+   ESCAPAR HTML
 ================================================== */
 
 function escaparHTML(texto) {
@@ -454,26 +430,11 @@ function escaparHTML(texto) {
 
 
     return String(texto)
-        .replace(
-            /&/g,
-            "&amp;"
-        )
-        .replace(
-            /</g,
-            "&lt;"
-        )
-        .replace(
-            />/g,
-            "&gt;"
-        )
-        .replace(
-            /"/g,
-            "&quot;"
-        )
-        .replace(
-            /'/g,
-            "&#039;"
-        );
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
 
 }
 
@@ -490,71 +451,49 @@ function buscarDadosCliente() {
         );
 
 
+    function pegarCampo(id) {
+
+        const campo =
+            document.getElementById(id);
+
+
+        if (!campo) {
+
+            return "";
+
+        }
+
+
+        return campo.value.trim();
+
+    }
+
+
     return {
 
         nome:
-            document
-                .getElementById(
-                    "nomeCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("nomeCliente"),
 
         cep:
-            document
-                .getElementById(
-                    "cepCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("cepCliente"),
 
         rua:
-            document
-                .getElementById(
-                    "ruaCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("ruaCliente"),
 
         numero:
-            document
-                .getElementById(
-                    "numeroCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("numeroCliente"),
 
         bairro:
-            document
-                .getElementById(
-                    "bairroCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("bairroCliente"),
 
         cidade:
-            document
-                .getElementById(
-                    "cidadeCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("cidadeCliente"),
 
         estado:
-            document
-                .getElementById(
-                    "estadoCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("estadoCliente"),
 
         complemento:
-            document
-                .getElementById(
-                    "complementoCliente"
-                )
-                .value
-                .trim(),
+            pegarCampo("complementoCliente"),
 
         pagamento:
             pagamentoSelecionado
@@ -567,7 +506,7 @@ function buscarDadosCliente() {
 
 
 /* ==================================================
-   MONTAR TEXTO DOS PRODUTOS
+   MONTAR ITENS DO WHATSAPP
 ================================================== */
 
 function montarItensWhatsApp(pedidos) {
@@ -586,14 +525,11 @@ function montarItensWhatsApp(pedidos) {
 
 
                 const preco =
-                    obterPrecoItem(
-                        item
-                    );
+                    obterPrecoItem(item);
 
 
                 const subtotal =
-                    preco *
-                    quantidade;
+                    preco * quantidade;
 
 
                 let texto =
@@ -601,25 +537,22 @@ function montarItensWhatsApp(pedidos) {
 
 
                 /*
-                   TAMANHO DA PIZZA
+                   TAMANHO
                 */
 
-                if (
-                    item.tamanho
-                ) {
+                if (item.tamanho) {
 
                     texto +=
                         `\n  Tamanho: ${item.tamanho}`;
 
                 }
 
-                /*
-   SABOR DA PIZZA DO COMBO
-*/
 
-                if (
-                    item.saborPizza
-                ) {
+                /*
+                   SABOR DA PROMOÇÃO
+                */
+
+                if (item.saborPizza) {
 
                     texto +=
                         `\n  Pizza escolhida: ${item.saborPizza}`;
@@ -631,9 +564,7 @@ function montarItensWhatsApp(pedidos) {
                    BORDA
                 */
 
-                if (
-                    item.borda
-                ) {
+                if (item.borda) {
 
                     texto +=
                         `\n  Borda: ${item.borda}`;
@@ -645,15 +576,17 @@ function montarItensWhatsApp(pedidos) {
                    OBSERVAÇÃO
                 */
 
-                if (
-                    item.observacao
-                ) {
+                if (item.observacao) {
 
                     texto +=
                         `\n  Observação: ${item.observacao}`;
 
                 }
 
+
+                /*
+                   VALOR
+                */
 
                 texto +=
                     `\n  Valor: ${formatarMoeda(subtotal)}`;
@@ -678,15 +611,11 @@ function montarMensagemWhatsApp(
 ) {
 
     const totais =
-        calcularTotais(
-            pedidos
-        );
+        calcularTotais(pedidos);
 
 
     const itens =
-        montarItensWhatsApp(
-            pedidos
-        );
+        montarItensWhatsApp(pedidos);
 
 
     /*
@@ -699,55 +628,33 @@ function montarMensagemWhatsApp(
             : "";
 
 
-    /*
-       PAGAMENTO
-    */
+    /* ==================================================
+   PAGAMENTO
+================================================== */
 
-    let pagamento =
-        "Não informado";
+    let pagamento = "Não informado";
 
+    if (dadosCliente.pagamento === "Pix") {
 
-    if (
-        dadosCliente.pagamento ===
-        "Pix"
-    ) {
-
-        pagamento =
-            "Pix - confirmar pagamento";
+        pagamento = "Pix - confirmar pagamento";
 
     }
 
-    else if (
-        dadosCliente.pagamento ===
-        "Dinheiro"
-    ) {
+    else if (dadosCliente.pagamento === "Dinheiro") {
 
-        pagamento =
-            "Dinheiro";
+        pagamento = "Dinheiro";
 
     }
 
-    else if (
-        dadosCliente.pagamento ===
-        "Débito" ||
-        dadosCliente.pagamento ===
-        "Debito"
-    ) {
+    else if (dadosCliente.pagamento === "Débito") {
 
-        pagamento =
-            "Cartão de Débito";
+        pagamento = "Cartão de Débito";
 
     }
 
-    else if (
-        dadosCliente.pagamento ===
-        "Crédito" ||
-        dadosCliente.pagamento ===
-        "Credito"
-    ) {
+    else if (dadosCliente.pagamento === "Crédito") {
 
-        pagamento =
-            "Cartão de Crédito";
+        pagamento = "Cartão de Crédito";
 
     }
 
@@ -881,6 +788,23 @@ function enviarPedidoWhatsApp(event) {
 
 
     /*
+       VALIDAR PAGAMENTO
+    */
+
+    if (
+        !dadosCliente.pagamento
+    ) {
+
+        alert(
+            "Escolha uma forma de pagamento."
+        );
+
+        return;
+
+    }
+
+
+    /*
        MONTAR MENSAGEM
     */
 
@@ -928,10 +852,6 @@ function alterarQuantidade(
         pedidos
             .map(
                 (item) => {
-
-                    /*
-                       Usar ID quando existir
-                    */
 
                     if (
                         String(item.id) ===
@@ -1027,9 +947,7 @@ function criarCardPedido(item) {
 
 
     const preco =
-        obterPrecoItem(
-            item
-        );
+        obterPrecoItem(item);
 
 
     const quantidade =
@@ -1050,7 +968,8 @@ function criarCardPedido(item) {
 
     const nome =
         escaparHTML(
-            item.nome
+            item.nome ||
+            "Produto"
         );
 
 
@@ -1062,67 +981,108 @@ function criarCardPedido(item) {
 
 
     /*
-       INFORMAÇÕES DA PIZZA
+       DETALHES
     */
 
     let detalhesPizza =
         "";
 
+
     /*
-SABOR DA PIZZA DO COMBO
-*/
+       SABOR DA PROMOÇÃO
+    */
 
-    if (
-        item.saborPizza
-    ) {
+    if (item.saborPizza) {
 
         detalhesPizza += `
-        <p class="detalhePedido">
-            <strong>Pizza escolhida:</strong>
-            ${escaparHTML(item.saborPizza)}
-        </p>
-    `;
 
-    }
-
-
-    if (
-        item.tamanho
-    ) {
-
-        detalhesPizza += `
             <p class="detalhePedido">
-                <strong>Tamanho:</strong>
-                ${escaparHTML(item.tamanho)}
+
+                <strong>
+                    Pizza escolhida:
+                </strong>
+
+                ${escaparHTML(
+            item.saborPizza
+        )}
+
             </p>
+
         `;
 
     }
 
 
-    if (
-        item.borda
-    ) {
+    /*
+       TAMANHO
+    */
+
+    if (item.tamanho) {
 
         detalhesPizza += `
+
             <p class="detalhePedido">
-                <strong>Borda:</strong>
-                ${escaparHTML(item.borda)}
+
+                <strong>
+                    Tamanho:
+                </strong>
+
+                ${escaparHTML(
+            item.tamanho
+        )}
+
             </p>
+
         `;
 
     }
 
 
-    if (
-        item.observacao
-    ) {
+    /*
+       BORDA
+    */
+
+    if (item.borda) {
 
         detalhesPizza += `
+
             <p class="detalhePedido">
-                <strong>Observação:</strong>
-                ${escaparHTML(item.observacao)}
+
+                <strong>
+                    Borda:
+                </strong>
+
+                ${escaparHTML(
+            item.borda
+        )}
+
             </p>
+
+        `;
+
+    }
+
+
+    /*
+       OBSERVAÇÃO
+    */
+
+    if (item.observacao) {
+
+        detalhesPizza += `
+
+            <p class="detalhePedido">
+
+                <strong>
+                    Observação:
+                </strong>
+
+                ${escaparHTML(
+            item.observacao
+        )}
+
+            </p>
+
         `;
 
     }
@@ -1164,7 +1124,6 @@ SABOR DA PIZZA DO COMBO
 
 
         <div class="acoesPedido">
-
 
             <div class="controleQuantidade">
 
@@ -1317,6 +1276,7 @@ function renderizarPedidos() {
 
 
     /*
+       MOSTRAR / ESCONDER
        CARRINHO VAZIO
     */
 
@@ -1331,7 +1291,7 @@ function renderizarPedidos() {
 
 
     /*
-       CONTAINER
+       CONTAINER DOS PEDIDOS
     */
 
     const container =
@@ -1420,13 +1380,10 @@ if (btnLimpar) {
             }
 
 
-            salvarPedidos(
-                []
-            );
+            salvarPedidos([]);
 
 
             renderizarPedidos();
-
 
             atualizarQuantidadeCarrinho();
 
@@ -1501,7 +1458,9 @@ function atualizarQuantidadeCarrinho() {
             "vazio"
         );
 
-    } else {
+    }
+
+    else {
 
         contador.classList.remove(
             "vazio"
@@ -1549,6 +1508,10 @@ async function buscarCep() {
         );
 
 
+    /*
+       VERIFICAR SE OS CAMPOS EXISTEM
+    */
+
     if (
         !campoCep ||
         !rua ||
@@ -1556,6 +1519,10 @@ async function buscarCep() {
         !cidade ||
         !estado
     ) {
+
+        console.error(
+            "Campos do endereço não encontrados."
+        );
 
         return;
 
@@ -1570,19 +1537,6 @@ async function buscarCep() {
 
 
     /*
-       LIMPAR ENDEREÇO
-    */
-
-    rua.value = "";
-    bairro.value = "";
-    cidade.value = "";
-    estado.value = "";
-
-
-    campoCep.setCustomValidity("");
-
-
-    /*
        CEP INCOMPLETO
     */
 
@@ -1590,20 +1544,17 @@ async function buscarCep() {
         cep.length !== 8
     ) {
 
+        campoCep.setCustomValidity(
+            "Digite um CEP válido."
+        );
+
+
         if (mensagem) {
 
             mensagem.textContent =
                 "Digite um CEP válido com 8 números.";
 
-            mensagem.style.color =
-                "#8b1e1e";
-
         }
-
-
-        campoCep.setCustomValidity(
-            "Digite um CEP válido."
-        );
 
 
         return;
@@ -1620,10 +1571,10 @@ async function buscarCep() {
         mensagem.textContent =
             "Consultando CEP...";
 
-        mensagem.style.color =
-            "#666666";
-
     }
+
+
+    campoCep.setCustomValidity("");
 
 
     try {
@@ -1637,7 +1588,7 @@ async function buscarCep() {
         if (!resposta.ok) {
 
             throw new Error(
-                "Erro ao consultar CEP."
+                "Erro ao consultar o CEP."
             );
 
         }
@@ -1651,24 +1602,28 @@ async function buscarCep() {
            CEP NÃO ENCONTRADO
         */
 
-        if (
-            dados.erro
-        ) {
+        if (dados.erro) {
+
+            rua.value = "";
+
+            bairro.value = "";
+
+            cidade.value = "";
+
+            estado.value = "";
+
+
+            campoCep.setCustomValidity(
+                "CEP não encontrado."
+            );
+
 
             if (mensagem) {
 
                 mensagem.textContent =
                     "CEP não encontrado.";
 
-                mensagem.style.color =
-                    "#8b1e1e";
-
             }
-
-
-            campoCep.setCustomValidity(
-                "CEP não encontrado."
-            );
 
 
             return;
@@ -1681,39 +1636,31 @@ async function buscarCep() {
         */
 
         rua.value =
-            dados.logradouro ||
-            "";
+            dados.logradouro || "";
 
         bairro.value =
-            dados.bairro ||
-            "";
+            dados.bairro || "";
 
         cidade.value =
-            dados.localidade ||
-            "";
+            dados.localidade || "";
 
         estado.value =
-            dados.uf ||
-            "";
+            dados.uf || "";
 
 
         /*
-           CEP VÁLIDO
+           SUCESSO
         */
+
+        campoCep.setCustomValidity("");
+
 
         if (mensagem) {
 
             mensagem.textContent =
                 "✓ CEP encontrado.";
 
-            mensagem.style.color =
-                "#008000";
-
         }
-
-
-        campoCep.setCustomValidity("");
-
 
     }
 
@@ -1725,20 +1672,17 @@ async function buscarCep() {
         );
 
 
+        campoCep.setCustomValidity(
+            "Não foi possível consultar o CEP."
+        );
+
+
         if (mensagem) {
 
             mensagem.textContent =
                 "Não foi possível consultar o CEP.";
 
-            mensagem.style.color =
-                "#8b1e1e";
-
         }
-
-
-        campoCep.setCustomValidity(
-            "Não foi possível validar o CEP."
-        );
 
     }
 
@@ -1772,21 +1716,17 @@ if (campoCep) {
                MÁXIMO 8 NÚMEROS
             */
 
-            if (
-                valor.length > 8
-            ) {
-
-                valor =
-                    valor.substring(
-                        0,
-                        8
-                    );
-
-            }
+            valor =
+                valor.substring(
+                    0,
+                    8
+                );
 
 
             /*
-               COLOCAR HÍFEN
+               FORMATO:
+
+               00000-000
             */
 
             if (
@@ -1817,6 +1757,10 @@ if (campoCep) {
             this.setCustomValidity("");
 
 
+            /*
+               LIMPAR MENSAGEM
+            */
+
             const mensagem =
                 document.getElementById(
                     "mensagemCep"
@@ -1832,7 +1776,7 @@ if (campoCep) {
 
 
             /*
-               CONSULTAR AUTOMATICAMENTE
+               PEGAR SOMENTE NÚMEROS
             */
 
             const cepNumeros =
@@ -1842,11 +1786,82 @@ if (campoCep) {
                 );
 
 
+            /*
+               CONSULTAR AUTOMATICAMENTE
+               QUANDO TIVER 8 NÚMEROS
+            */
+
             if (
                 cepNumeros.length === 8
             ) {
 
                 buscarCep();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ==================================================
+   LIMPAR ENDEREÇO SE CEP FOR ALTERADO
+================================================== */
+
+if (campoCep) {
+
+    campoCep.addEventListener(
+        "change",
+        () => {
+
+            const cep =
+                campoCep.value.replace(
+                    /\D/g,
+                    ""
+                );
+
+
+            if (
+                cep.length !== 8
+            ) {
+
+                const rua =
+                    document.getElementById(
+                        "ruaCliente"
+                    );
+
+                const bairro =
+                    document.getElementById(
+                        "bairroCliente"
+                    );
+
+                const cidade =
+                    document.getElementById(
+                        "cidadeCliente"
+                    );
+
+                const estado =
+                    document.getElementById(
+                        "estadoCliente"
+                    );
+
+
+                if (rua) {
+                    rua.value = "";
+                }
+
+                if (bairro) {
+                    bairro.value = "";
+                }
+
+                if (cidade) {
+                    cidade.value = "";
+                }
+
+                if (estado) {
+                    estado.value = "";
+                }
 
             }
 
@@ -1864,7 +1879,7 @@ atualizarQuantidadeCarrinho();
 
 
 /* ==================================================
-   ATUALIZAR EM OUTRAS ABAS
+   ATUALIZAR QUANDO OUTRA ABA ALTERAR
 ================================================== */
 
 window.addEventListener(

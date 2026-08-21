@@ -5,6 +5,7 @@
 
 const chavePedidos = "meusPedidos";
 
+
 /* =========================================================
    ELEMENTOS
 ========================================================= */
@@ -15,11 +16,13 @@ const carrosseis =
 const cards =
     document.querySelectorAll(".gridProduto");
 
+
 const modal =
     document.getElementById("modalProduto");
 
 const fecharModal =
     document.getElementById("fecharModal");
+
 
 const modalImagem =
     document.getElementById("modalImagem");
@@ -33,17 +36,24 @@ const modalDescricao =
 const modalPreco =
     document.getElementById("modalPreco");
 
+
 const opcoesPizza =
     document.getElementById("opcoesPizza");
 
 const opcoesProduto =
     document.getElementById("opcoesProduto");
 
+const opcoesPromocao =
+    document.getElementById("opcoesPromocao");
+
+
 const btnAdicionarPedido =
     document.getElementById("btnAdicionarPedido");
 
+
 const contadorCarrinho =
     document.getElementById("quantidadeCarrinho");
+
 
 const precoGrande =
     document.getElementById("precoGrande");
@@ -51,11 +61,13 @@ const precoGrande =
 const precoBroto =
     document.getElementById("precoBroto");
 
+
 const observacao =
     document.getElementById("observacao");
 
 const contadorObservacao =
     document.getElementById("contadorObservacao");
+
 
 const observacaoProduto =
     document.getElementById("observacaoProduto");
@@ -76,13 +88,19 @@ function formatarDinheiro(valor) {
     const numero = Number(valor);
 
     if (!Number.isFinite(numero)) {
+
         return "R$ 0,00";
+
     }
 
     return numero.toLocaleString("pt-BR", {
+
         style: "currency",
+
         currency: "BRL"
+
     });
+
 }
 
 
@@ -97,16 +115,24 @@ function buscarPedidos() {
         const dados =
             localStorage.getItem(chavePedidos);
 
+
         if (!dados) {
+
             return [];
+
         }
+
 
         const pedidos =
             JSON.parse(dados);
 
+
         if (!Array.isArray(pedidos)) {
+
             return [];
+
         }
+
 
         return pedidos;
 
@@ -118,7 +144,9 @@ function buscarPedidos() {
         );
 
         return [];
+
     }
+
 }
 
 
@@ -129,9 +157,13 @@ function buscarPedidos() {
 function salvarPedidos(pedidos) {
 
     localStorage.setItem(
+
         chavePedidos,
+
         JSON.stringify(pedidos)
+
     );
+
 }
 
 
@@ -142,22 +174,30 @@ function salvarPedidos(pedidos) {
 function atualizarQuantidadeCarrinho() {
 
     if (!contadorCarrinho) {
+
         return;
+
     }
+
 
     const pedidos =
         buscarPedidos();
 
+
     const quantidade =
         pedidos.reduce(
+
             (total, item) => {
 
                 return total +
                     (Number(item.quantidade) || 0);
 
             },
+
             0
+
         );
+
 
     contadorCarrinho.textContent =
         quantidade;
@@ -174,7 +214,9 @@ function atualizarQuantidadeCarrinho() {
         contadorCarrinho.classList.remove(
             "vazio"
         );
+
     }
+
 }
 
 
@@ -189,10 +231,12 @@ carrosseis.forEach((carousel) => {
             ".descricaoProduto"
         );
 
+
     const btnAnterior =
         carousel.querySelector(
             ".btnAnterior"
         );
+
 
     const btnProximo =
         carousel.querySelector(
@@ -205,36 +249,156 @@ carrosseis.forEach((carousel) => {
         !btnAnterior ||
         !btnProximo
     ) {
+
         return;
+
     }
 
 
     btnProximo.addEventListener(
+
         "click",
+
         () => {
 
             produtos.scrollBy({
+
                 left: 350,
+
                 behavior: "smooth"
+
             });
 
         }
+
     );
 
 
     btnAnterior.addEventListener(
+
         "click",
+
         () => {
 
             produtos.scrollBy({
+
                 left: -350,
+
                 behavior: "smooth"
+
             });
 
         }
+
     );
 
 });
+
+
+/* =========================================================
+   MOSTRAR / ESCONDER OPÇÕES
+========================================================= */
+
+function controlarOpcoes(tipo) {
+
+    /* =========================================
+       PIZZA
+    ========================================= */
+
+    if (tipo === "pizza") {
+
+        if (opcoesPizza) {
+
+            opcoesPizza.style.display =
+                "flex";
+
+        }
+
+
+        if (opcoesProduto) {
+
+            opcoesProduto.style.display =
+                "none";
+
+        }
+
+
+        if (opcoesPromocao) {
+
+            opcoesPromocao.style.display =
+                "none";
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* =========================================
+       PROMOÇÃO
+    ========================================= */
+
+    if (tipo === "promocao") {
+
+        if (opcoesPizza) {
+
+            opcoesPizza.style.display =
+                "none";
+
+        }
+
+
+        if (opcoesProduto) {
+
+            opcoesProduto.style.display =
+                "none";
+
+        }
+
+
+        if (opcoesPromocao) {
+
+            opcoesPromocao.style.display =
+                "flex";
+
+        }
+
+
+        return;
+
+    }
+
+
+    /* =========================================
+       OUTROS PRODUTOS
+    ========================================= */
+
+    if (opcoesPizza) {
+
+        opcoesPizza.style.display =
+            "none";
+
+    }
+
+
+    if (opcoesProduto) {
+
+        opcoesProduto.style.display =
+            "none";
+
+    }
+
+
+    if (opcoesPromocao) {
+
+        opcoesPromocao.style.display =
+            "none";
+
+    }
+
+}
 
 
 /* =========================================================
@@ -244,30 +408,40 @@ carrosseis.forEach((carousel) => {
 cards.forEach((card) => {
 
     card.addEventListener(
+
         "click",
+
         () => {
 
             const tipo =
-                card.dataset.tipo || "produto";
+                card.dataset.tipo ||
+                "produto";
+
 
             const nome =
-                card.dataset.nome || "";
+                card.dataset.nome ||
+                "";
+
 
             const descricao =
-                card.dataset.descricao || "";
+                card.dataset.descricao ||
+                "";
+
 
             const imagem =
-                card.dataset.imagem || "";
+                card.dataset.imagem ||
+                "";
 
 
             /* =========================================
-               INFORMAÇÕES BÁSICAS
+               INFORMAÇÕES
             ========================================= */
 
             if (modalNome) {
 
                 modalNome.textContent =
                     nome;
+
             }
 
 
@@ -275,6 +449,7 @@ cards.forEach((card) => {
 
                 modalDescricao.textContent =
                     descricao;
+
             }
 
 
@@ -285,7 +460,11 @@ cards.forEach((card) => {
 
                 modalImagem.alt =
                     nome;
+
             }
+
+
+            controlarOpcoes(tipo);
 
 
             /* =========================================
@@ -316,198 +495,49 @@ cards.forEach((card) => {
 
                     quantidade: 1,
 
-                    saborPizza: "",
+                    saborPizza:
+                        "Pizza de Mussarela",
 
                     observacao: ""
 
                 };
 
 
-                if (opcoesPizza) {
+                const radios =
+                    document.querySelectorAll(
+                        'input[name="pizzaPromocao"]'
+                    );
 
-                    opcoesPizza.style.display =
-                        "none";
-                }
+
+                radios.forEach((radio) => {
+
+                    radio.checked =
+                        radio.value ===
+                        "Pizza de Mussarela";
 
 
-                if (opcoesProduto) {
+                    radio.onchange = () => {
 
-                    opcoesProduto.style.display =
-                        "flex";
-                }
+                        produtoSelecionado.saborPizza =
+                            radio.value;
+
+                    };
+
+                });
 
 
                 if (modalPreco) {
 
                     modalPreco.textContent =
-                        formatarDinheiro(
-                            preco
-                        );
-                }
+                        formatarDinheiro(preco);
 
-
-                /* =====================================
-                   CRIAR ESCOLHA DA PIZZA DO COMBO
-                ===================================== */
-
-                let escolhaPizza =
-                    document.getElementById(
-                        "escolhaPizzaPromocao"
-                    );
-
-
-                if (!escolhaPizza) {
-
-                    escolhaPizza =
-                        document.createElement(
-                            "div"
-                        );
-
-                    escolhaPizza.id =
-                        "escolhaPizzaPromocao";
-
-                    escolhaPizza.className =
-                        "escolhaPizzaPromocao";
-
-                    escolhaPizza.innerHTML = `
-
-                        <div class="grupoOpcao">
-
-                            <h3>
-                                Escolha sua pizza
-                            </h3>
-
-                            <label class="opcao">
-
-                                <input
-                                    type="radio"
-                                    name="pizzaPromocao"
-                                    value="Mussarela"
-                                >
-
-                                <span class="opcaoTexto">
-
-                                    <strong>
-                                        Pizza de Mussarela
-                                    </strong>
-
-                                    <small>
-                                        Incluso no combo
-                                    </small>
-
-                                </span>
-
-                                <span class="opcaoPreco">
-                                    Incluso
-                                </span>
-
-                            </label>
-
-
-                            <label class="opcao">
-
-                                <input
-                                    type="radio"
-                                    name="pizzaPromocao"
-                                    value="Calabresa"
-                                >
-
-                                <span class="opcaoTexto">
-
-                                    <strong>
-                                        Pizza de Calabresa
-                                    </strong>
-
-                                    <small>
-                                        Incluso no combo
-                                    </small>
-
-                                </span>
-
-                                <span class="opcaoPreco">
-                                    Incluso
-                                </span>
-
-                            </label>
-
-                        </div>
-
-                    `;
-
-                    if (opcoesProduto) {
-
-                        opcoesProduto.parentNode.insertBefore(
-                            escolhaPizza,
-                            opcoesProduto
-                        );
-                    }
-                }
-
-
-                /* =====================================
-                   LIMPAR ESCOLHA ANTERIOR
-                ===================================== */
-
-                const sabores =
-                    escolhaPizza.querySelectorAll(
-                        'input[name="pizzaPromocao"]'
-                    );
-
-                sabores.forEach((radio) => {
-
-                    radio.checked = false;
-
-                });
-
-
-                /* =====================================
-                   SELECIONAR SABOR
-                ===================================== */
-
-                sabores.forEach((radio) => {
-
-                    radio.addEventListener(
-                        "change",
-                        () => {
-
-                            produtoSelecionado.saborPizza =
-                                radio.value;
-
-                        }
-                    );
-
-                });
-
-
-                /* =====================================
-                   ESCONDER OPÇÕES NORMAIS
-                ===================================== */
-
-                if (opcoesProduto) {
-
-                    opcoesProduto.style.display =
-                        "flex";
-                }
-
-
-                if (observacaoProduto) {
-
-                    observacaoProduto.value =
-                        "";
-                }
-
-
-                if (contadorObservacaoProduto) {
-
-                    contadorObservacaoProduto.textContent =
-                        "0";
                 }
 
             }
 
 
             /* =========================================
-               PIZZA NORMAL
+               PIZZA
             ========================================= */
 
             else if (tipo === "pizza") {
@@ -561,54 +591,15 @@ cards.forEach((card) => {
                 };
 
 
-                /* =====================================
-                   MOSTRAR OPÇÕES DA PIZZA
-                ===================================== */
-
-                if (opcoesPizza) {
-
-                    opcoesPizza.style.display =
-                        "flex";
-                }
-
-
-                if (opcoesProduto) {
-
-                    opcoesProduto.style.display =
-                        "none";
-                }
-
-
-                /* =====================================
-                   PREÇOS
-                ===================================== */
-
-                if (precoGrande) {
-
-                    precoGrande.textContent =
-                        formatarDinheiro(
-                            precoGrandePizza
-                        );
-                }
-
-
-                if (precoBroto) {
-
-                    precoBroto.textContent =
-                        formatarDinheiro(
-                            precoBrotoPizza
-                        );
-                }
-
-
-                /* =====================================
-                   RESETAR TAMANHO
-                ===================================== */
+                /* =========================================
+                   TAMANHO
+                ========================================= */
 
                 const tamanhoGrande =
                     document.querySelector(
                         'input[name="tamanhoPizza"][value="grande"]'
                     );
+
 
                 const tamanhoBroto =
                     document.querySelector(
@@ -620,6 +611,7 @@ cards.forEach((card) => {
 
                     tamanhoGrande.checked =
                         true;
+
                 }
 
 
@@ -627,12 +619,13 @@ cards.forEach((card) => {
 
                     tamanhoBroto.checked =
                         false;
+
                 }
 
 
-                /* =====================================
-                   RESETAR BORDA
-                ===================================== */
+                /* =========================================
+                   BORDA
+                ========================================= */
 
                 const bordas =
                     document.querySelectorAll(
@@ -649,14 +642,14 @@ cards.forEach((card) => {
                 });
 
 
-                /* =====================================
-                   RESETAR OBSERVAÇÃO
-                ===================================== */
+                /* =========================================
+                   LIMPAR OBSERVAÇÃO
+                ========================================= */
 
                 if (observacao) {
 
-                    observacao.value =
-                        "";
+                    observacao.value = "";
+
                 }
 
 
@@ -664,8 +657,15 @@ cards.forEach((card) => {
 
                     contadorObservacao.textContent =
                         "0";
+
                 }
 
+
+                /*
+                   IMPORTANTE:
+                   AQUI OS PREÇOS DA PIZZA
+                   SÃO MOSTRADOS NA TELA.
+                */
 
                 atualizarPrecoPizza();
 
@@ -673,7 +673,7 @@ cards.forEach((card) => {
 
 
             /* =========================================
-               PRODUTO NORMAL
+               CHOCOLATE / BEBIDA
             ========================================= */
 
             else {
@@ -687,6 +687,8 @@ cards.forEach((card) => {
                 produtoSelecionado = {
 
                     tipo: "produto",
+
+                    subtipo: "produto",
 
                     nome: nome,
 
@@ -703,24 +705,11 @@ cards.forEach((card) => {
                 };
 
 
-                if (opcoesPizza) {
-
-                    opcoesPizza.style.display =
-                        "none";
-                }
-
-
-                if (opcoesProduto) {
-
-                    opcoesProduto.style.display =
-                        "flex";
-                }
-
-
                 if (observacaoProduto) {
 
                     observacaoProduto.value =
                         "";
+
                 }
 
 
@@ -728,15 +717,15 @@ cards.forEach((card) => {
 
                     contadorObservacaoProduto.textContent =
                         "0";
+
                 }
 
 
                 if (modalPreco) {
 
                     modalPreco.textContent =
-                        formatarDinheiro(
-                            preco
-                        );
+                        formatarDinheiro(preco);
+
                 }
 
             }
@@ -752,6 +741,7 @@ cards.forEach((card) => {
                     "ativo"
                 );
 
+
                 modal.setAttribute(
                     "aria-hidden",
                     "false"
@@ -764,6 +754,7 @@ cards.forEach((card) => {
                 "hidden";
 
         }
+
     );
 
 });
@@ -781,6 +772,7 @@ function atualizarPrecoPizza() {
     ) {
 
         return;
+
     }
 
 
@@ -797,32 +789,78 @@ function atualizarPrecoPizza() {
 
 
     if (!tamanho) {
+
         return;
-    }
-
-
-    let preco = 0;
-
-
-    if (
-        tamanho.value ===
-        "grande"
-    ) {
-
-        preco =
-            Number(
-                produtoSelecionado.precoGrande
-            ) || 0;
-
-    } else {
-
-        preco =
-            Number(
-                produtoSelecionado.precoBroto
-            ) || 0;
 
     }
 
+
+    /* =========================================
+       PEGAR OS PREÇOS DA PIZZA
+    ========================================= */
+
+    const valorGrande =
+        Number(
+            produtoSelecionado.precoGrande
+        ) || 0;
+
+
+    const valorBroto =
+        Number(
+            produtoSelecionado.precoBroto
+        ) || 0;
+
+
+    /* =========================================
+       MOSTRAR PREÇO GRANDE
+    ========================================= */
+
+    if (precoGrande) {
+
+        precoGrande.textContent =
+            formatarDinheiro(valorGrande);
+
+    }
+
+
+    /* =========================================
+       MOSTRAR PREÇO BROTO
+    ========================================= */
+
+    if (precoBroto) {
+
+        precoBroto.textContent =
+            formatarDinheiro(valorBroto);
+
+    }
+
+
+    /* =========================================
+       ESCOLHER PREÇO DO TAMANHO
+    ========================================= */
+
+    let precoPizza = 0;
+
+
+    if (tamanho.value === "grande") {
+
+        precoPizza =
+            valorGrande;
+
+    }
+
+
+    if (tamanho.value === "broto") {
+
+        precoPizza =
+            valorBroto;
+
+    }
+
+
+    /* =========================================
+       PREÇO DA BORDA
+    ========================================= */
 
     let precoBorda = 0;
 
@@ -833,41 +871,57 @@ function atualizarPrecoPizza() {
             Number(
                 borda.dataset.preco
             ) || 0;
+
     }
 
 
-    preco +=
+    /* =========================================
+       SOMAR
+    ========================================= */
+
+    const total =
+        precoPizza +
         precoBorda;
 
 
+    /* =========================================
+       SALVAR NO PRODUTO
+    ========================================= */
+
     produtoSelecionado.tamanho =
         tamanho.value;
+
 
     produtoSelecionado.borda =
         borda
             ? borda.value
             : "Sem borda";
 
+
     produtoSelecionado.precoBorda =
         precoBorda;
 
-    produtoSelecionado.preco =
-        preco;
 
+    produtoSelecionado.preco =
+        total;
+
+
+    /* =========================================
+       MOSTRAR TOTAL
+    ========================================= */
 
     if (modalPreco) {
 
         modalPreco.textContent =
-            formatarDinheiro(
-                preco
-            );
+            formatarDinheiro(total);
+
     }
 
 }
 
 
 /* =========================================================
-   EVENTOS DAS OPÇÕES DA PIZZA
+   EVENTOS TAMANHO E BORDA
 ========================================================= */
 
 document
@@ -877,21 +931,26 @@ document
     .forEach((input) => {
 
         input.addEventListener(
+
             "change",
+
             atualizarPrecoPizza
+
         );
 
     });
 
 
 /* =========================================================
-   CONTADOR DE OBSERVAÇÃO
+   CONTADOR OBSERVAÇÃO PIZZA
 ========================================================= */
 
 if (observacao) {
 
     observacao.addEventListener(
+
         "input",
+
         () => {
 
             if (contadorObservacao) {
@@ -902,15 +961,22 @@ if (observacao) {
             }
 
         }
+
     );
 
 }
 
 
+/* =========================================================
+   CONTADOR OBSERVAÇÃO PRODUTO
+========================================================= */
+
 if (observacaoProduto) {
 
     observacaoProduto.addEventListener(
+
         "input",
+
         () => {
 
             if (contadorObservacaoProduto) {
@@ -921,6 +987,7 @@ if (observacaoProduto) {
             }
 
         }
+
     );
 
 }
@@ -933,7 +1000,9 @@ if (observacaoProduto) {
 if (btnAdicionarPedido) {
 
     btnAdicionarPedido.addEventListener(
+
         "click",
+
         () => {
 
             if (!produtoSelecionado) {
@@ -943,6 +1012,7 @@ if (btnAdicionarPedido) {
                 );
 
                 return;
+
             }
 
 
@@ -964,10 +1034,11 @@ if (btnAdicionarPedido) {
                 if (!saborSelecionado) {
 
                     alert(
-                        "Escolha a pizza do combo: Mussarela ou Calabresa."
+                        "Escolha a pizza do combo."
                     );
 
                     return;
+
                 }
 
 
@@ -976,15 +1047,13 @@ if (btnAdicionarPedido) {
 
 
                 produtoSelecionado.observacao =
-                    observacaoProduto
-                        ? observacaoProduto.value.trim()
-                        : "";
+                    "";
 
             }
 
 
             /* =====================================
-               PIZZA NORMAL
+               PIZZA
             ===================================== */
 
             else if (
@@ -1005,6 +1074,7 @@ if (btnAdicionarPedido) {
                     );
 
                     return;
+
                 }
 
 
@@ -1021,6 +1091,7 @@ if (btnAdicionarPedido) {
                     );
 
                     return;
+
                 }
 
 
@@ -1036,21 +1107,19 @@ if (btnAdicionarPedido) {
 
 
             /* =====================================
-               PRODUTO NORMAL
+               OUTROS PRODUTOS
             ===================================== */
 
             else {
 
                 produtoSelecionado.observacao =
-                    observacaoProduto
-                        ? observacaoProduto.value.trim()
-                        : "";
+                    "";
 
             }
 
 
             /* =====================================
-               GARANTIR PREÇO
+               VALIDAR PREÇO
             ===================================== */
 
             const preco =
@@ -1069,6 +1138,7 @@ if (btnAdicionarPedido) {
                 );
 
                 return;
+
             }
 
 
@@ -1080,13 +1150,12 @@ if (btnAdicionarPedido) {
                 buscarPedidos();
 
 
+            let existente = null;
+
+
             /* =====================================
-               PRODUTO EXISTENTE
+               COMBO
             ===================================== */
-
-            let existente =
-                null;
-
 
             if (
                 produtoSelecionado.subtipo ===
@@ -1095,6 +1164,7 @@ if (btnAdicionarPedido) {
 
                 existente =
                     pedidos.find(
+
                         (item) => {
 
                             return (
@@ -1109,18 +1179,20 @@ if (btnAdicionarPedido) {
                                 produtoSelecionado.nome &&
 
                                 item.saborPizza ===
-                                produtoSelecionado.saborPizza &&
-
-                                item.observacao ===
-                                produtoSelecionado.observacao
+                                produtoSelecionado.saborPizza
 
                             );
 
                         }
+
                     );
 
             }
 
+
+            /* =====================================
+               PIZZA
+            ===================================== */
 
             else if (
                 produtoSelecionado.tipo ===
@@ -1129,6 +1201,7 @@ if (btnAdicionarPedido) {
 
                 existente =
                     pedidos.find(
+
                         (item) => {
 
                             return (
@@ -1151,15 +1224,21 @@ if (btnAdicionarPedido) {
                             );
 
                         }
+
                     );
 
             }
 
 
+            /* =====================================
+               OUTROS PRODUTOS
+            ===================================== */
+
             else {
 
                 existente =
                     pedidos.find(
+
                         (item) => {
 
                             return (
@@ -1168,21 +1247,19 @@ if (btnAdicionarPedido) {
                                 "produto" &&
 
                                 item.nome ===
-                                produtoSelecionado.nome &&
-
-                                item.observacao ===
-                                produtoSelecionado.observacao
+                                produtoSelecionado.nome
 
                             );
 
                         }
+
                     );
 
             }
 
 
             /* =====================================
-               SOMAR OU ADICIONAR
+               SOMAR QUANTIDADE
             ===================================== */
 
             if (existente) {
@@ -1197,16 +1274,20 @@ if (btnAdicionarPedido) {
             }
 
 
-            else {
+            /* =====================================
+               NOVO PEDIDO
+            ===================================== */
 
+            else {
                 pedidos.push({
 
                     ...produtoSelecionado,
 
+                    id: Date.now().toString() + Math.random().toString(36).substring(2),
+
                     quantidade: 1
 
                 });
-
             }
 
 
@@ -1220,7 +1301,7 @@ if (btnAdicionarPedido) {
 
 
             /* =====================================
-               ATUALIZAR CONTADOR
+               ATUALIZAR CARRINHO
             ===================================== */
 
             atualizarQuantidadeCarrinho();
@@ -1241,6 +1322,7 @@ if (btnAdicionarPedido) {
                 "/html/principalPagina/finalizar.html";
 
         }
+
     );
 
 }
@@ -1253,7 +1335,9 @@ if (btnAdicionarPedido) {
 function fecharProduto() {
 
     if (!modal) {
+
         return;
+
     }
 
 
@@ -1274,14 +1358,18 @@ function fecharProduto() {
 
     produtoSelecionado =
         null;
+
 }
 
 
 if (fecharModal) {
 
     fecharModal.addEventListener(
+
         "click",
+
         fecharProduto
+
     );
 
 }
@@ -1294,7 +1382,9 @@ if (fecharModal) {
 if (modal) {
 
     modal.addEventListener(
+
         "click",
+
         (event) => {
 
             if (
@@ -1307,17 +1397,20 @@ if (modal) {
             }
 
         }
+
     );
 
 }
 
 
 /* =========================================================
-   ESC
+   ESC FECHA O MODAL
 ========================================================= */
 
 document.addEventListener(
+
     "keydown",
+
     (event) => {
 
         if (
@@ -1330,11 +1423,12 @@ document.addEventListener(
         }
 
     }
+
 );
 
 
 /* =========================================================
-   ANIMAÇÃO AO ROLAR
+   ANIMAÇÃO
 ========================================================= */
 
 const elementosAnimar =
@@ -1344,8 +1438,7 @@ const elementosAnimar =
 
 
 if (
-    "IntersectionObserver"
-    in window
+    "IntersectionObserver" in window
 ) {
 
     const observer =
@@ -1354,6 +1447,7 @@ if (
             (elementos) => {
 
                 elementos.forEach(
+
                     (elemento) => {
 
                         if (
@@ -1369,6 +1463,7 @@ if (
                         }
 
                     }
+
                 );
 
             },
@@ -1381,6 +1476,7 @@ if (
 
 
     elementosAnimar.forEach(
+
         (elemento) => {
 
             observer.observe(
@@ -1388,13 +1484,14 @@ if (
             );
 
         }
+
     );
 
 }
 
 
 /* =========================================================
-   BOTÃO IR PARA CARRINHO
+   IR PARA O CARRINHO
 ========================================================= */
 
 function facaAgora() {
@@ -1406,7 +1503,7 @@ function facaAgora() {
 
 
 /* =========================================================
-   ATUALIZAR CARRINHO AO ABRIR
+   ATUALIZAR CARRINHO
 ========================================================= */
 
 atualizarQuantidadeCarrinho();
@@ -1417,6 +1514,9 @@ atualizarQuantidadeCarrinho();
 ========================================================= */
 
 window.addEventListener(
+
     "storage",
+
     atualizarQuantidadeCarrinho
+
 );

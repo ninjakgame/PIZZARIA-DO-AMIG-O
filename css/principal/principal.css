@@ -48,7 +48,7 @@ a {
 
 
 .navegacao > a {
-    font-size: 15px;
+    font-size: 18px;
     font-weight: 700;
 
     color: #30251f;
@@ -194,7 +194,7 @@ a {
 
     display: flex;
     align-items: center;
-    gap: 50px;
+    gap: 10px;
 }
 
 
@@ -203,7 +203,7 @@ a {
 
     display: flex;
 
-    gap: 22px;
+    gap: 20px;
 
     overflow-x: auto;
 
@@ -865,86 +865,132 @@ textarea:focus {
 
 footer {
     width: 100%;
-
     background: #241b17;
-
     color: #ffffff;
-
     padding: 45px 30px;
 }
 
-
 .conteudoFooter {
     max-width: 1200px;
-
     margin: 0 auto;
 
     display: flex;
-
     justify-content: space-between;
+    align-items: flex-start;
 
-    gap: 50px;
+    gap: 80px;
 }
-
 
 .esquerdaF,
 .diretaF {
     display: flex;
-
     flex-direction: column;
-
     gap: 18px;
 }
 
+.esquerdaF {
+    flex: 1;
+}
+
+.diretaF {
+    min-width: 220px;
+}
 
 .esquerdaF h2 {
     font-size: 22px;
+    color: #ffffff;
 }
-
 
 .diretaF h3 {
     font-size: 18px;
+    color: #ffffff;
 }
-
 
 .links {
     display: flex;
-
     flex-direction: column;
-
     gap: 10px;
 }
 
-
-.links a,
-.icones a {
+.links a {
     color: #ddd;
+    text-decoration: none;
+    font-size: 16px;
 
     transition:
-        color 0.2s ease;
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
+.links a:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+}
 
-.links a:hover,
+.icones {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.icones p {
+    margin: 0;
+}
+
+.icones a {
+    color: #ddd;
+    text-decoration: none;
+
+    transition: color 0.2s ease;
+}
+
 .icones a:hover {
     color: #ffffff;
 }
 
-
-.icones {
-    display: flex;
-
-    align-items: center;
-
-    gap: 10px;
-}
-
-
 .icone {
     width: 27px;
     height: 27px;
-
     object-fit: contain;
+}
+
+
+/* =========================================================
+   FOOTER RESPONSIVO
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .conteudoFooter {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    .diretaF {
+        min-width: auto;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    footer {
+        padding: 35px 20px;
+    }
+
+    .conteudoFooter {
+        gap: 35px;
+    }
+
+    .esquerdaF h2 {
+        font-size: 20px;
+    }
+
+    .diretaF h3 {
+        font-size: 17px;
+    }
+
 }
 
 

@@ -71,28 +71,59 @@
                     </label>
 
                     <label>
-                        Rua
-                        <input type="text" id="ruaCliente" required>
+                        CEP
+                        <input type="text" id="cepCliente" placeholder="00000-000" maxlength="9"
+                            autocomplete="postal-code" required>
+
+                        <small id="mensagemCep"></small>
                     </label>
 
+
+                    <label>
+                        Rua
+                        <input type="text" id="ruaCliente" autocomplete="street-address" required>
+                    </label>
+
+
                     <div class="linhaCampos">
+
                         <label>
                             Número
-                            <input type="text" id="numeroCliente" required>
+                            <input type="text" id="numeroCliente" autocomplete="address-line2" required>
                         </label>
+
 
                         <label>
                             Bairro
-                            <input type="text" id="bairroCliente" required>
+                            <input type="text" id="bairroCliente" autocomplete="address-level3" required>
                         </label>
+
                     </div>
+
+
+                    <div class="linhaCampos">
+
+                        <label>
+                            Cidade
+                            <input type="text" id="cidadeCliente" autocomplete="address-level2" required>
+                        </label>
+
+
+                        <label>
+                            Estado
+                            <input type="text" id="estadoCliente" maxlength="2" autocomplete="address-level1" required>
+                        </label>
+
+                    </div>
+
 
                     <label>
                         Complemento
-                        <input type="text" id="complementoCliente">
+                        <input type="text" id="complementoCliente" autocomplete="address-line2">
                     </label>
 
                     <div class="opcoesPagamento">
+
                         <p>Pagamento</p>
 
                         <label>
@@ -104,6 +135,17 @@
                             <input type="radio" name="pagamento" value="Dinheiro">
                             Dinheiro
                         </label>
+
+                        <label>
+                            <input type="radio" name="pagamento" value="Débito">
+                            Cartão de Débito
+                        </label>
+
+                        <label>
+                            <input type="radio" name="pagamento" value="Crédito">
+                            Cartão de Crédito
+                        </label>
+
                     </div>
 
                     <button type="submit" class="btnFinalizar" id="btnFinalizar">
