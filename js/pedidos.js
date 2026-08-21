@@ -1087,12 +1087,10 @@ function confirmarPedidoWhatsApp() {
 
 
     /*
-       Verificar novamente
+       VERIFICAR SE EXISTEM PEDIDOS
     */
 
-    if (
-        pedidos.length === 0
-    ) {
+    if (pedidos.length === 0) {
 
         fecharModalConfirmacao();
 
@@ -1105,12 +1103,17 @@ function confirmarPedidoWhatsApp() {
     }
 
 
+    /*
+       PEGAR DADOS DO CLIENTE
+    */
+
     const dadosCliente =
         buscarDadosCliente();
 
 
     /*
-       Montar mensagem
+       MONTAR MENSAGEM
+       ANTES DE LIMPAR O CARRINHO
     */
 
     const mensagem =
@@ -1133,14 +1136,35 @@ function confirmarPedidoWhatsApp() {
 
 
     /*
-       Fechar modal
+       ==========================================
+       PEDIDO FOI CONFIRMADO
+       AGORA LIMPAR OS PEDIDOS
+       ==========================================
+    */
+
+    localStorage.removeItem(
+        chavePedidos
+    );
+
+
+    /*
+       ATUALIZAR A TELA
+    */
+
+    renderizarPedidos();
+
+    atualizarQuantidadeCarrinho();
+
+
+    /*
+       FECHAR MODAL
     */
 
     fecharModalConfirmacao();
 
 
     /*
-       Abrir WhatsApp
+       ABRIR WHATSAPP
     */
 
     window.open(
