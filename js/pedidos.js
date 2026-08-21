@@ -13,7 +13,7 @@ const chavePedidos = "meusPedidos";
 /*
    Número do WhatsApp da pizzaria
 */
-const numeroWhatsApp = "558587144716";
+const numeroWhatsApp = "5512982536747";
 
 
 /* ==================================================
